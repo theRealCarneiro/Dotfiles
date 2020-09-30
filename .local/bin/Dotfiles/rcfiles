@@ -1,0 +1,26 @@
+#!/bin/sh
+choice=$(echo 'bspwm\ndwm\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser' | \
+	dmenu -nb "$background" -nf "$foreground" -sb "$color1" -sf "$foreground" -i -p  "Abrir aquivo de configuração:")
+
+case $choice in
+	bspwm)		 $TERMINAL -e nvim $HOME/.config/bspwm/bspwmrc ;;
+	dwm)			 $TERMINAL -e nvim $HOME/Bibliotecas/Projects/dwm/config.h ;;
+	sxhkd)		 $TERMINAL -e nvim $HOME/.config/sxhkd/sxhkdwm ;;
+	nvim)		 $TERMINAL -e nvim $HOME/.config/nvim/init.vim ;;
+	lf)			 $TERMINAL -e nvim $HOME/.config/lf/lfrc ;;
+	polybar)		 $TERMINAL -e nvim $HOME/.config/polybar/config ;;
+	rofi)		 $TERMINAL -e nvim $HOME/.config/rofi/config.rasi ;;
+	.Xresources)	 $TERMINAL -e nvim $HOME/.config/X11/.Xresources ;;
+	.xprofile)	 $TERMINAL -e nvim $HOME/.config/X11/.xprofile ;;
+	.Xmodmap)		 $TERMINAL -e nvim $HOME/.config/X11/.Xmodmap ;;
+	.zprofile)	 $TERMINAL -e nvim $HOME/.zprofile ;;
+	.xinitrc)		 $TERMINAL -e nvim $HOME/.xinitrc ;;
+	dunst)		 $TERMINAL -e nvim $HOME/.config/dunst/dunstrc ;;
+	zsh)			 $TERMINAL -e nvim $HOME/.config/zsh/.zshrc ;;
+	rcfiles)		 $TERMINAL -e nvim $HOME/.local/bin/Dotfiles/rcfiles ;;
+	spotifyd)		 $TERMINAL -e nvim $HOME/.config/spotifyd/spotifyd.conf ;;
+	picom)		 $TERMINAL -e nvim $HOME/.config/picom/picom.conf ;;
+	alacritty)	 $TERMINAL -e nvim $HOME/.config/alacritty ;;
+	qutebrowser)	 $TERMINAL -e nvim $HOME/.config/qutebrowser/config.py ;;
+esac
+	

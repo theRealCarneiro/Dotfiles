@@ -1,0 +1,2 @@
+#!/bin/sh 
+find Bibliotecas/Imagens/Wallpapers -type f | shuf | sxiv -

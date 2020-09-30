@@ -1,0 +1,29 @@
+#!/bin/sh
+#pulseaudio -k 
+#jackd -dalsa -dhw:BCD3000 -r44100 -p1024 -n2
+#pulseaudio -D
+
+
+jack_control start
+jack_control ds alsa
+jack_control dps hw:BCD3000
+jack_control dps rate 44100
+
+sleep 2
+pulseaudio -k
+pulseaudio --start
+
+sleep 5
+
+jack_connect main:front-left system:playback_1
+jack_connect main:front-right system:playback_2
+jack_connect main:front-left system:playback_3
+jack_connect main:front-right system:playback_4
+
+jack_connect music:front-left system:playback_1
+jack_connect music:front-right system:playback_2
+jack_connect music:front-left system:playback_3
+jack_connect music:front-right system:playback_4
+
+jack_connect system:capture_3 mic:mono 
+jack_connect system:capture_4 mic:mono

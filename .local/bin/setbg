@@ -1,0 +1,14 @@
+#!/bin/sh
+		
+if [ $# -eq 0 ] 
+then
+	xwallpaper --zoom "$(cat $HOME/.cache/wal/wal)" 
+	#wal -i "$(cat $HOME/.cache/wal/wal)" -n
+else 
+	xwallpaper --zoom "$1"
+	wal -i "$1" -n -q -o $HOME/.config/dunst/launch 
+	oomox-cli $HOME/.cache/wal/colors-oomox
+	xrdb $XDG_CONFIG_HOME/X11/.Xresources & # Source Xresources
+	qutebrowser :config-source :reload
+#	sudo /home/gabriel/bin/.local/themefy 
+fi

@@ -1,0 +1,11 @@
+#!/bin/sh 
+killall dunst
+dunst -lf  "${color1}" \
+      -lb  "${background}" \
+      -lfr "${color1}" \
+      -nf  "${color8}" \
+      -nb  "${background}" \
+      -nfr "${color8}" \
+      -cf  "${color3}" \
+      -cb  "${background}" \
+      -cfr "${color3}" 

@@ -1,0 +1,2 @@
+#!/bin/sh
+dmenu_run -nb "$background" -nf "$foreground" -sb "$color1" -sf "$foreground" -i

@@ -1,0 +1,5 @@
+#!/bin/sh 
+rofi -show drun -config /home/gabriel/.config/rofi/rofi.conf \
+     -color-window "argb:bb$(echo ${background#*#}), argb:bb$(echo ${background#*#}), $color1" \
+     -color-normal "argb:00$(echo ${background#*#}), #aeaeae, argb:00$(echo ${background#*#}), argb:00$(echo ${background#*#}), $color1" \
+     -color-active "$background, $foreground, $background, $color1, $background"
