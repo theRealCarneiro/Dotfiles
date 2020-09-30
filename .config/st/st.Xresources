@@ -1,0 +1,6 @@
+st.font: 				JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true
+st.font2:				Hack Nerd Font Mono:pixelsize=20:antialias=true:autohint=true
+st.cursorColor:		#cccccc	
+st.alpha:				0.92
+st.alphaUnfocussed:		0.1	
+!st.termname:   		xterm-256color

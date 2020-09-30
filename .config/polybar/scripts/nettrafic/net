@@ -1,0 +1,13 @@
+#!/bin/sh
+
+download1="$(($(paste -d '+' /sys/class/net/*/statistics/rx_bytes)))"
+upload1="$(($(paste -d '+' /sys/class/net/*/statistics/tx_bytes)))"
+
+sleep 1
+
+download2="$(($(paste -d '+' /sys/class/net/*/statistics/rx_bytes)))"
+upload2="$(($(paste -d '+' /sys/class/net/*/statistics/tx_bytes)))"
+
+printf " %sKB    %sKB\n" \
+	"$(((download2 - ${download1%% *}) / 1024))" \
+	"$(((upload2 - ${upload1%% *}) / 1024))"

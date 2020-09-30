@@ -1,0 +1,44 @@
+<!DOCTYPE patchbay>
+<patchbay name="clear" version="0.6.3">
+ <output-sockets>
+  <socket type="jack-audio" client="main" name="main 1" exclusive="off">
+   <plug>front-left</plug>
+   <plug>front-right</plug>
+  </socket>
+  <socket type="jack-audio" client="system" name="system 1" exclusive="off">
+   <plug>capture_3</plug>
+   <plug>capture_4</plug>
+  </socket>
+  <socket type="jack-audio" client="music" name="music 1" exclusive="off">
+   <plug>front-left</plug>
+   <plug>front-right</plug>
+  </socket>
+  <socket type="jack-audio" client="system" name="system 2" exclusive="off">
+   <plug>capture_1</plug>
+   <plug>capture_2</plug>
+  </socket>
+ </output-sockets>
+ <input-sockets>
+  <socket type="jack-audio" client="system" name="system 1" exclusive="off">
+   <plug>playback_1</plug>
+   <plug>playback_2</plug>
+  </socket>
+  <socket type="jack-audio" client="mic" name="mic 1" exclusive="off">
+   <plug>front-left</plug>
+   <plug>front-right</plug>
+  </socket>
+  <socket type="jack-audio" client="system" name="system 2" exclusive="off">
+   <plug>playback_3</plug>
+   <plug>playback_4</plug>
+  </socket>
+ </input-sockets>
+ <slots/>
+ <cables>
+  <cable output="main 1" type="jack-audio" input="system 1"/>
+  <cable output="main 1" type="jack-audio" input="system 2"/>
+  <cable output="music 1" type="jack-audio" input="system 2"/>
+  <cable output="music 1" type="jack-audio" input="system 1"/>
+  <cable output="system 1" type="jack-audio" input="mic 1"/>
+ </cables>
+</patchbay>
+

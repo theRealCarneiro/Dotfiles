@@ -1,0 +1,5 @@
+#!/bin/sh
+
+newEmailCount=$(ls ~/.local/share/mail/carneiro/INBOX/new | wc -l)
+
+echo  $newEmailCount

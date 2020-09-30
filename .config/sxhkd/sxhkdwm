@@ -1,0 +1,130 @@
+#
+# wm independent hotkeys
+#
+
+# make sxhkd reload its configuration files:
+#super + Escape
+	#pkill -USR1 -x sxhkd
+	
+super + alt + Return
+	{setxkbmap us intl, setxkbmap br abnt2}
+
+super + r
+	pkill -USR1 -x sxhkd
+
+# close window
+#super + {_,shift + }q
+#	xdo {kill, kill}
+
+super + shift + q
+	xdo kill
+
+#
+# start programs
+#
+
+# terminal emulator
+super + Return
+	$TERMINAL
+
+# browser
+super + b 
+	qutebrowser
+
+# lf 
+super + e 
+     alacritty -e lf
+
+# rofi
+super + d 
+	rofi -show drun 
+#	pyrofi
+	
+# dmenu
+super + shift + d
+	dmenu_run
+
+# edit rcfiles 
+super + c 
+	rcfiles
+
+# local bin
+super + shift + c
+	editscripts
+
+
+# picom
+super + F10
+	toggle picom 
+
+# polybar
+super + F9
+	toggle polybar polyLaunch
+
+# print
+super + Print
+	scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Bibliotecas/Imagens/Prints' && notify-send -i Camera "Screenshot" "Salvo em Imagens/Prints"
+
+# print to clipboard
+Print 
+	scrot -q 100 ~/foo.png && xclip -selection clipboard -t image/png -i foo.png && rm ~/foo.png && notify-send -i Camera "Screenshot" "Salvo na área de transferência"
+
+# i3lock
+super + shift + x
+	~/.config/i3lock/lock.sh
+
+
+#
+## Audio 
+#
+
+super + F12
+	startpulse
+
+super + shift + F12
+	toggle BCD
+
+super + shift + s 
+	$TERMINAL -e spt
+
+super + shift + F8
+	toggle spotifyd 
+
+XF86AudioPlay
+#	playerctl --player=spotifyd play-pause
+
+XF86AudioPrev
+#	playerctl --player=spotifyd previous
+
+#XF86AudioNext
+#	playerctl --player=spotifyd next
+
+#XF86AudioPlay
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+# next song
+#XF86AudioNext
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+# previous
+#XF86AudioPrev
+	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+
+#
+## power options
+#
+
+# power menu
+super + F4
+	powermenu
+
+# shutdown 
+super + alt + s
+	prompt "Quer desligar o computador?" "loginctl poweroff"		
+
+# reboot
+super + alt + r
+	prompt "Quer reiniciar o computador?" "loginctl reboot"
+
+super + shift + e
+	prompt "Quer encerrar a X session?" "killall Xorg"

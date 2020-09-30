@@ -1,0 +1,11 @@
+#!/bin/sh
+
+wget -q --spider http://google.com
+
+if [ $? -eq 0 ]; then
+	echo 
+    #notify-send "Online" --urgency low
+else
+	echo 
+    #notify-send "Offline" --urgency low
+fi

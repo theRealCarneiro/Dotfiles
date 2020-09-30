@@ -1,0 +1,64 @@
+# Global
+set shell zsh
+set hidden true
+set tabstop 5
+set sortby ext
+set icons true
+set drawbox true
+set previewer /home/gabriel/.config/lf/preview
+
+# Custom Scripts
+cmd mkdir ${{
+	set -f 
+	printf "Directory Name: "
+	read ans
+	mkdir "$ans"
+}}
+
+cmd open ${{
+	case $(file --mime-type "$f" -bL) in
+		text/*|application/json) $EDITOR "$fx";;
+		video/*) xdg-open "$f" & ;;
+		image/*) sxiv "$f" ;;
+		application/pdf) zathura "$f" ;;
+	     application/zip) unzip "$f" ;;
+		application/gzip) tar -xzf "$f" ;;
+		application/x-tar) tar -xf "$f" ;;
+		application/x-bzip2) tar -xjf "$f" ;;
+		application/x-7z-compressed) 7z e "$f" ;;
+		application/x-dosexec) wine "$f" ;;
+		*) for f in "$fx"; do xdg-open "$f"> /dev/null 2> /dev/null & done;;
+	esac
+}}
+
+cmd unzip ${{
+     atool -x "$f" -q
+}}
+
+cmd chmod ${{
+     chmod +x "$f"
+}}
+
+cmd setBG ${{
+     setbg "$f"
+}}
+
+cmd make ${{
+	make
+}}
+
+cmd makeClean ${{
+	make clean
+}}
+
+
+# Key Maps
+map m
+map mk make
+map mc makeClean
+map x delete
+map . set hidden!
+map n mkdir
+map zz unzip
+map cc chmod
+map sbg setBG

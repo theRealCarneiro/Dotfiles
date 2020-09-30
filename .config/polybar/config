@@ -1,0 +1,400 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+;background = #af100c09
+;background-alt = #8a716538
+;foreground = #ffffff
+background = ${env:bg_alpha:}
+background-alt = ${xrdb:background:#222}
+;foreground = ${xrdb:foreground:#222}
+foreground = #bfbfbf
+foreground-alt = #7d7d7d
+primary = ${xrdb:color1:#222}
+;secondary = ${xrdb:foreground:#222}
+secondary = ${self.foreground}
+alert = #bd2c40
+
+[bar/bar]
+monitor = ${env:MONITOR:}
+width = 100%
+height = 25
+;offset-x = 1%
+;offset-y = 1%
+radius = 0 
+fixed-center = true 
+locale = pt_BR.UTF-8
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = "SF Pro Display:pixelsize=14:antialias=true:autohint=true:style:Ultraheavy"
+font-1 = "JetBrains Mono Nerd Font:pixelsize=14:antialias=true:autohint=true:style:Medium"
+font-2 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Bold"
+font-3 = "Font Awesome 5 Brands:pixelsize=12:antialias=true;1"
+font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;1"
+
+modules-left = dwm bspwm
+modules-center = spotify spotifyd
+modules-right = updates-arch-combined disk mem cpu temp date power
+
+tray-position = right 
+tray-padding = 5
+tray-offset-x = 0
+tray-foreground = ${colors.foreground}
+tray-background = ${colors.background}
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/temp]
+type = custom/script
+exec = temp
+format-underline = ${colors.primary}
+format-prefix = " "
+format-prefix-font = 5
+click-left = temp_all_notify
+interval = 5
+
+[module/disk]
+type = custom/script
+exec = disk_usage
+format-underline = ${colors.primary}
+format-prefix = " "
+format-prefix-font = 5
+tail = true
+click-left = kill -USR1 %pid%
+
+[module/mem]
+type = custom/script
+exec = memory_usage 
+format-underline = ${colors.primary}
+format-prefix = " "
+format-prefix-font = 5
+tail = true
+click-left = kill -USR1 %pid%
+click-right = notify-send "Quem ta comendo RAM: $(ps axch -o cmd:15,%mem --sort=-%mem | head)"
+
+[module/nettrafic]
+type = custom/script
+exec = ~/.config/polybar/scripts/nettrafic/net
+format-underline = ${colors.primary}
+interval = 5
+;tail = true
+;click-left = kill -USR1 %pid%
+
+[module/ip]
+type = custom/script
+exec = ~/.config/polybar/scripts/ip/ip
+format-underline=${colors.primary}
+interval = 5
+
+[module/dateCal]
+type = custom/script 
+exec = ~/.config/polybar/scripts/date/date
+click-left = st -e calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse &
+click-right = notify-send -i Calendar "To do:" "$(calcurse -d 21)" &
+format-underline=${colors.primary}
+interval = 1
+
+[module/power]
+type = custom/text
+content-font = 5
+content = "" 
+click-left = powermenu &
+
+[module/cpuUsage]
+type = custom/script
+;click-left=~/.config/polybar/scripts/cpu/cpu
+click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)"
+exec = ~/.config/i3blocks/scripts/cpu_usage/cpu_usage  
+format-prefix-font = 3
+format-prefix=" "  
+format-underline=${colors.primary}
+interval = 1
+
+[module/updates-arch-combined]
+type = custom/script
+exec = arch_updates
+format-prefix-font = 5
+format-prefix = " "
+format-underline = ${colors.primary}
+click-left = notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(yay -Qum)" &
+click-right = st -e sudo pacman -Syu &
+interval = 600
+
+[module/spotifyd]
+type = custom/script
+exec = playerctl --player=spotifyd metadata --format "{{ title }}" 2>/dev/null
+format-prefix = " "
+format-prefix-font = 2
+interval = 5
+
+[module/spotify]
+type = custom/script
+exec = ~/.config/i3blocks/scripts/spotify/spotify.sh 2> /dev/null
+format-prefix = " "
+;format-prefix-foreground = ${colors.foreground}
+click-left = xdo activate -n spotify
+;interval = 1
+
+[module/date]
+type = internal/date
+interval = 1
+date = %d/%m
+time = %H:%M:%S
+date-alt = %A, %d %B %Y 
+time-alt = %A, %d %B %Y %H:%M:%S
+format = <label>
+format-underline = ${colors.primary}
+label = %time%
+label-font = 1
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+format-mounted-font = 3
+format-mounted-prefix = " "
+format-mounted-prefix-underline = ${colors.primary}
+label-mounted = %percentage_used%%
+label-mounted-underline = ${colors.primary}
+
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/dwm]
+type = internal/dwm
+format = <label-tags> <label-layout> <label-floating> <label-title>
+; Path to dwm socket (default: /tmp/dwm.sock)
+; socket-path = /tmp/dwm.sock
+
+; Left-click to view tag, right-click to toggle tag view
+enable-tags-click = true
+; Scroll to cycle between available tags
+enable-tags-scroll = false
+; If true and enable-tags-scroll = true, scrolling will view all tags regardless if occupied
+tags-scroll-empty = false
+; If true and enable-tags-scroll = true, scrolling will cycle through tags backwards
+tags-scroll-reverse = false
+; If true and enable-tags-scroll = true, wrap active tag when scrolling
+tags-scroll-wrap = false
+; Left-click to set secondary layout, right-click to switch to previous layout
+enable-layout-click = false
+; Scroll to cycle between available layouts
+enable-layout-scroll = false
+; Wrap when scrolling and reaching begining/end of layouts
+layout-scroll-wrap = false
+; Reverse scroll direction
+layout-scroll-reverse = false
+
+; If enable-layout-click = true, clicking the layout symbol will switch to this layout
+secondary-layout-symbol = [M]
+
+; Separator in between shown tags
+; label-separator = |
+
+; Title of currently focused window
+; Available tokens:
+;   %title%
+label-title = %title%
+;label-title = 
+;label-title-font = 1
+label-title-padding = 1
+label-title-forefround = ${colors.forefround}
+label-title-maxlen = 30
+
+; Symbol of current layout
+; Available tokens:
+;   %symbol%
+label-layout = %symbol%
+label-layout-font = 0
+label-layout-padding = 1
+label-layout-foreground = ${colors.foreground}
+label-layout-background = ${colors.background}
+
+; Text to show when currently focused window is floating
+label-floating = ""
+label-floating-font = 5
+
+; States: focused, unfocused, visible, urgent, empty
+; Available tokens:
+;   %name%
+
+; focused = Selected tag on focused monitor
+label-focused = %name%
+label-focused-font = 3
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.primary}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 3
+
+; unfocused = Unselected tag on unselected monitor
+label-unfocused-font = 2
+label-unfocused = %name%
+label-unfocused-padding = 3
+
+; visible = Unselected tag, but occupied tag on any monitor
+label-visible-font = 2
+label-visible = %name%
+label-visible-background = ${colors.background}
+label-visible-foreground = ${colors.primary}
+label-visible-padding = 3
+
+; urgent = Unselected tag with window that has urgency hint set
+label-urgent-font = 3
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 3
+
+; empty = Unselected and unoccupied tag
+; This can be set to an empty string to hide empty tags
+label-empty-font = 2
+label-empty = %name%
+label-empty-background = ${colors.background}
+label-empty-padding = 3
+
+[module/bspwm]
+type = internal/bspwm
+ws-icon-0 = 1;1
+ws-icon-1 = 2;2
+ws-icon-2 = 3;3
+ws-icon-3 = 4;4
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 10; 
+
+label-focused-font = 3
+label-focused = %icon%
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.primary}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 3
+
+label-occupied-foreground = ${colors.primary}
+label-occupied-font = 2
+label-occupied = %icon%
+label-occupied-padding = 3
+
+label-urgent-font = 3
+label-urgent = %icon%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 3
+
+label-empty-font = 2
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 3
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-font = 5
+;format-prefix-foreground = ${colors.foreground-alt}
+format-underline = ${colors.primary}
+label = %percentage:2%%
+click-left= notify-send a
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix-font = 3
+format-prefix = " "
+format-underline = ${colors.primary}
+label =  %percentage_used%%
+
+[module/eth]
+type = internal/network
+interface = enp6s0
+interval = 3.0
+
+#format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+;format-disconnected = %local_ip%
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini

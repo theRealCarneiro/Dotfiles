@@ -1,0 +1,46 @@
+@import "colors.rasi"
+* {
+	transparent:		rgba(0,0,0,0);
+	background-color:	@transparent;
+	text-color:		@fg;
+	border:			none;
+	columns:			2;
+	font:			"SF Pro Display Medium 25";
+}
+
+#window {
+	fullscreen:		false;
+	anchor:			center;
+	width:			100%;
+	padding:			205;
+	background-color:	@bg;
+	orientation:		horizontal;
+	children:			[ teste,mainbox,teste2 ];
+}
+
+#teste {
+	padding:			20;
+	expand:			false;
+}
+
+#teste2{
+	padding:			0;
+	expand:			false;
+}
+
+#mainbox {
+	location:			center;
+	expand:			true;
+	children:			[ inputbar, listview ];
+}
+
+#listview {
+}
+
+#inputbar {
+	color:			@fg;
+}
+
+element selected {
+	text-color:		@red;
+}

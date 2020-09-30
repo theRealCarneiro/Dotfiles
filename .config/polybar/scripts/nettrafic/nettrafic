@@ -1,0 +1,17 @@
+#!/bin/sh
+
+t=0
+
+toggle() {
+    t=$(((t + 1) % 2))
+}
+
+trap "toggle" USR1
+
+while true; do
+	if [ $t -eq 0 ]; then
+		.config/polybar/scripts/nettrafic/net
+	else 
+		.config/polybar/scripts/ip/ip
+	fi
+done

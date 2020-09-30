@@ -1,0 +1,47 @@
+configuration {
+	fixed-num-lines: false;
+	auto-select: false;
+	tokenize: false;
+	hide-scrollbar: true;
+	separator-color:	@fg;
+	separatorcolor:	@fg;
+	kb-accept-entry:	"l,Return";
+	kb-row-up:		"k,Up";
+	kb-row-down:		"j,Down";
+}
+
+@import "colors"
+* {
+	transparent:		rgba(0,0,0,0);
+	background-color:	@transparent;
+	text-color:		@fg;
+	border:			none;
+	columns:			2;
+	font:			"SF Pro Display 18";
+	lines:			10;
+	columns:			1;
+}
+
+#window {
+	y-offset:			-510;
+	x-offset:			860;
+	anchor:			north;
+	width:			180;
+	padding:			10;
+	background-color:	@bg;
+}
+
+#textbox {
+	font:			"SF Pro Display 20";
+	text-color:		@red;
+	border:			0px 0px 2px 0px;
+	border-color:		@red;
+}
+
+#inputbar {
+	enabled:			false;
+}
+
+element selected {
+    text-color:		@red;
+}

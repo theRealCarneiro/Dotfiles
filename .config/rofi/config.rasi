@@ -1,0 +1,15 @@
+configuration {
+	modi:			"run,drun,ssh";
+	kb-accept-entry:	"Super+m,Return,KP_Enter";
+	kb-row-left:		"Super+h";
+	kb-row-right:		"Super+l";
+	kb-row-up:		"Up,Super+k";
+	kb-row-down:		"Down,Super+j";
+	show-icons:		false;
+	display-run:		"$ ";
+	display-drun:		"Run: ";
+	display-ssh:		"SSH: ";
+	theme:			"theme.rasi";
+	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
+	drun-display-format: "{name}";
+}

@@ -1,0 +1,3 @@
+# !/bin/sh
+ip=$(ip route list | awk '/^default/{print $9}')
+echo $($HOME/.config/polybar/scripts/ip/online) $ip
