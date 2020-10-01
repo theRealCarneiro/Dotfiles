@@ -1,1 +1,3 @@
-../../../.config/polybar/scripts/temp/temp
+#!/bin/sh
+
+sensors | awk '$1 == "temp1:" {print $2}' | cut -c2-8
