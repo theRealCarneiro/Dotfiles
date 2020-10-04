@@ -9,11 +9,6 @@
 ;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
 ;
 ;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/polybar/polybar
-;
-;   The README contains a lot of information
-;
 ;==========================================================
 
 [colors]
@@ -43,26 +38,26 @@ locale = pt_BR.UTF-8
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 2
+line-size = 0
 line-color = #f00
 
 border-size = 0
-border-color = #00000000
+border-color = ${env:color1}
 
 padding-left = 0
 padding-right = 0
 
-module-margin-left = 1
+module-margin-left = 2
 module-margin-right = 2
 
-font-0 = "SF Pro Display:pixelsize=14:antialias=true:autohint=true:style:Ultraheavy"
-font-1 = "JetBrains Mono Nerd Font:pixelsize=14:antialias=true:autohint=true:style:Medium"
-font-2 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Bold"
-font-3 = "Font Awesome 5 Brands:pixelsize=12:antialias=true;1"
+font-0 = "SF Pro Display:pixelsize=14:antialias=true:style:Ultraheavy;1"
+font-1 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:style:Medium;2"
+font-2 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:style:Bold;2"
+font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
 font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;1"
 
-modules-left = dwm bspwm
-modules-center = spotify spotifyd
+modules-left = dwm bspwm spotify spotifyd
+modules-center = xwindow
 modules-right = updates-arch-combined disk mem cpu temp date power
 
 tray-position = right 
@@ -72,32 +67,30 @@ tray-foreground = ${colors.foreground}
 tray-background = ${colors.background}
 
 ;wm-restack = bspwm
-;wm-restack = i3
 
-;override-redirect = true
+override-redirect = false
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[module/temp]
+[module/updates-arch-combined]
 type = custom/script
-exec = temp
-format-underline = ${colors.primary}
-format-prefix = " "
+exec = arch_updates
 format-prefix-font = 5
-click-left = temp_all_notify
-interval = 5
+format-prefix = " "
+#format-underline = ${colors.primary}
+format-foreground = ${env:color1}
+click-left = notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(yay -Qum)" &
+click-right = st -e sudo pacman -Syu &
+interval = 600
 
 [module/disk]
 type = custom/script
 exec = disk_usage
-format-underline = ${colors.primary}
+format-foreground = ${env:color2}
 format-prefix = " "
 format-prefix-font = 5
 tail = true
@@ -106,12 +99,30 @@ click-left = kill -USR1 %pid%
 [module/mem]
 type = custom/script
 exec = memory_usage 
-format-underline = ${colors.primary}
+#format-underline = ${colors.primary}
+format-foreground = ${env:color3}
 format-prefix = " "
 format-prefix-font = 5
 tail = true
 click-left = kill -USR1 %pid%
 click-right = notify-send "Quem ta comendo RAM: $(ps axch -o cmd:15,%mem --sort=-%mem | head)"
+
+[module/temp]
+type = custom/script
+exec = temp
+#format-underline = ${colors.primary}
+format-foreground = ${env:color5}
+format-prefix = " "
+format-prefix-font = 5
+click-left = temp_all_notify
+interval = 5
+
+[module/power]
+type = custom/text
+content-font = 4
+content-foreground = ${env:color6}
+content = " " 
+click-left = powermenu &
 
 [module/nettrafic]
 type = custom/script
@@ -135,11 +146,6 @@ click-right = notify-send -i Calendar "To do:" "$(calcurse -d 21)" &
 format-underline=${colors.primary}
 interval = 1
 
-[module/power]
-type = custom/text
-content-font = 5
-content = "" 
-click-left = powermenu &
 
 [module/cpuUsage]
 type = custom/script
@@ -151,15 +157,6 @@ format-prefix=" "
 format-underline=${colors.primary}
 interval = 1
 
-[module/updates-arch-combined]
-type = custom/script
-exec = arch_updates
-format-prefix-font = 5
-format-prefix = " "
-format-underline = ${colors.primary}
-click-left = notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(yay -Qum)" &
-click-right = st -e sudo pacman -Syu &
-interval = 600
 
 [module/spotifyd]
 type = custom/script
@@ -181,16 +178,18 @@ type = internal/date
 interval = 1
 date = %d/%m
 time = %H:%M:%S
+format-foreground = ${env:color7}
 date-alt = %A, %d %B %Y 
 time-alt = %A, %d %B %Y %H:%M:%S
 format = <label>
-format-underline = ${colors.primary}
+#format-underline = ${colors.primary}
 label = %time%
 label-font = 1
 
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:50:...%
+label-font=1
 
 [module/filesystem]
 type = internal/fs
@@ -213,23 +212,14 @@ format = <label-tags> <label-layout> <label-floating> <label-title>
 ; Path to dwm socket (default: /tmp/dwm.sock)
 ; socket-path = /tmp/dwm.sock
 
-; Left-click to view tag, right-click to toggle tag view
 enable-tags-click = true
-; Scroll to cycle between available tags
 enable-tags-scroll = false
-; If true and enable-tags-scroll = true, scrolling will view all tags regardless if occupied
 tags-scroll-empty = false
-; If true and enable-tags-scroll = true, scrolling will cycle through tags backwards
 tags-scroll-reverse = false
-; If true and enable-tags-scroll = true, wrap active tag when scrolling
 tags-scroll-wrap = false
-; Left-click to set secondary layout, right-click to switch to previous layout
 enable-layout-click = false
-; Scroll to cycle between available layouts
 enable-layout-scroll = false
-; Wrap when scrolling and reaching begining/end of layouts
 layout-scroll-wrap = false
-; Reverse scroll direction
 layout-scroll-reverse = false
 
 ; If enable-layout-click = true, clicking the layout symbol will switch to this layout
@@ -241,8 +231,8 @@ secondary-layout-symbol = [M]
 ; Title of currently focused window
 ; Available tokens:
 ;   %title%
-label-title = %title%
-;label-title = 
+;label-title = %title%
+label-title = 
 ;label-title-font = 1
 label-title-padding = 1
 label-title-forefround = ${colors.forefround}
@@ -251,6 +241,7 @@ label-title-maxlen = 30
 ; Symbol of current layout
 ; Available tokens:
 ;   %symbol%
+;label-layout = %symbol%
 label-layout = %symbol%
 label-layout-font = 0
 label-layout-padding = 1
@@ -266,10 +257,13 @@ label-floating-font = 5
 ;   %name%
 
 ; focused = Selected tag on focused monitor
-label-focused = %name%
+;label-focused = %name%
+label-focused = 
 label-focused-font = 3
 label-focused-background = ${colors.background}
-label-focused-foreground = ${colors.primary}
+;label-focused-background = ${env:color1}
+label-focused-foreground = ${env:color1}
+;label-focused-foreground = ${env:background}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
@@ -280,22 +274,28 @@ label-unfocused-padding = 3
 
 ; visible = Unselected tag, but occupied tag on any monitor
 label-visible-font = 2
-label-visible = %name%
+;label-visible = %name%
+label-visible = 
 label-visible-background = ${colors.background}
-label-visible-foreground = ${colors.primary}
+;label-visible-foreground = ${colors.primary}
+label-visible-foreground = ${env:color6}
 label-visible-padding = 3
 
 ; urgent = Unselected tag with window that has urgency hint set
-label-urgent-font = 3
-label-urgent = %name%
-label-urgent-background = ${colors.alert}
+label-urgent-font = 2
+;label-urgent = %name%
+label-urgent = 
+;label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${env:color5}
 label-urgent-padding = 3
 
 ; empty = Unselected and unoccupied tag
 ; This can be set to an empty string to hide empty tags
 label-empty-font = 2
-label-empty = %name%
-label-empty-background = ${colors.background}
+;label-empty = %name%
+label-empty = 
+;label-empty-background = ${env:color2}
+label-empty-foreground = ${env:color6}
 label-empty-padding = 3
 
 [module/bspwm]
@@ -354,8 +354,9 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-font = 5
+format-foreground = ${env:color4}
 ;format-prefix-foreground = ${colors.foreground-alt}
-format-underline = ${colors.primary}
+#format-underline = ${colors.primary}
 label = %percentage:2%%
 click-left= notify-send a
 

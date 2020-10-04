@@ -36,12 +36,12 @@ super + e
      alacritty -e lf
 
 # rofi
-super + d 
+super + shift + d
 	rofi -show drun 
 #	pyrofi
 	
 # dmenu
-super + shift + d
+super + d 
 	dmenu_run
 
 # edit rcfiles 
@@ -67,7 +67,11 @@ super + Print
 
 # print to clipboard
 Print 
-	scrot -q 100 ~/foo.png && xclip -selection clipboard -t image/png -i foo.png && rm ~/foo.png && notify-send -i Camera "Screenshot" "Salvo na área de transferência"
+	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i
+
+super + Delete 
+	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i
+#	scrot -q 100 ~/foo.png && xclip -selection clipboard -t image/png -i foo.png && rm ~/foo.png && notify-send -i Camera "Screenshot" "Salvo na área de transferência"
 
 # i3lock
 super + shift + x
@@ -128,3 +132,85 @@ super + alt + r
 
 super + shift + e
 	prompt "Quer encerrar a X session?" "killall Xorg"
+
+#
+## Dwm
+#
+
+super + p
+	dwmc togglebar
+
+super + j
+	dwmc focusdown
+
+super + k
+	dwmc focusup
+
+super + v
+	dwmc horizontal	    
+
+super + i
+	dwmc vertical		    
+
+super + h
+	dwmc smaller		      
+
+super + l
+	dwmc bigger		       
+
+super + space
+	dwmc zoom		           
+
+super + tab
+	dwmc view		           
+	
+super + q
+	dwmc killclient	      
+
+super + t
+	dwmc layout.tiled		       
+
+super + shift + f
+	dwmc layout.floating  
+
+super + m
+     dwmc layout.monocle		       
+
+super + f
+	dwmc layout.fullscreen    
+
+super + shift + n
+	dwmc layout.null		       
+
+super + shift + space
+	dwmc layout.toggle	       
+	
+super + 0
+	dwmc view		            
+
+super + shift + 0
+	dwmc tag 			             
+
+super + comma
+	dwmc focusmon-	        
+
+super + period
+	dwmc focusmon+	        
+
+super + shift + comma
+	dwmc tagmon-		          
+
+super + shift + period
+	dwmc tagmon+		          
+
+super + minus
+	dwmc setgaps-		         
+
+super + equal
+	dwmc setgaps+	 	         
+	
+super + shift + equal
+	dwmc setgaps0		         
+
+super + n
+	dwmc toggletag

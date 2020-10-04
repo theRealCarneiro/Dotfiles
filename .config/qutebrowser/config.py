@@ -1,11 +1,14 @@
 import yaml
 
+config.set('hints.chars','sadfjklewcmpgh')
 config.set('auto_save.session', True)
 config.set('colors.tabs.indicator.system', 'rgb')
 config.set('statusbar.position','bottom')
 config.set('downloads.location.directory', '/home/gabriel/Bibliotecas/Downloads')
 
-config.bind('I','spawn --userscript qute-pass')
+config.bind('sp','spawn --userscript qute-pass')
+config.bind('su', 'spawn --userscript qute-pass --username-only')
+config.bind('spo', 'spawn --userscript qute-pass --password-only')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
 config.bind('x', 'tab-close')

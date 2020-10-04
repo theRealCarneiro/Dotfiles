@@ -20,23 +20,14 @@ HISTFILE=$HOME/.cache/zsh/history
 # Plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 plugins=(git)
-source $HOME/.config/zsh/themes/minimal.zsh-theme
 #source $HOME/.config/zsh/themes/bira.zsh-theme
+source $HOME/.config/zsh/themes/minimal.zsh-theme
 source $HOME/.config/zsh/plugins/key-bindings.zsh
 source $HOME/.config/zsh/plugins/git.zsh
 source $HOME/.config/zsh/plugins/prompt_info_functions.zsh
 source $HOME/.config/zsh/plugins/theme-and-appearance.zsh
 
 # Alias
-alias czsh="nvim $HOME/.config/zsh/.zshrc"
-alias ci3="nvim $HOME/.config/i3/config"
-alias cvim="nvim $HOME/.vim/vimrc"
-alias cnvim="nvim $HOME/.config/nvim/init.vim"
-alias cxinit="nvim $HOME/.xinitrc"
-alias cbsp="nvim $HOME/.config/bspwm/bspwmrc"
-alias csxh="nvim $HOME/.config/sxhkd/sxhkdrc"
-alias cpoly="nvim $HOME/.config/polybar/config"
-alias scrotclip="scrot ~/foo.png && xclip -selection clipboard -t image/png -i foo.png && rm ~/foo.png"
 alias calcurse="calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse"
 alias mbsync="mbsync -c $HOME/.config/isync/mbsyncrc"
 alias wget="wget --hsts-file=$HOME/cache/wget/wget-hsts"

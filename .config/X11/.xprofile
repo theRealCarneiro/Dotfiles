@@ -8,7 +8,8 @@
 xrdb $XDG_CONFIG_HOME/X11/.Xresources & # Source Xresources
 #numlockx & # Numlock on 
 xsetroot -cursor_name left_ptr & # Remove X cursor
-xset s 1800 1800 & # Disabled screen timeout
+xset s off & # Disabled screen timeout
+xset q &
 remaps &
 
 
@@ -26,8 +27,3 @@ setbg & # Wallpaper
 ##### Audio #####
 BCD &
 startpulse &
-#qjackctl &
-#pulseSinks &
-#jackd -dalsa -dhw:BCD3000 -r44100 -p1024 -n2 -Xraw -i4 & # Start jack server
-#BCD & # Start BCD3000 midi
-#pactl load-module module-echo-cancel aec_method=webrtc &

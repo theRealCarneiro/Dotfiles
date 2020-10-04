@@ -1,5 +1,6 @@
 # !/bin/bash
 export bg_alpha="#cf${background###}"
+#export bg_alpha="#${background###}"
 killall polybar 
 if type "xrandr"; then
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do

@@ -32,5 +32,5 @@ export NNN_USE_EDITOR=1
 source "/home/gabriel/.cache/wal/shell"
 
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
-	startx -- vt1 &> /dev/null
+	exec startx -- vt1 &> /dev/null
 fi

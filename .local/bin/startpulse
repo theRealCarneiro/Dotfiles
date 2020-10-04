@@ -11,7 +11,8 @@ jack_control dps rate 44100
 
 sleep 2
 pulseaudio -k
-pulseaudio --log-level=4 >> $HOME/.log/pulse/log
+#pulseaudio --log-level=4 >> $HOME/.log/pulse/log
+pulseaudio --start
 
 sleep 5
 

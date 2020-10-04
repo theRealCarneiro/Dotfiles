@@ -4,6 +4,7 @@ import:
  - /home/gabriel/.config/alacritty/keys.yml
  - /home/gabriel/.config/alacritty/fonts.yml
 
+background_opacity: 0.9
 # Import additional configuration files
 #
 # These configuration files will be loaded in order, replacing values in files
@@ -352,7 +353,6 @@ import:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.92
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"

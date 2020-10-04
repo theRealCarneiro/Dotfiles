@@ -43,11 +43,11 @@ colors:
             bg: "{background}"
         selected:
             even:
-                fg: "{background}"
-                bg: "{color1}"
+                fg: "{color1}"
+                bg: "{background}"
             odd:
-                fg: "{background}"
-                bg: "{color1}"
+                fg: "{color1}"
+                bg: "{background}"
     completion:
         category:
             bg: "{color6}"
