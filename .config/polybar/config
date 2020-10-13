@@ -56,8 +56,8 @@ font-2 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:sty
 font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
 font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;1"
 
-modules-left = dwm bspwm spotify spotifyd
-modules-center = xwindow
+modules-left = dwm bspwm playerctl
+modules-center =  xwindow  
 modules-right = updates-arch-combined disk mem cpu temp date power
 
 tray-position = right 
@@ -84,7 +84,7 @@ format-prefix = " "
 #format-underline = ${colors.primary}
 format-foreground = ${env:color1}
 click-left = notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(yay -Qum)" &
-click-right = st -e sudo pacman -Syu &
+click-right = alacritty -e sudo pacman -Syu &
 interval = 600
 
 [module/disk]
@@ -158,17 +158,40 @@ format-underline=${colors.primary}
 interval = 1
 
 
-[module/spotifyd]
+[module/playerctl]
 type = custom/script
-exec = playerctl --player=spotifyd metadata --format "{{ title }}" 2>/dev/null
-format-prefix = " "
+exec = playerctl_title
+;format-prefix = " "
+format-prefix-foreground =#1DB954 
 format-prefix-font = 2
+click-left = play-pause &
 interval = 5
+
+[module/play]
+type = custom/text
+content-font = 2
+content = "" 
+click-left = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause &
+
+[module/nextSong]
+type = custom/text
+content-font = 2
+content = "怜" 
+click-left = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next &
+
+[module/prevSong]
+type = custom/text
+content-font = 2
+content-padding=0
+content = "玲" 
+click-left = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 [module/spotify]
 type = custom/script
-exec = ~/.config/i3blocks/scripts/spotify/spotify.sh 2> /dev/null
+exec = playerctl --player=spotify metadata --format "{{ title }}" 2>/dev/null
+;exec = ~/.config/i3blocks/scripts/spotify/spotify.sh 2> /dev/null
 format-prefix = " "
+format-prefix-font = 2
 ;format-prefix-foreground = ${colors.foreground}
 click-left = xdo activate -n spotify
 ;interval = 1
@@ -190,6 +213,9 @@ label-font = 1
 type = internal/xwindow
 label = %title:0:50:...%
 label-font=1
+label-empty-foreground = #1793d1
+;label-empty-foreground = ${env:color6}
+label-empty = "  "
 
 [module/filesystem]
 type = internal/fs
@@ -249,7 +275,7 @@ label-layout-foreground = ${colors.foreground}
 label-layout-background = ${colors.background}
 
 ; Text to show when currently focused window is floating
-label-floating = ""
+label-floating = ""
 label-floating-font = 5
 
 ; States: focused, unfocused, visible, urgent, empty

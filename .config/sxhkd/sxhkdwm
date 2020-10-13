@@ -23,17 +23,30 @@ super + shift + q
 # start programs
 #
 
+super + v
+	toggle droidcam-cli "droidcam-cli -a -v 192.168.0.2 4747"
+	#{droidcam-cli -a -v 192.168.0.2 4747, killall droidcam-cli}
+
+super + shift + m
+	toggle droidcam-cli "droidcam-cli -a 192.168.0.2 4747"
+
+super + shift + v
+	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
+
+super + shift + Return
+	{xdo hide -N St, xdo show -N St}
+
 # terminal emulator
 super + Return
 	$TERMINAL
 
 # browser
 super + b 
-	qutebrowser
+	$BROWSER
 
 # lf 
 super + e 
-     alacritty -e lf
+     $TERMINAL -e lf
 
 # rofi
 super + shift + d
@@ -86,22 +99,24 @@ super + F12
 	startpulse
 
 super + shift + F12
-	toggle BCD
+	systemctl --user restart BCD.service && notify-send "BCD restarted"
+	#toggle BCD
 
 super + shift + s 
 	$TERMINAL -e spt
 
 super + shift + F8
-	toggle spotifyd 
+	systemctl --user restart spotifyd.service && notify-send "Spotifyd restarted"
+	#toggle spotifyd "spotifyd --no-daemon"
 
 XF86AudioPlay
-#	playerctl --player=spotifyd play-pause
+	play-pause
 
 XF86AudioPrev
-#	playerctl --player=spotifyd previous
+	playerctl --player=spotifyd previous
 
-#XF86AudioNext
-#	playerctl --player=spotifyd next
+XF86AudioNext
+	playerctl --player=spotifyd next
 
 #XF86AudioPlay
 	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
@@ -124,11 +139,11 @@ super + F4
 
 # shutdown 
 super + alt + s
-	prompt "Quer desligar o computador?" "loginctl poweroff"		
+	prompt "Quer desligar o computador?" "poweroff"		
 
 # reboot
 super + alt + r
-	prompt "Quer reiniciar o computador?" "loginctl reboot"
+	prompt "Quer reiniciar o computador?" "reboot"
 
 super + shift + e
 	prompt "Quer encerrar a X session?" "killall Xorg"
@@ -136,6 +151,12 @@ super + shift + e
 #
 ## Dwm
 #
+
+super + shift + j
+	dwmc focustagleft
+
+super + shift + k
+	dwmc focustagright
 
 super + p
 	dwmc togglebar
@@ -146,7 +167,7 @@ super + j
 super + k
 	dwmc focusup
 
-super + v
+super + shitft + i
 	dwmc horizontal	    
 
 super + i

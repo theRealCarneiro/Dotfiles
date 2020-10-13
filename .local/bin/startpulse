@@ -9,12 +9,12 @@ jack_control ds alsa
 jack_control dps hw:BCD3000
 jack_control dps rate 44100
 
-sleep 2
-pulseaudio -k
+#sleep 2
+#pulseaudio -k
 #pulseaudio --log-level=4 >> $HOME/.log/pulse/log
-pulseaudio --start
+#pulseaudio --start
 
-sleep 5
+#sleep 5
 
 jack_connect main:front-left system:playback_1
 jack_connect main:front-right system:playback_2

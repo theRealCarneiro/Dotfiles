@@ -17,9 +17,14 @@ fi
 
 #bindkey -e                                            # Use emacs key bindings
 
-#bindkey '^k' up-line-or-history                       # [Ctrl-k] Up a line of history
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
 
-#bindkey '^j' down-line-or-history                     # [Ctrl-j] Down a line of history
+bindkey '^k' up-line-or-history                       # [Ctrl-k] Up a line of history
+
+bindkey '^j' down-line-or-history                     # [Ctrl-j] Down a line of history
 
 bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
 bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
@@ -36,12 +41,14 @@ if [[ "${terminfo[kcuu1]}" != "" ]]; then
   autoload -U up-line-or-beginning-search
   zle -N up-line-or-beginning-search
   bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+  bindkey '^k' up-line-or-beginning-search            
 fi
 # start typing + [Down-Arrow] - fuzzy find history backward
 if [[ "${terminfo[kcud1]}" != "" ]]; then
   autoload -U down-line-or-beginning-search
   zle -N down-line-or-beginning-search
   bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+  bindkey '^j' down-line-or-beginning-search
 fi
 
 if [[ "${terminfo[khome]}" != "" ]]; then

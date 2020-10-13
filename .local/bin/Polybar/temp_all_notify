@@ -5,5 +5,5 @@ core1=$(sensors | grep "Core 1" | cut -c1-22)
 core2=$(sensors | grep "Core 2" | cut -c1-22)
 core3=$(sensors | grep "Core 3" | cut -c1-22)
 gpu=$(sensors | grep "edge:" | cut -c6-22)
-notify-send "Temp" " CPU:        $package \n$core1 \n$core1 \n$core2 \n$core3 \n------------------------------------------\n   GPU: $gpu" 
+notify-send "Temp" " CPU:        $package \n$core1 \n$core1 \n$core2 \n$core3 \n-------------------------------\n   GPU: $gpu" 
 

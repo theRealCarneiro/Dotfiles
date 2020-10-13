@@ -4,7 +4,7 @@ JACK settings, as persisted by D-Bus object.
 You probably don't want to edit this because
 it will be overwritten next time jackdbus saves.
 -->
-<!-- Sat Oct  3 22:08:11 2020 -->
+<!-- Sun Oct 11 15:27:34 2020 -->
 <jack>
  <engine>
   <option name="driver">alsa</option>
@@ -17,6 +17,16 @@ it will be overwritten next time jackdbus saves.
   <option name="self-connect-mode"> </option>
  </engine>
  <drivers>
+  <driver name="dummy">
+  </driver>
+  <driver name="net">
+  </driver>
+  <driver name="alsarawmidi">
+  </driver>
+  <driver name="loopback">
+  </driver>
+  <driver name="proxy">
+  </driver>
   <driver name="alsa">
    <option name="device">hw:BCD3000</option>
    <option name="capture">hw:BCD3000</option>
@@ -33,25 +43,15 @@ it will be overwritten next time jackdbus saves.
   </driver>
   <driver name="netone">
   </driver>
-  <driver name="dummy">
-  </driver>
-  <driver name="net">
-  </driver>
-  <driver name="proxy">
-  </driver>
-  <driver name="alsarawmidi">
-  </driver>
-  <driver name="loopback">
-  </driver>
  </drivers>
  <internals>
-  <internal name="audioadapter">
-  </internal>
-  <internal name="netadapter">
-  </internal>
   <internal name="netmanager">
   </internal>
   <internal name="profiler">
+  </internal>
+  <internal name="netadapter">
+  </internal>
+  <internal name="audioadapter">
   </internal>
  </internals>
 </jack>

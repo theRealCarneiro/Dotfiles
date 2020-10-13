@@ -6,8 +6,8 @@ escolha=$(echo "Shutdown|Reboot|End X Session" | rofi \
      #-color-active "$background, $foreground, $background, $color1, $background") 
 
 case $escolha in
-	   Shutdown) loginctl poweroff;;
-	   Reboot) loginctl reboot;;
+	   Shutdown) shutdown now;;
+	   Reboot) reboot;;
 	   "End X Session") killall Xorg;;
 	   "Lock X Session") $HOME/.config/i3lock/lock.sh;;
 	   "Reload BSPWM") bspc wm -r;;
