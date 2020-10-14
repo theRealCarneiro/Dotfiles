@@ -1,0 +1,39 @@
+#!/bin/sh
+
+case $1 in
+	togglebar)	 signal=1;;
+	focusdown)	 signal=2;;     
+	focusup)		 signal=3;;    
+	horizontal)	 signal=4;;    
+	vertical)		 signal=5;;    
+	smaller)		 signal=6;;      
+	bigger)		 signal=7;;       
+	zoom)		 signal=8;;           
+	view)		 signal=9;;           
+	killclient)	 signal=10;;     
+
+	layout.*)
+		case $1 in
+			*.tiled)		 signal=11;;      
+			*.null)		 signal=12;;      
+			*.monocle)	 signal=13;;      
+			*.fullscreen)   signal=14;;  
+			*.toggle)		 signal=15;;      
+			*.floating)     signal=16;; 
+		esac
+	;;
+
+	view)		 signal=17;;           
+	tag)			 signal=18;;            
+	focusmon-)	 signal=19;;       
+	focusmon+)	 signal=20;;       
+	tagmon-)		 signal=21;;         
+	tagmon+)		 signal=22;;         
+	setgaps-)		 signal=23;;        
+	setgaps+)	 	 signal=24;;        
+	setgaps0)		 signal=25;;        
+	focustagleft)	 signal=26;;
+	focustagright)	 signal=27;;
+esac
+
+xsetroot -name "fsignal:$signal"
