@@ -28,13 +28,13 @@ source $HOME/.config/zsh/plugins/prompt_info_functions.zsh
 source $HOME/.config/zsh/plugins/theme-and-appearance.zsh
 
 # Alias
+alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/dwm/"
 alias calcurse="calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse"
 alias mbsync="mbsync -c $HOME/.config/isync/mbsyncrc"
 alias wget="wget --hsts-file=$HOME/cache/wget/wget-hsts"
 alias config='/usr/bin/git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
-#alias dmenu='dmenu -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"'
-#alias dmenu_run='dmenu_run -nb "$color0" -nf "$color15" -sb "$color1" -sf "$color15"'
 
+# Change cursor on VI mode
 function zle-keymap-select {
   if [[ ${KEYMAP} == vicmd ]] ||
      [[ $1 = 'block' ]]; then
