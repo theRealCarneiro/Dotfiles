@@ -1,0 +1,13 @@
+#!/bin/sh
+case $3 in
+	phone)
+		a=3
+		b=4
+	;;
+	master)
+		a=1
+		b=2
+	;;
+esac
+
+$(jack_$1 $2:front-left system:playback_$a & jack_$1 $2:front-right system:playback_$b)

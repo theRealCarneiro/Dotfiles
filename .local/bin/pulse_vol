@@ -1,0 +1,2 @@
+#!/bin/sh
+$(pactl set-$1-volume $2 $3%)

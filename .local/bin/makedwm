@@ -1,2 +1,0 @@
-#! /bin/sh
-sudo make install -C $HOME/Bibliotecas/Projects/dwm/
