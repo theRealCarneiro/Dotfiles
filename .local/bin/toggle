@@ -6,8 +6,8 @@ else
 	command=$2
 fi
 
-if pidof "$1" >/dev/null; then \
-	killall $1 & notify-send "$1 killed" --urgency low; \
-else \
-	$command & notify-send "$1 started" --urgency low; \
+if pidof "$1" >/dev/null; then 
+	killall $1 & notify-send "$1 killed" --urgency low; 
+else 
+	$command & notify-send "$1 started" --urgency low; 
 fi

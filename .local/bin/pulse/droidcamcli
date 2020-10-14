@@ -21,7 +21,7 @@ kill_droidcam(){
 	esac
 }
 
-if pidof droidcam-cli >/dev/null; then
+if pidof droidcam-cli > /dev/null; then
 	kill_droidcam $1
 else 
 	case $1 in

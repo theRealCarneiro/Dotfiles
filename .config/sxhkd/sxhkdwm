@@ -23,16 +23,19 @@ super + shift + q
 # start programs
 #
 
+# start droidcam video service
 super + v
-	toggle droidcam-cli "droidcam-cli -a -v 192.168.0.2 4747"
-	#{droidcam-cli -a -v 192.168.0.2 4747, killall droidcam-cli}
+	droidcamcli video
 
+# start droidcam audio service
 super + shift + m
-	toggle droidcam-cli "droidcam-cli -a 192.168.0.2 4747"
+	droidcamcli audio
 
+# open mpv with webcam video
 super + shift + v
 	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
 
+# toggle floating terminal
 super + shift + Return
 	{xdo hide -N St, xdo show -N St}
 
@@ -76,15 +79,16 @@ super + F9
 
 # print
 super + Print
-	scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Bibliotecas/Imagens/Prints' && notify-send -i Camera "Screenshot" "Salvo em Imagens/Prints"
+	scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Bibliotecas/Imagens/Prints' \
+	&& notify-send -i Camera "Screenshot" "Salvo em Imagens/Prints"
 
 # print to clipboard
 Print 
-	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i
-
+	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i \
+	&& notify-send -i Camera "Screenshot" "Copiado para a área de transferencia"
 super + Delete 
-	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i
-#	scrot -q 100 ~/foo.png && xclip -selection clipboard -t image/png -i foo.png && rm ~/foo.png && notify-send -i Camera "Screenshot" "Salvo na área de transferência"
+	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i \
+	&& notify-send -i Camera "Screenshot" "Copiado para a área de transferencia"
 
 # i3lock
 super + shift + x
@@ -96,18 +100,19 @@ super + shift + x
 #
 
 super + F12
-	startpulse
+	systemctl --user restart pulseaudio.service \
+	&& notify-send "Restarted Pulseaudio" -i Audio 
 
 super + shift + F12
-	systemctl --user restart BCD.service && notify-send "BCD restarted"
-	#toggle BCD
+	systemctl --user restart BCD.service \
+	&& notify-send "Restarted BCD" -i CDJ
+
+super + shift + F8
+	systemctl --user restart spotifyd.service \
+	&& notify-send "Restarted Spotifyd" -i Spotify
 
 super + shift + s 
 	$TERMINAL -e spt
-
-super + shift + F8
-	systemctl --user restart spotifyd.service && notify-send "Spotifyd restarted"
-	#toggle spotifyd "spotifyd --no-daemon"
 
 XF86AudioPlay
 	play-pause
@@ -118,16 +123,15 @@ XF86AudioPrev
 XF86AudioNext
 	playerctl --player=spotifyd next
 
-#XF86AudioPlay
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 # next song
 #XF86AudioNext
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+	#dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+	
 
 # previous
 #XF86AudioPrev
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+	#dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 #
 ## power options
