@@ -1,0 +1,14 @@
+#!/bin/sh
+player=$(playerctl -l)
+icon=a
+for i in $player; do
+	case $i in
+		spotifyd)	
+			dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+			exit;;
+		spotify)
+			dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+			exit;;
+	esac
+done
+playerctl -a play-pause 
