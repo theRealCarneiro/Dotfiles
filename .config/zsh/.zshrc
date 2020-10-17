@@ -28,6 +28,8 @@ source $HOME/.config/zsh/plugins/prompt_info_functions.zsh
 source $HOME/.config/zsh/plugins/theme-and-appearance.zsh
 
 # Alias
+alias makebcd="make -C $HOME/Bibliotecas/Projects/BCD-3000-Jack-Controll \
+			&& sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Jack-Controll"
 alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/dwm/"
 alias calcurse="calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse"
 alias mbsync="mbsync -c $HOME/.config/isync/mbsyncrc"

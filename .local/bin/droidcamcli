@@ -1,20 +1,17 @@
 #!/bin/sh
 
-start_droidcam_audio(){
-	droidcam-cli -a 192.168.0.4 4747 &
+start_droidcam(){
+	droidcam-cli $1 192.168.0.4 4747 &
 	pactl load-module module-alsa-source device=hw:3,1,0 source_properties="device.description='Droidcam'"
-	notify-send "Started droidcam audio service" -i Mic
-}
-
-start_droidcam_video(){
-	droidcam-cli -a -v 192.168.0.4 4747 &
-	pactl load-module module-alsa-source device=hw:3,1,0 source_properties="device.description='Droidcam'"
-	notify-send "Started droidcam webcam service" -i Webcam
+	pactl load-module module-echo-cancel aec_method=webrtc source_name=alsa_input.hw_3_1_0
+	pactl set-default-source alsa_input.hw_3_1_0.2
+	notify-send "Started droidcam audio service" -i $2
 }
 
 kill_droidcam(){
 	kill -s INT $(pgrep droidcam-cli) &
 	pactl unload-module module-alsa-source
+	pactl unload-module module-echo-cancel
 	case $1 in
 		audio) notify-send "Killed droidcam audio service" -i Mic;;
 		video) notify-send "Killed droidcam webcam service" -i Webcam;;
@@ -25,8 +22,8 @@ if pidof droidcam-cli > /dev/null; then
 	kill_droidcam $1
 else 
 	case $1 in
-		audio) start_droidcam_audio;;
-		video) start_droidcam_video;;
+		audio) start_droidcam "-a" Mic;;
+		video) start_droidcam "-a -v" Webcam;;
 	esac
 fi
 

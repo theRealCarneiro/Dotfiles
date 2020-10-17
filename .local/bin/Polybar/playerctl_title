@@ -1,26 +1,50 @@
 #!/bin/sh
-player=$(playerctl -l 2> /dev/null)
-for i in $player; do
-	case $i in
-		spotify*)	
-			icon=
-			break;;
-		chromium*) 
-			icon=輸;; 
-	esac
-done
-if [ ${#player} -ne 0 ]; then
-	title=$(playerctl -p $i metadata --format "{{ title }}" 2>/dev/null)
-else 
-	exit
-fi
+t=0
 
-if [ ${#title} -ne 0 ]; then
-	if [ ${#title} -gt 30 ]; then
-		cuttitle=$(echo $title  | cut -c-40)
-		echo "$icon  " $cuttitle...
-	else 
-		echo "$icon  " $title
+toggle() {
+    t=$(((t + 1) % $(playerctl -l | wc -l)))
+}
+
+play_pause(){
+	case $player in
+		spotify) playerctl -p spotify play-pause ;;
+		spotifyd) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause;;
+		chromium*) playerctl -p $(playerctl -l | grep chromium) play-pause ;;
+	esac
+}
+
+trap "play_pause" USR2
+trap "toggle" USR1
+
+get_title(){
+	player=$(playerctl -l | sed -n $1'p')
+	song=$(timeout 1 playerctl -p $player metadata --format "{{ title }}" 2>/dev/null)
+	if [ ${#song} -ne 0 ]; then #checks if theres song playing
+		#if [ ${#song} -gt 30 ]; then #check length of the song
+			#song=$(echo "$(echo $song | cut -c-30)...") 
+		#fi
+		case $player in
+			spotify*)echo  "  " $song;;
+			chromium*)echo 輸"  " $song;;
+			qutebrowser*)echo 輸"  " $song;;
+		esac
+	else
+		toggle
 	fi
-fi
+}
+
+while true; do
+	if [ $(playerctl -l | wc -l) -eq  0 ]; then
+		echo ""
+	else
+		if [ "$(playerctl -a metadata 2> /dev/null)" != "" ]; then
+			get_title $(($t + 1))
+		else 
+			echo ""
+		fi
+	fi
+	sleep 1
+done
+
+
 

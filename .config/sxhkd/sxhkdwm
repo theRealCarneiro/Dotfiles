@@ -108,14 +108,17 @@ super + shift + F12
 	&& notify-send "Restarted BCD" -i CDJ
 
 super + shift + F8
-	systemctl --user restart spotifyd.service \
-	&& notify-send "Restarted Spotifyd" -i Spotify
+	{systemctl --user stop spotifyd.service \
+	&& notify-send "Killed Spotifyd" -i Spotify,\
+	systemctl --user start spotifyd.service \
+	&& notify-send "Started Spotifyd" -i Spotify}
 
 super + shift + s 
 	$TERMINAL -e spt
 
 XF86AudioPlay
-	play-pause
+	kill -USR2 $(pgrep playerctl_title)
+	#play-pause
 
 XF86AudioPrev
 	playerctl --player=spotifyd previous

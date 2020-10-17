@@ -1,5 +1,5 @@
 #!/bin/sh
-choice=$(echo 'bspwm\ndwm\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser' | \
+choice=$(echo 'bspwm\ndwm\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse' | \
 	dmenu -nb "$background" -nf "$foreground" -sb "$color1" -sf "$foreground" -i -p  "Abrir aquivo de configuração:")
 
 case $choice in
@@ -22,5 +22,7 @@ case $choice in
 	picom)		 $TERMINAL -e nvim $HOME/.config/picom/picom.conf ;;
 	alacritty)	 $TERMINAL -e nvim $HOME/.config/alacritty ;;
 	qutebrowser)	 $TERMINAL -e nvim $HOME/.config/qutebrowser/config.py ;;
+	BCD)			 $TERMINAL -e nvim $HOME/Bibliotecas/Projects/BCD-3000-Jack-Controll/config.h ;;
+	Pulse)		 $TERMINAL -e nvim $HOME/.config/pulse/default.pa ;;
 esac
 	

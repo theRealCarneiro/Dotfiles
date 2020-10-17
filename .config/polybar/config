@@ -58,7 +58,7 @@ font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;1"
 
 modules-left = dwm bspwm playerctl
 modules-center =  xwindow  
-modules-right = updates-arch-combined disk mem cpu temp date power
+modules-right = mic updates-arch-combined disk mem cpu temp date power
 
 tray-position = right 
 tray-padding = 5
@@ -101,6 +101,7 @@ type = custom/script
 exec = memory_usage 
 #format-underline = ${colors.primary}
 format-foreground = ${env:color3}
+label = %output:2%
 format-prefix = " "
 format-prefix-font = 5
 tail = true
@@ -123,6 +124,13 @@ content-font = 4
 content-foreground = ${env:color6}
 content = " " 
 click-left = powermenu &
+
+[module/mic]
+type = custom/script
+content-font = 2
+label-foreground = ${env:color6}
+exec = echo 
+exec-if = pgrep droidcam-cli
 
 [module/nettrafic]
 type = custom/script
@@ -160,12 +168,14 @@ interval = 1
 
 [module/playerctl]
 type = custom/script
-exec = playerctl_title
+exec = playerctl_title 2> /dev/null
 ;format-prefix = " "
+label = %output:0:35:...%
 format-prefix-foreground =#1DB954 
 format-prefix-font = 2
-click-left = play-pause &
-interval = 5
+tail= true
+click-left = kill -USR2 %pid%
+click-right = kill -USR1 %pid%
 
 [module/play]
 type = custom/text
