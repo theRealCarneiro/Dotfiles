@@ -1,8 +1,8 @@
-static const char norm_fg[] = "{foreground}";
-static const char norm_bg[] = "{background}";
-static const char norm_border[] = "{background}";
+static char normfgcolor[] = "{foreground}";
+static char normbgcolor[] = "{background}";
+static char normbordercolor[] = "{background}";
 
-static const char sel_fg[] = "{foreground}";
-static const char sel_bg[] = "{background}";
-static const char sel_border[] = "{color1}";
+static char selfgcolor[] = "{foreground}";
+static char selbgcolor[] = "{background}";
+static char selbordercolor[] = "{color1}";
 

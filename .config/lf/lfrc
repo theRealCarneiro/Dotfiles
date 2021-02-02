@@ -15,11 +15,13 @@ cmd mkdir ${{
 	mkdir "$ans"
 }}
 
+cmd aj %lf -remote "send $id cd '$(autojump $1)'"
+
 cmd open ${{
 	case $(file --mime-type "$f" -bL) in
 		text/*|application/json) $EDITOR "$fx";;
 		video/*) xdg-open "$f" & ;;
-		image/*) sxiv "$f" ;;
+		image/*) devour sxiv "$f" $(dirname "$f");;
 		application/pdf) zathura "$f" ;;
 	     application/zip) unzip "$f" ;;
 		application/gzip) tar -xzf "$f" ;;
@@ -51,8 +53,28 @@ cmd makeClean ${{
 	make clean
 }}
 
+cmd gitadd ${{
+	for f in $fs; do
+		git add $f 
+	done
+}}
+
+cmd gitcommit ${{
+	set -f 
+	printf "Commit message: "
+	read ans
+	git commit -m "ans"
+}}
+
+cmd gitpush ${{
+	git push
+}}
 
 # Key Maps
+map ga gitadd
+map gc gitcommit
+map gp gitpush
+map a push :aj<space>
 map m
 map mk make
 map mc makeClean

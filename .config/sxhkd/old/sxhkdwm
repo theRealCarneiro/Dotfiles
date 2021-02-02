@@ -3,22 +3,21 @@
 #
 
 # make sxhkd reload its configuration files:
-super + r
-	pkill -USR1 -x sxhkd
 #super + Escape
 	#pkill -USR1 -x sxhkd
 	
 super + alt + Return
 	{setxkbmap us intl, setxkbmap br abnt2}
 
+super + r
+	pkill -USR1 -x sxhkd
 
 # close window
-super + {_,shift + }q
-	{case $WM in				\
-		dwm)	dwm-msg run_command killclient 1;;	\
-		*)	xdo close;; 		\
-	esac						\
-	, xdo kill}
+#super + {_,shift + }q
+	#xdo {close, kill}
+
+#super + shift + q
+	#xdo kill
 
 #
 # start programs
@@ -29,41 +28,33 @@ super + v
 	droidcamcli video
 
 # start droidcam audio service
-super + F6
+super + shift + m
 	droidcamcli audio
 
 # open mpv with webcam video
 super + shift + v
 	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
 
-# toggle scratchpad
+# toggle floating terminal
 super + shift + Return
-	tdrop -w 1880 -h 1020 -y 45 -x 20 \
-	alacritty --class scratchpad,scratchpad -t Scratchpad \
-	--config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml 
-	#&& {hidenodes, shownodes}
-super + ctrl + Return
-	tdrop -w 1880 -h 400 -y 660 -x 20 \
-	alacritty --class scratchpad,scratchpad -t Scratchpad \
-	--config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml
+	{xdo hide -N St, xdo show -N St}
 
 # terminal emulator
 super + Return
-	alacritty
+	$TERMINAL
 
 # browser
 super + b 
 	$BROWSER
 
-# file managers 
+# lf 
 super + e 
-     $TERMINAL -e vifmrun
-super + ctrl + e 
-     pcmanfm
+     $TERMINAL -e lf
 
 # rofi
 super + shift + d
 	rofi -show drun 
+#	pyrofi
 	
 # dmenu
 super + d 
@@ -73,9 +64,10 @@ super + d
 super + c 
 	rcfiles
 
-# edit scripts
-super + s
+# local bin
+super + shift + c
 	editscripts
+
 
 # picom
 super + F10
@@ -85,6 +77,10 @@ super + F10
 super + F9
 	toggle polybar polyLaunch
 
+# print
+super + Print
+	scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Bibliotecas/Imagens/Prints' \
+	&& notify-send -i Camera "Screenshot" "Salvo em Imagens/Prints"
 
 # print to clipboard
 Print 
@@ -94,23 +90,10 @@ super + Delete
 	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i \
 	&& notify-send -i Camera "Screenshot" "Copiado para a área de transferencia"
 
-# print selection to clipboard
-super + shift + Delete 
-	maim -s -u -m 1 -f png | xclip -selection clipboard -t image/png -i \
-	&& notify-send -i Camera "Screenshot" "Copiado para a área de transferencia"
-
 # i3lock
 super + shift + x
-	screenlock
+	~/.config/i3lock/lock.sh
 
-super + shift + m
-	mailsync & notify-send "Sincronizando email" "Procurando novos emails" -i Mail
-
-super + ctrl + m
-	$BROWSER gmail.com
-
-super + shift + w
-	kill -USR1 $(pgrep randbg)
 
 #
 ## Audio 
@@ -136,8 +119,8 @@ super + shift + F8
 	systemctl --user start spotifyd.service \
 	&& notify-send "Started Spotifyd" -i Spotify}
 
-#super + c
-	#$TERMINAL -e spt
+super + shift + s 
+	$TERMINAL -e spt
 
 XF86AudioPlay
 	kill -USR2 $(pgrep playerctl_title)
@@ -153,6 +136,7 @@ XF86AudioNext
 # next song
 #XF86AudioNext
 	#dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+	
 
 # previous
 #XF86AudioPrev
@@ -174,7 +158,93 @@ super + alt + s
 super + alt + r
 	prompt "Quer reiniciar o computador?" "reboot"
 
-# end x session
 super + shift + e
 	prompt "Quer encerrar a X session?" "killall Xorg"
 
+#
+## Dwm
+#
+
+super + shift + j
+	dwmc focustagleft
+
+super + shift + k
+	dwmc focustagright
+
+super + shift + b
+	dwmc togglebar
+
+super + j
+	dwmc focusdown
+
+super + k
+	dwmc focusup
+
+super + shift + i
+	dwmc horizontal	    
+
+super + i
+	dwmc vertical		    
+
+super + h
+	dwmc smaller		      
+
+super + l
+	dwmc bigger		       
+
+super + space
+	dwmc zoom		           
+
+super + tab
+	dwmc view		           
+	
+super + q
+	dwmc killclient	      
+
+super + t
+	dwmc layout.tiled		       
+
+super + shift + f
+	dwmc layout.floating  
+
+super + m
+     dwmc layout.monocle		       
+
+super + f
+	dwmc layout.fullscreen    
+
+super + shift + n
+	dwmc layout.null		       
+
+super + shift + space
+	dwmc layout.toggle	       
+	
+super + 0
+	dwmc view		            
+
+super + shift + 0
+	dwmc tag 			             
+
+super + comma
+	dwmc focusmon-	        
+
+super + period
+	dwmc focusmon+	        
+
+super + shift + comma
+	dwmc tagmon-		          
+
+super + shift + period
+	dwmc tagmon+		          
+
+super + minus
+	dwmc setgaps-		         
+
+super + equal
+	dwmc setgaps+	 	         
+	
+super + shift + equal
+	dwmc setgaps0		         
+
+super + n
+	dwmc toggletag

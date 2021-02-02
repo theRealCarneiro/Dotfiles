@@ -1,0 +1,42 @@
+# vim: filetype=sxhkd :
+#
+## i3
+#
+
+# change focus
+super + {h,j,k,l}
+	i3-msg focus {left, down, up, right}
+
+# resize
+super + ctrl + {h,j,k,l}
+	i3-msg resize {shrink width,shrink height,grow height, grow width} 10 px or 10 ppt
+
+# move focused window
+super + shift + {h,j,k,l}
+	i3-msg move {left, down, up, right}
+
+# split in orientation
+super + {g, v}
+	i3-msg split {h, v}
+
+# change container layout (stacked, tabbed, toggle split)
+super + {t,w,s}
+	i3-msg layout {stacking, tabbed, toggle split}	
+
+# fullscren/floating toggle
+super + {_, shift + } f
+	i3-msg {fullscreen, floating} toggle
+
+# change focus between tiling / floating windows
+super + space
+	i3-msg focus mode_toggle
+
+# focus the parent container
+super + a
+	i3-msg focus parent
+
+super + {shift,ctrl} + r
+	i3-msg {restart,reload}
+
+# focus the child container
+# super + d focus child

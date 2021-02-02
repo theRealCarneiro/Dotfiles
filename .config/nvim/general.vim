@@ -1,5 +1,6 @@
 colorscheme wal "  color scheme
 au BufNewFile,BufRead /*.rasi setf css
+"au BufNewFile,BufRead vifmrc set filetype=vim
 highlight Normal ctermbg=none
 "hi Normal ctermbg=NONE guibg=NONE
 filetype plugin indent on
@@ -17,6 +18,7 @@ set viminfo+='1000,n$HOME/.config/nvim/viminfo " Change viminfo location
 
 " Leadder
 let mapleader = ";"
+
 
 " Tabs
 map <S-j> gT
@@ -39,6 +41,10 @@ vmap <C-q> <Esc>:q!<CR>
 imap <C-q> <Esc>:q!<CR>
 
 " Copy
-vmap <C-c> "+y<CR>
-imap <C-c> <Esc>"+y<CR>
-nmap <C-c> "+y<CR>
+vmap <C-c> "*y<CR>
+imap <C-c> <Esc>"*y<CR>
+nmap <C-c> "*y<CR>
+
+vmap <C-p> "*p<CR>
+imap <C-p> <Esc>"*p<CR>
+nmap <C-p> "*p<CR>

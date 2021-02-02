@@ -16,6 +16,9 @@ Plug 'lambdalisue/glyph-palette.vim' "cor dos icones
 Plug 'tomasiser/vim-code-dark' " colors
 Plug 'chriskempson/base16-vim'
 Plug 'lervag/vimtex'
+Plug 'kovetskiy/sxhkd-vim'
+"Plug 'vim-syntastic/syntastic'
+Plug 'dense-analysis/ale'
 "Plug 'preservim/nerdtree' " File explorer
 "Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " NERDTree syntax 
 call plug#end()
@@ -24,6 +27,7 @@ call plug#end()
 "execute pathogen#infect()
 "map <leader>c :w! \| !compiler <c-r>%<CR>
 let g:tex_flavor = 'latex'
+autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 
 " Modules
 source $HOME/.config/nvim/general.vim

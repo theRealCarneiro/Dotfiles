@@ -2,6 +2,8 @@
 #cat /home/gabriel/.cache/wal/sequences
 #neofetch
 
+#source "/usr/share/autojump/autojump.zsh"
+
 # Keys
 stty -ixon #disable pause with ctrl + s
 
@@ -28,13 +30,28 @@ source $HOME/.config/zsh/plugins/prompt_info_functions.zsh
 source $HOME/.config/zsh/plugins/theme-and-appearance.zsh
 
 # Alias
-alias makebcd="make -C $HOME/Bibliotecas/Projects/BCD-3000-Jack-Controll \
-			&& sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Jack-Controll"
-alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/dwm/"
-alias calcurse="calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse"
-alias mbsync="mbsync -c $HOME/.config/isync/mbsyncrc"
-alias wget="wget --hsts-file=$HOME/cache/wget/wget-hsts"
-alias config='/usr/bin/git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
+alias makebcd="\
+	sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Midi-Hotkey"
+
+alias makedwm="\
+	sudo make install -C $HOME/Bibliotecas/Projects/suckless/dwm/"
+
+alias calcurse="\
+	calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse"
+
+alias mbsync="\
+	mbsync -c $HOME/.config/isync/mbsyncrc"
+
+alias wget="\
+	wget --hsts-file=$HOME/cache/wget/wget-hsts"
+
+alias config='\
+	/usr/bin/git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
+
+LFCD="$HOME/.local/bin/lfcd"
+if [ -f "$LFCD" ]; then
+	source "$LFCD"
+fi
 
 # Change cursor on VI mode
 function zle-keymap-select {

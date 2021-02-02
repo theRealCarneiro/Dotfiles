@@ -1,0 +1,10 @@
+# vim: filetype=sxhkd :
+#
+## Spectrwm
+#
+
+super + shift + r
+	kill -HUP $(pgrep spectrwm)
+
+super +{_,shift +} {1-9,grave}
+	wmctrl {-s,-r :ACTIVE: -t} {0-8,9}

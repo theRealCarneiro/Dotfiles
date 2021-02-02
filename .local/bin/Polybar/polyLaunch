@@ -1,5 +1,7 @@
 # !/bin/bash
-export bg_alpha="#cf${background###}"
+. $HOME/.cache/wal/colors.sh 
+#export bg_alpha="#0f${background###}"
+export bg_alpha="#bb${background###}"
 #export bg_alpha="#${background###}"
 killall polybar 
 if type "xrandr"; then

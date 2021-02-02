@@ -4,7 +4,7 @@ config.set('hints.chars','sadfjklewcmpgh')
 config.set('auto_save.session', True)
 config.set('colors.tabs.indicator.system', 'rgb')
 config.set('statusbar.position','bottom')
-config.set('downloads.location.directory', '/home/gabriel/Bibliotecas/Downloads')
+# config.set('downloads.location.directory', '/home/gabriel/Bibliotecas/Downloads')
 config.set('colors.webpage.darkmode.enabled', True)
 
 config.bind('M','hint links spawn mpv {hint-url}')

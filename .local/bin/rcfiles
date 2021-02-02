@@ -1,28 +1,32 @@
 #!/bin/sh
-choice=$(echo 'bspwm\ndwm\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse' | \
-	dmenu -nb "$background" -nf "$foreground" -sb "$color1" -sf "$foreground" -i -p  "Abrir aquivo de configuração:")
-
+choice=$(echo 'bspwm\ndwm\nspectrwm\ni3wm\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse\nvifm\nneomutt\nmbsync' | \
+	dmenu -i -p  "Abrir aquivo de configuração:")
 case $choice in
-	bspwm)		 $TERMINAL -e nvim $HOME/.config/bspwm/bspwmrc ;;
-	dwm)			 $TERMINAL -e nvim $HOME/Bibliotecas/Projects/dwm/config.h ;;
-	sxhkd)		 $TERMINAL -e nvim $HOME/.config/sxhkd/sxhkdwm ;;
-	nvim)		 $TERMINAL -e nvim $HOME/.config/nvim/init.vim ;;
-	lf)			 $TERMINAL -e nvim $HOME/.config/lf/lfrc ;;
-	polybar)		 $TERMINAL -e nvim $HOME/.config/polybar/config ;;
-	rofi)		 $TERMINAL -e nvim $HOME/.config/rofi/config.rasi ;;
-	.Xresources)	 $TERMINAL -e nvim $HOME/.config/X11/.Xresources ;;
-	.xprofile)	 $TERMINAL -e nvim $HOME/.config/X11/.xprofile ;;
-	.Xmodmap)		 $TERMINAL -e nvim $HOME/.config/X11/.Xmodmap ;;
-	.zprofile)	 $TERMINAL -e nvim $HOME/.zprofile ;;
-	.xinitrc)		 $TERMINAL -e nvim $HOME/.xinitrc ;;
-	dunst)		 $TERMINAL -e nvim $HOME/.config/dunst/dunstrc ;;
-	zsh)			 $TERMINAL -e nvim $HOME/.config/zsh/.zshrc ;;
-	rcfiles)		 $TERMINAL -e nvim $HOME/.local/bin/Dotfiles/rcfiles ;;
-	spotifyd)		 $TERMINAL -e nvim $HOME/.config/spotifyd/spotifyd.conf ;;
-	picom)		 $TERMINAL -e nvim $HOME/.config/picom/picom.conf ;;
-	alacritty)	 $TERMINAL -e nvim $HOME/.config/alacritty ;;
-	qutebrowser)	 $TERMINAL -e nvim $HOME/.config/qutebrowser/config.py ;;
-	BCD)			 $TERMINAL -e nvim $HOME/Bibliotecas/Projects/BCD-3000-Jack-Controll/config.h ;;
-	Pulse)		 $TERMINAL -e nvim $HOME/.config/pulse/default.pa ;;
+	bspwm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
+	dwm)			$TERMINAL -e nvim $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
+	spectrwm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/spectrwm/spectrwm.conf ;;
+	i3wm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/i3/config ;;
+	sxhkd)		$TERMINAL -e nvim $XDG_CONFIG_HOME/sxhkd/ ;;
+	nvim)		$TERMINAL -e nvim $XDG_CONFIG_HOME/nvim/init.vim ;;
+	lf)			$TERMINAL -e nvim $XDG_CONFIG_HOME/lf/lfrc ;;
+	polybar)		$TERMINAL -e nvim $XDG_CONFIG_HOME/polybar/config ;;
+	rofi)		$TERMINAL -e nvim $XDG_CONFIG_HOME/rofi/config.rasi ;;
+	.Xresources)	$TERMINAL -e nvim $XDG_CONFIG_HOME/X11/.Xresources ;;
+	.xprofile)	$TERMINAL -e nvim $XDG_CONFIG_HOME/X11/.xprofile ;;
+	.Xmodmap)		$TERMINAL -e nvim $XDG_CONFIG_HOME/X11/.Xmodmap ;;
+	.zprofile)	$TERMINAL -e nvim $HOME/.zprofile ;;
+	.xinitrc)		$TERMINAL -e nvim $HOME/.xinitrc ;;
+	dunst)		$TERMINAL -e nvim $XDG_CONFIG_HOME/dunst/dunstrc ;;
+	zsh)			$TERMINAL -e nvim $XDG_CONFIG_HOME/zsh/.zshrc ;;
+	rcfiles)		$TERMINAL -e nvim $HOME/.local/bin/rcfiles ;;
+	spotifyd)		$TERMINAL -e nvim $XDG_CONFIG_HOME/spotifyd/spotifyd.conf ;;
+	picom)		$TERMINAL -e nvim $XDG_CONFIG_HOME/picom/picom.conf ;;
+	alacritty)	$TERMINAL -e nvim $XDG_CONFIG_HOME/alacritty ;;
+	qutebrowser)	$TERMINAL -e nvim $XDG_CONFIG_HOME/qutebrowser/config.py ;;
+	BCD)			$TERMINAL -e nvim $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
+	Pulse)		$TERMINAL -e nvim $XDG_CONFIG_HOME/pulse/default.pa ;;
+	vifm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/vifm/vifmrc ;;
+	neomutt)		$TERMINAL -e nvim $XDG_CONFIG_HOME/mutt/muttrc ;;
+	mbsync)		$TERMINAL -e nvim $XDG_CONFIG_HOME/isync/mbsyncrc ;;
 esac
 	

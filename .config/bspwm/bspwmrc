@@ -3,9 +3,10 @@
 . $HOME/.cache/wal/colors.sh
 
 #### Program Launch ####
-pidof bspswallow || bspswallow &
-pidof polybar || polyLaunch &
+#pgrep -fl 'pidswallow -gl' || pidswallow -gl &
+#pidof polybar || polyLaunch &
 dunstLaunch &
+xsetroot -cursor_name left_ptr & # Remove X cursor
 
 
 ####### Mouse #######
@@ -15,36 +16,38 @@ bspc config pointer_follows_focus false
 
 
 ##### Monitors #####
+bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 #bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 #bspc monitor -d    4 5 6 7 8 9 
 #bspc monitor -d 1 2 3 4 5 6 7 8 9 
-
-bspc monitor -d 1 2 3 4 5 6 7 8 9 10
 #bspc monitor HDMI-A-0 -d 1 2 3 4 5 6 7 8 9 10 
 
 
 ####### Gaps ########
-bspc config border_width        2 
-bspc config window_gap          20 #15
-bspc config top_padding         22 #22
+bspc config border_width        3
+bspc config window_gap          20 
+bspc config top_padding         25 
 bspc config bottom_padding	  0
 bspc config left_padding		  0
 bspc config right_padding	  0
 
 
-
 ###### Border ######
 bspc config normal_border_color $background
 bspc config active_border_color $background
-bspc config focused_border_color $color1
-bspc config presel_feedback_color $color1
+bspc config focused_border_color $color2
+bspc config presel_feedback_color $color2
 
 
 ## Window settings ##
 bspc config split_ratio          0.50
 bspc config borderless_monocle   true
-bspc config gapless_monocle      true
+bspc config gapless_monocle      false
 bspc config single_monocle	   true
+
+bspc rule -a Zathura state=tiled
+bspc rule -a scratchpad state=floating
+bspc rule -a scratchpad border=off
 
 bspc rule -a overwatch.exe desktop='^10' #overwatch
 bspc rule -a battle.net.exe desktop='^10' #battle.net
@@ -57,5 +60,4 @@ bspc rule -a steam_app_304050 desktop='^10' #trove
 bspc rule -a darksoulsii.exe desktop='^10' #dark souls 2
 bspc rule -a steam_app_880940 desktop='^10' #pummel party
 bspc rule -a sekiro.exe desktop='^10' #sekiro
-bspc rule -a Pavucontrol desktop='^9' #pavucontrol
 
