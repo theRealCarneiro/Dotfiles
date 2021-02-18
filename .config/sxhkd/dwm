@@ -3,36 +3,36 @@
 ## Dwm
 #
 
-#super + q
-	#dwmc killclient	      
+#tag keys
+#super + {_,ctrl,shift,alt} + {1-9,grave}
+	#dwm-msg run_command {view, toggleview, tag, toggletag} $((2**({1-9,10} - 1)))
+
+super + {_,ctrl,shift,ctrl + shift} + grave
+	dwm-msg run_command {view, toggleview, tag, toggletag} 512
+
+super + q
+	dwm-msg run_command killclient 1
 
 # focus tag
 super + shift + {j,k}
 	dwm-msg run_command viewto{left,right}
-	#dwmc focustag{left,right}
 
 super + shift + b
-	dwm-msg run_command 
-	#dwmc togglebar
+	dwm-msg run_command togglebar
 
 # focus
 super + {j, k}
 	dwm-msg run_command focusstack {1,-1}
-	#dwmc {focusdown, focusup}
 
 # master size
 super + {h, l}
 	dwm-msg run_command setmfact {-,_}0.05
-	#dwmc {smaller, bigger}
 
 #  split orientation
 super + {_, shift +} i
-	#dwmc {vertical, horizontal}
-
 
 super + space
 	dwm-msg run_command zoom
-	#dwmc zoom		           
 
 # layouts
 super + {t, m, shift + n}
@@ -46,10 +46,7 @@ super + f
 
 #super + {t, shift + f, m, shift + n, shift + space}
 	#dwm-msg run_command setlayoutsafe {0,1,2}
-	#dwmc layout.{tiled, fullscreen, floating, monocle, null, toggle}
 
-super + ctrl + {1-9}
-	dwm-msg run_command toggleview {1-9}
 
 super + shift + {h,l}
 	dwm-msg run_command tagto{left && dwm-msg run_command viewtoleft,right && dwm-msg run_command viewtoright}
@@ -67,5 +64,4 @@ super + shift + {comma, period}
 # gaps
 super + {minus, equal, shift + equal}
 	dwm-msg run_command setgaps {-5,5,0}
-	#dwmc setgaps{-,+,0}		         
 

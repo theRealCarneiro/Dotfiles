@@ -12,18 +12,14 @@
 ;==========================================================
 
 [colors]
-;background = #af100c09
-;background-alt = #8a716538
-;foreground = #ffffff
+;foreground-alt = #7d7d7d
 background = ${env:bg_alpha:}
 background-alt = ${xrdb:background:#222}
-;foreground = ${xrdb:foreground:#222}
-foreground = #bfbfbf
-foreground-alt = #7d7d7d
+foreground = ${xrdb:foreground:#222}
+foreground-alt = ${xrdb:color8:#222}
 primary = ${xrdb:color1:#222}
-;secondary = ${xrdb:foreground:#222}
-secondary = ${self.foreground}
-alert = #bd2c40
+secondary = ${xrdb:color4:#222}
+alert = ${colors.primary:#222}
 
 [bar/bar]
 monitor = ${env:MONITOR:}
@@ -42,7 +38,7 @@ line-size = 0
 line-color = #f00
 
 border-size = 0
-border-color = ${env:color1}
+border-color = ${colors.primary}
 
 padding-left = 0
 padding-right = 0
@@ -50,11 +46,11 @@ padding-right = 0
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = "SF Pro Display:pixelsize=14:antialias=true:style:Ultraheavy;1"
+font-0 = "SF Pro Display:pixelsize=14:antialias=true:style:Ultraheavy;2"
 font-1 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:style:Medium;2"
 font-2 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:style:Bold;2"
 font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
-font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;1"
+font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;2"
 font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
 
 modules-left = dwm bspwm i3 playerctl
@@ -62,12 +58,12 @@ modules-center =  xwindow
 modules-right = mic updates-arch-combined mail disk mem cpu temp date power
 
 tray-position = right 
-tray-padding = 5
+tray-padding = 8
 tray-offset-x = 0
 tray-foreground = ${colors.foreground}
 tray-background = ${colors.background}
 
-wm-restack = ${env:WM}
+;wm-restack = ${env:WM}
 
 override-redirect = false
 
@@ -77,6 +73,10 @@ override-redirect = false
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
 [module/updates-arch-combined]
 type = custom/script
 exec = arch_updates
@@ -84,18 +84,18 @@ format-prefix-font = 5
 ;label-font = 2
 format-prefix = " "
 #format-underline = ${colors.primary}
-format-foreground = ${env:color6}
-click-left = notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(yay -Qum)" &
+format-foreground = ${xrdb:color6}
+click-left = notify-send Checando Atualizações -t 1500 && notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(yay -Qum)" &
 click-right = alacritty -e sudo pacman -Syu &
 interval = 600
 
 [module/mail]
 type = custom/script
 exec = mailcheck
-format-foreground = ${env:color1}
+format-foreground = ${xrdb:color8}
 ;label-font = 2
 ;format-foreground = #7851A9
-;${env:color5}
+;${xrdb:color5}
 format-prefix = " "
 format-prefix-font = 5
 click-middle = $TERMINAL -e neomutt &
@@ -106,7 +106,7 @@ interval = 1
 [module/disk]
 type = custom/script
 exec = disk_usage
-format-foreground = ${env:color2}
+format-foreground = ${xrdb:color2}
 ;label-font = 2
 format-prefix = " "
 format-prefix-font = 5
@@ -118,7 +118,7 @@ click-right = pcmanfm &
 type = custom/script
 exec = memory_usage 
 #format-underline = ${colors.primary}
-format-foreground = ${env:color3}
+format-foreground = ${xrdb:color3}
 ;label-font = 2
 label = %output:2%
 format-prefix = " "
@@ -132,17 +132,18 @@ type = custom/script
 exec = temp
 #format-underline = ${colors.primary}
 ;label-font = 2
-format-foreground = ${env:color5}
-format-prefix = " "
+label = %output%°
+format-foreground = ${xrdb:color5}
+format-prefix = " "
 format-prefix-font = 5
 click-left = temp_all_notify
-interval = 5
+interval = 20
 
 [module/power]
 type = custom/text
-content-font = 4
-;content-foreground = ${env:color0}
-content-foreground = #4f4f4f
+content-font = 5
+content-foreground = ${colors.primary}
+;content-foreground = #4f4f4f
 content = " " 
 click-left = powermenu &
 click-right = kill -USR1 $(pgrep randbg)
@@ -150,7 +151,7 @@ click-right = kill -USR1 $(pgrep randbg)
 [module/mic]
 type = custom/script
 content-font = 2
-label-foreground = ${env:color6}
+label-foreground = ${xrdb:color6}
 exec = echo 
 exec-if = pgrep droidcam-cli
 
@@ -233,7 +234,7 @@ type = internal/date
 interval = 1
 date = %d/%m
 time = %H:%M:%S
-format-foreground = ${env:color7}
+format-foreground = ${xrdb:color7}
 ;format-foreground = #4f4f4f
 date-alt = %A, %d %B %Y 
 time-alt = %A, %d %B %Y %H:%M:%S
@@ -247,7 +248,7 @@ type = internal/xwindow
 label = %title:0:50:...%
 ;label-font=2
 label-empty-foreground = #1793d1
-;label-empty-foreground = ${env:color6}
+;label-empty-foreground = ${xrdb:color6}
 label-empty = "  "
 
 [module/filesystem]
@@ -295,7 +296,7 @@ label-active-font = 3
 ;label-focused = %icon%
 label-active = 
 label-active-background = ${colors.background}
-label-active-foreground = ${env:color4}
+label-active-foreground = ${xrdb:color4}
 label-active-padding = 3
  
 label-focused-font = 3
@@ -380,9 +381,9 @@ label-floating-font = 5
 label-focused = 
 label-focused-font = 3
 label-focused-background = ${colors.background}
-;label-focused-background = ${env:color1}
-label-focused-foreground = ${env:color1}
-;label-focused-foreground = ${env:background}
+;label-focused-background = ${colors.primary}
+label-focused-foreground = ${colors.primary}
+;label-focused-foreground = ${xrdb:background}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
@@ -397,7 +398,7 @@ label-visible-font = 2
 label-visible = 
 label-visible-background = ${colors.background}
 ;label-visible-foreground = ${colors.primary}
-label-visible-foreground = ${env:foreground}
+label-visible-foreground = ${colors.foreground}
 label-visible-padding = 3
 
 ; urgent = Unselected tag with window that has urgency hint set
@@ -405,7 +406,7 @@ label-urgent-font = 2
 ;label-urgent = %name%
 label-urgent = 
 ;label-urgent-background = ${colors.alert}
-label-urgent-foreground = ${env:color1}
+label-urgent-foreground = ${colors.primary}
 label-urgent-padding = 3
 
 ; empty = Unselected and unoccupied tag
@@ -413,8 +414,8 @@ label-urgent-padding = 3
 label-empty-font = 2
 ;label-empty = %name%
 label-empty = 
-;label-empty-background = ${env:color2}
-label-empty-foreground = ${env:color8}
+;label-empty-background = ${xrdb:color2}
+label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 3
 
 [module/bspwm]
@@ -434,11 +435,11 @@ label-focused-font = 3
 ;label-focused = %icon%
 label-focused = 
 label-focused-background = ${colors.background}
-label-focused-foreground = ${env:color2}
+label-focused-foreground = ${colors.primary}
 ;label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
-;label-occupied-foreground = ${env:color8}
+;label-occupied-foreground = ${xrdb:color8}
 label-occupied-foreground = #4a4a4a
 label-occupied-font = 2
 #label-occupied = %icon%
@@ -537,7 +538,7 @@ label-mode-background = #e60053
 label-focused-font = 6
 label-focused = %name%
 label-focused-background = ${colors.background}
-label-focused-foreground = ${env:color3}
+label-focused-foreground = ${xrdb:color3}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
@@ -547,7 +548,7 @@ label-focused-padding = 3
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-unfocused-foreground = ${env:color6}
+label-unfocused-foreground = ${xrdb:color6}
 label-unfocused-font = 6
 label-unfocused = %name%
 label-unfocused-padding = 3
@@ -559,7 +560,7 @@ label-unfocused-padding = 3
 ;   %output%
 ; Default: %icon%  %name%
 label-visible = %name%
-label-visible-foreground = ${env:color6}
+label-visible-foreground = ${xrdb:color6}
 label-visible-font = 6
 label-visible-padding = 3
 
@@ -593,11 +594,10 @@ interval = 2
 format-prefix = " "
 ;label-font = 2
 format-prefix-font = 5
-format-foreground = ${env:color4}
+format-foreground = ${xrdb:color4}
 ;format-prefix-foreground = ${colors.foreground-alt}
 #format-underline = ${colors.primary}
-label = %percentage:%%
-click-left= notify-send a
+label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
@@ -634,8 +634,5 @@ screenchange-reload = true
 
 
 
-[global/wm]
-margin-top = 0
-margin-bottom = 0
 
 ; vim:ft=dosini

@@ -1,7 +1,7 @@
 #!/bin/sh
 
 start_droidcam(){
-	droidcam-cli $1 192.168.0.3 4747 &
+	droidcam-cli $1 192.168.0.4 4747 &
 	pactl load-module module-alsa-source device=hw:3,1,0 source_properties="device.description='Droidcam'"
 	pactl load-module module-echo-cancel aec_method=webrtc source_name=alsa_input.hw_3_1_0
 	pactl set-default-source alsa_input.hw_3_1_0.2

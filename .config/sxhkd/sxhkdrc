@@ -13,12 +13,15 @@ super + alt + Return
 
 
 # close window
-super + {_,shift + }q
-	{case $WM in				\
-		dwm)	dwm-msg run_command killclient 1;;	\
-		*)	xdo close;; 		\
-	esac						\
-	, xdo kill}
+super + shift + q
+	xdo kill
+
+#super + {_,shift + }q
+	#{case $WM in				\
+		#dwm)	dwm-msg run_command killclient 1;;	\
+		#*)	xdo close;; 		\
+	#esac						\
+	#, xdo kill}
 
 #
 # start programs
@@ -49,7 +52,7 @@ super + ctrl + Return
 
 # terminal emulator
 super + Return
-	alacritty
+	$TERMINAL
 
 # browser
 super + b 
@@ -84,6 +87,9 @@ super + F10
 # polybar
 super + F9
 	toggle polybar polyLaunch
+
+super + ctrl + b
+	toggle randbg
 
 
 # print to clipboard

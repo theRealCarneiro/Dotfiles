@@ -1,4 +1,0 @@
-#!/bin/sh 
-
-oomoxify-cli -s /opt/spotify/Apps /home/gabriel/.cache/wal/colors-oomox
-

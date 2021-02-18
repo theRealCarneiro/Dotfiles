@@ -1,7 +1,7 @@
 export PATH=$PATH:$HOME/.config/nvim/bundle/vim-live-latex-preview/bin:/usr/local/go/bin:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')
 
 # Runit services
-export SVDIR=/run/runit/service
+#export SVDIR=/run/runit/service
 
 # Default programs
 export EDITOR="nvim"
@@ -37,7 +37,6 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/.password-store"
 export NNN_USE_EDITOR=1
 source "/home/gabriel/.cache/wal/shell"
 source "/home/gabriel/.config/lf/icons"
-source "/usr/share/autojump/autojump.zsh"
 source "/home/gabriel/.config/i3/workspaces"
 
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then

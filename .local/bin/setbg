@@ -1,40 +1,77 @@
 #!/bin/sh
-wall=$XDG_CONFIG_HOME/wallpaper
-if [ $1 = "rand" ]; then
-	wp=$(find /home/gabriel/Bibliotecas/Imagens/Wallpapers -type f | shuf | head -n1)
-else
-	wp=$1
-fi
 
-if [ $# -ne 0 ]; then
-	if [ "${wp##*$PWD*}" ]; then
-		echo $PWD/$wp > $wall
+reload_env(){
+	xrdb $XDG_CONFIG_HOME/X11/.Xresources # Source Xresources
+	spicetify apply -n & # apply spotify theme
+	polyLaunch & # restart polybar
+	if [ $WM = "dwm" ]; then
+		dwm-msg run_command reload_xresources & # make dwm reload xrdb
+	fi
+}
+
+rand(){
+	wpp=$(find $HOME/Bibliotecas/Imagens/Wallpapers -type f | shuf | head -n1)
+}
+
+theme(){
+	wpp=$(grep wallpaper $HOME/.config/wal/colorschemes/dark/$1.json | cut -c16- | sed 's/..$//')
+	wal --theme $1 &
+	reload_env &
+}
+
+generate(){
+	wpp=$1
+	wal -i "$wpp"
+	reload_env &
+}
+
+wall="$XDG_CONFIG_HOME/wallpaper"
+if [ $# -ne 0 ]; then #if there are args
+	case $1 in
+		"--rand")		
+			rand ;;
+		"--theme")
+			theme $2 ;;
+		"--generate")
+			generate $2 ;;
+	esac
+
+	if [ "${wpp##*$PWD*}" -a $1 != "--theme" ]; then #full path of image
+		echo $PWD/$wpp > $wall
 	else
-		echo $wp > $wall
+		echo $wpp > $wall
 	fi
 fi
 
 xwallpaper --zoom "$(cat $wall)" 
 
-if [ "$2" = "--theme" ]; then
-	wal --theme "$XDG_CONFIG_HOME/wal/colorschemes/$3"
-	xrdb $XDG_CONFIG_HOME/X11/.Xresources # Source Xresources
-fi
-		
+#if [ $# -ne 0 ]; then #if there are args
 
-#if [ $# -eq 0 ]; then
-	#xwallpaper --zoom "$(cat $wall)" 
-	##wal -i "$(cat $HOME/.cache/wal/wal)" -n
-#else 
-	#xwallpaper --zoom "$1"
-	#echo $1 > $wall
-#fi
-	#if [ $1 == "" ]; then 
-		#echo a
+	#if [ $1 = "--rand" ]; then
+		#wpp=$(find $HOME/Bibliotecas/Imagens/Wallpapers -type f | shuf | head -n1)
+
+
+	#elif [ $1 = "--theme" ]; then
+		#wpp=$(grep wallpaper $HOME/.config/wal/colorschemes/dark/$2.json | cut -c16- | sed 's/..$//')
+		#wal --theme $2
+		#reload_env &
+
+
+	#elif [ $1 = "--generate" ]; then
+		#wpp=$2
+		#wal -i "$wpp"
+		#reload_env &
+
+
+	#else
+		#wpp=$1
 	#fi
-	#wal -i "$1" -n -q -o $HOME/.config/dunst/launch 
-	#source $HOME/.cache/wal/colors.sh 
-	#oomox-cli $HOME/.cache/wal/colors-oomox
-	#xrdb $XDG_CONFIG_HOME/X11/.Xresources # Source Xresources
-	#qutebrowser :config-source :reload
-	#spicetify apply
+
+	#if [ "${wpp##*$PWD*}" -a "$1" != "--theme" ]; then #full path of image
+		#echo $PWD/$wpp > $wall
+	#else
+		#echo $wpp > $wall
+	#fi
+#fi
+
+

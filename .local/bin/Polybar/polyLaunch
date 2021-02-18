@@ -1,13 +1,19 @@
-# !/bin/bash
+#!/bin/bash
+#xrdb $XDG_CONFIG_HOME/X11/.Xresources # Source Xresources
+bg=$(xgetres background)
 . $HOME/.cache/wal/colors.sh 
-#export bg_alpha="#0f${background###}"
-export bg_alpha="#bb${background###}"
-#export bg_alpha="#${background###}"
+export bg_alpha="#bb${bg###}"
+
 killall polybar 
+
+pgrep i3lock && while true; do
+	pgrep i3lock || break
+done
+
 if type "xrandr"; then
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar --reload bar &
-  done
+	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+		MONITOR=$m polybar --reload bar &
+	done
 else
-  polybar --reload bar &
+	polybar --reload bar &
 fi

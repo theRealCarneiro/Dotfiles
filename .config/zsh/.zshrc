@@ -9,9 +9,9 @@ stty -ixon #disable pause with ctrl + s
 
 # Auto complete
 autoload -U compinit
+compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
 _comp_options+=(globdots)
 
 # History cache

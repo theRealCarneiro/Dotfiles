@@ -3,6 +3,9 @@
 # bspwm hotkeys
 #
 
+super + q
+	xdo close
+
 super + shift + space
 	bspc config border_width {0, 3}
 

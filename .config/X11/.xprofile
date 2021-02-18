@@ -1,14 +1,14 @@
 #! /bin/sh 
+xrdb $XDG_CONFIG_HOME/X11/.Xresources # Source Xresources
 setbg & # Wallpaper
 xss-lock -- screenlock &
 xset r rate 300 50 &
 xset s on &
 xset s 900 &
-xrdb $XDG_CONFIG_HOME/X11/.Xresources & # Source Xresources
 picom & # Compositor
 dunstLaunch & # Notification
+#polyLaunch &
 sxhkdl &
 dbusfm &
-randbg &
-polyLaunch &
+#randbg &
 lockscreen &

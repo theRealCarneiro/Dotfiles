@@ -17,6 +17,7 @@ Plug 'tomasiser/vim-code-dark' " colors
 Plug 'chriskempson/base16-vim'
 Plug 'lervag/vimtex'
 Plug 'kovetskiy/sxhkd-vim'
+Plug 'lambdalisue/fern-hijack.vim'
 "Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
 "Plug 'preservim/nerdtree' " File explorer

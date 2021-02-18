@@ -1,8 +1,11 @@
 #!/bin/sh 
 while read file
 do
-        case "$1" in
-        "C-w")
-                setbg "$file" ;;
-        esac
+	case "$1" in
+		"w")
+			setbg "$file" ;;
+		"l")
+			notify-send "Papel de parede da tela de bloqueio settado"
+			echo "$file" > $XDG_CONFIG_HOME/lock_background ;;
+	esac
 done
