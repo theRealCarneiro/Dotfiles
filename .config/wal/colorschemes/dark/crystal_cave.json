@@ -1,0 +1,28 @@
+{
+	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/Minimalist/Crystal_Cave.png",
+	"alpha": "100",
+	"special":{
+		"background":"#1e1f29", 
+		"foreground":"#cabcac", 
+		"cursor":"#a2bfc0"
+	},
+
+	"colors":{
+		"color0":"#1e1f29",
+		"color1":"#dc657d",
+		"color2":"#2E534C",
+		"color3":"#FED32F",
+		"color4":"#3f8ba0",
+		"color5":"#ba449c",
+		"color6":"#47a8c0",
+		"color7":"#cabcac",
+		"color8":"#718586",
+		"color9":"#dc657d",
+		"color10":"#2E534C",
+		"color11":"#FED32F",
+		"color12":"#3f8ba0",
+		"color13":"#ba449c",
+		"color14":"#47a8c0",
+		"color15":"#cabcac"
+	}
+}

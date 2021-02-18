@@ -1,0 +1,28 @@
+{
+	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/forest_stairs.jpg",
+	"alpha": "100",
+	"special":{
+		"background":"#1e1f29", 
+		"foreground":"#cabcac", 
+		"cursor":"#a2bfc0"
+	},
+
+	"colors":{
+		"color0":"#1e1f29",
+		"color1":"#E75D5B", 
+		"color2":"#2E534C",
+		"color3":"#AA9B4F",
+		"color4":"#2f5691",
+		"color5":"#ba449c",
+		"color6":"#6E87AA",
+		"color7":"#cabcac",
+		"color8":"#4a4a4a",
+		"color9":"#E75D5B", 
+		"color10":"#2E534C",
+		"color11":"#AA9B4F",
+		"color12":"#2f5691",
+		"color13":"#ba449c",
+		"color14":"#6E87AA",
+		"color15":"#cabcac"
+	}
+}
