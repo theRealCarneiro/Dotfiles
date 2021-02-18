@@ -3,6 +3,10 @@
 ## Dwm
 #
 
+# restart dwm
+super + shift + r
+	dwm-msg run_command quit
+
 #tag keys
 #super + {_,ctrl,shift,alt} + {1-9,grave}
 	#dwm-msg run_command {view, toggleview, tag, toggletag} $((2**({1-9,10} - 1)))
