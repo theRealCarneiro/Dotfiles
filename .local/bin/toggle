@@ -7,7 +7,7 @@ else
 fi
 
 if pgrep "$1" >/dev/null; then 
-	killall $1 & notify-send "$1 killed" --urgency low; 
+	killall $1 && notify-send "$1 killed" --urgency low; 
 else 
-	$command & notify-send "$1 started" --urgency low; 
+	$command && notify-send "$1 started" --urgency low; 
 fi

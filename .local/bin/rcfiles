@@ -1,11 +1,12 @@
 #!/bin/sh
-choice=$(echo 'bspwm\ndwm\nspectrwm\ni3wm\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse\nvifm\nneomutt\nmbsync\npywal' | \
+choice=$(echo 'bspwm\ndwm\nspectrwm\ni3wm\nopenbox\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse\nvifm\nneomutt\nmbsync\npywal' | \
 	dmenu -i -p  "Abrir aquivo de configuração:")
 case $choice in
 	bspwm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
 	dwm)			$TERMINAL -e nvim $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
 	spectrwm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/spectrwm/spectrwm.conf ;;
 	i3wm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/i3/config ;;
+	openbox)		$TERMINAL -e nvim $XDG_CONFIG_HOME/openbox/rc.xml ;;
 	sxhkd)		$TERMINAL -e nvim $XDG_CONFIG_HOME/sxhkd/ ;;
 	nvim)		$TERMINAL -e nvim $XDG_CONFIG_HOME/nvim/init.vim ;;
 	lf)			$TERMINAL -e nvim $XDG_CONFIG_HOME/lf/lfrc ;;

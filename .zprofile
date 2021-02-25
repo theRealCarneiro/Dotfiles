@@ -22,6 +22,7 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Cache
 export XDG_CACHE_HOME="$HOME/.cache"

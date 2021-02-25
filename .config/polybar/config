@@ -53,7 +53,7 @@ font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
 font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;2"
 font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
 
-modules-left = dwm bspwm i3 playerctl
+modules-left = dwm bspwm i3 xworkspaces playerctl
 modules-center =  xwindow  
 modules-right = mic updates-arch-combined mail disk mem cpu temp date power
 
@@ -85,7 +85,7 @@ format-prefix-font = 5
 format-prefix = " "
 #format-underline = ${colors.primary}
 format-foreground = ${xrdb:color6}
-click-left = notify-send Checando Atualizações -t 1500 && notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(yay -Qum)" &
+click-left = notify-send Checando Atualizações -t 1500 && notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(paru -Qum)" &
 click-right = alacritty -e sudo pacman -Syu &
 interval = 600
 
@@ -296,7 +296,7 @@ label-active-font = 3
 ;label-focused = %icon%
 label-active = 
 label-active-background = ${colors.background}
-label-active-foreground = ${xrdb:color4}
+label-active-foreground = ${xrdb:color1}
 label-active-padding = 3
  
 label-focused-font = 3
@@ -307,7 +307,7 @@ label-focused-foreground = ${colors.primary}
 label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
-label-occupied-foreground = #4a4a4a
+label-occupied-foreground = ${colors.foreground}
 label-occupied-font = 2
 #label-occupied = %icon%
 label-occupied = 
@@ -333,9 +333,9 @@ format = <label-tags> <label-layout> <label-floating> <label-title>
 ; socket-path = /tmp/dwm.sock
 
 enable-tags-click = true
-enable-tags-scroll = false
+enable-tags-scroll = true
 tags-scroll-empty = false
-tags-scroll-reverse = false
+tags-scroll-reverse = true
 tags-scroll-wrap = false
 enable-layout-click = false
 enable-layout-scroll = false

@@ -20,7 +20,7 @@ set viminfo+='1000,n$HOME/.config/nvim/viminfo " Change viminfo location
 let mapleader = ";"
 
 " Toogle ale
-nmap <C-a> <Esc>:ALEToggle<CR>
+nmap <leader>a <Esc>:ALEToggle<CR>
 
 " Tabs
 map <S-j> gT

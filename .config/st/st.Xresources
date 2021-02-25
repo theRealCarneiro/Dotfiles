@@ -1,6 +1,26 @@
 st.font: 				JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Medium
 st.font2:				Hack Nerd Font Mono:pixelsize=20:antialias=true:autohint=true
-!st.cursorColor:		#cccccc	
 st.alpha:				0.9
-st.alphaUnfocussed:		0.8	
+st.alphaUnfocussed:		0.9	
 !st.termname:   		xterm-256color
+
+st.foreground:			#cabcac
+st.background:			#1e1f29
+st.cursorColor:		#cabcac	
+
+st.color0:			#1e1f29
+st.color1:			#dc657d
+st.color2:			#2E534C
+st.color3:			#FED32F
+st.color4:			#3f8ba0
+st.color5:			#ba449c
+st.color6:			#47a8c0
+st.color7:			#cabcac
+st.color8:			#718586
+st.color9:			#dc657d
+st.color10:			#2E534C
+st.color11:			#FED32F
+st.color12:			#3f8ba0
+st.color13:			#ba449c
+st.color14:			#47a8c0
+st.color15:			#cabcac

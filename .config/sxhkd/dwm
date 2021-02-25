@@ -4,8 +4,8 @@
 #
 
 # restart dwm
-super + shift + r
-	dwm-msg run_command quit
+#super + shift + r
+	#dwm-msg run_command quit
 
 #tag keys
 #super + {_,ctrl,shift,alt} + {1-9,grave}
@@ -14,58 +14,60 @@ super + shift + r
 super + {_,ctrl,shift,ctrl + shift} + grave
 	dwm-msg run_command {view, toggleview, tag, toggletag} 512
 
-super + q
-	dwm-msg run_command killclient 1
+#super + q
+	#dwm-msg run_command killclient 1
 
 # focus tag
-super + shift + {j,k}
-	dwm-msg run_command viewto{left,right}
+#super + shift + {j,k}
+	#dwm-msg run_command viewto{left,right}
 
-super + shift + b
-	dwm-msg run_command togglebar
+#super + shift + b
+	#dwm-msg run_command togglebar
 
 # focus
-super + {j, k}
-	dwm-msg run_command focusstack {1,-1}
+#super + {j, k}
+	#dwm-msg run_command focusstack {1,-1}
 
 # master size
-super + {h, l}
-	dwm-msg run_command setmfact {-,_}0.05
+#super + {h, l}
+	#dwm-msg run_command setmfact {-,_}0.05
 
 #  split orientation
-super + {_, shift +} i
+#super + {_, shift +} i
 
-super + space
-	dwm-msg run_command zoom
+#super + space
+	#dwm-msg run_command zoom
 
-# layouts
-super + {t, m, shift + n}
-	dwm-msg run_command setlayoutsafe $(dwm-msg get_layouts | grep -A 1 {\"\","",""} | grep "addres" | awk '\{print $2\}')
+## layouts
+#super + {t, m, n}
+	#dwm-msg run_command setlayoutsafe $(dwm-msg get_layouts | grep -A 1 {\"\","",""} | grep "addres" | awk '\{print $2\}')
 
-super + shift + f
-	dwm-msg run_command togglefloating
+#super + shift + f
+	#dwm-msg run_command togglefloating
 
-super + f
-	dwm-msg run_command togglefullscr
+#super + f
+	#dwm-msg run_command togglefullscr
 
-#super + {t, shift + f, m, shift + n, shift + space}
-	#dwm-msg run_command setlayoutsafe {0,1,2}
+##super + {t, shift + f, m, shift + n, shift + space}
+	##dwm-msg run_command setlayoutsafe {0,1,2}
 
 
-super + shift + {h,l}
-	dwm-msg run_command tagto{left && dwm-msg run_command viewtoleft,right && dwm-msg run_command viewtoright}
+#super + shift + {h,l}
+	#dwm-msg run_command tagto{left && dwm-msg run_command viewtoleft,right && dwm-msg run_command viewtoright}
 	
-super + {_, shift +} 0
-	#dwmc {view, tag}            
+##super + {_, shift +} 0
+	##dwmc {view, tag}            
 
-# focus monitors
-super + tab
-	#dwmc focusmon{+,-}	        
+## focus monitors
+#super + tab
+	##dwmc focusmon{+,-}	        
 
-super + shift + {comma, period}
-	#dwmc tagmon{-,+}		          
+#super + shift + {comma, period}
+	##dwmc tagmon{-,+}		          
 
-# gaps
-super + {minus, equal, shift + equal}
-	dwm-msg run_command setgaps {-5,5,0}
+## gaps
+#super + {minus, equal, shift + equal}
+	#dwm-msg run_command setgaps {-5,5,0}
 
+#super + {_, shift +} i
+	#dwm-msg run_command incnmaster {1,-1}

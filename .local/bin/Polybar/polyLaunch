@@ -1,5 +1,4 @@
 #!/bin/bash
-#xrdb $XDG_CONFIG_HOME/X11/.Xresources # Source Xresources
 bg=$(xgetres background)
 . $HOME/.cache/wal/colors.sh 
 export bg_alpha="#bb${bg###}"
