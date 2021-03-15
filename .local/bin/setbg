@@ -5,8 +5,8 @@ reload_env(){
 	if [ $WM = "dwm" ]; then
 		dwm-msg run_command reload_xresources & # make dwm reload xrdb
 	fi
-	#polyLaunch & # restart polybar
-	#spicetify apply -n & # apply spotify theme
+	polyLaunch & # restart polybar
+	spicetify apply -n & # apply spotify theme
 }
 
 #rand(){

@@ -35,6 +35,9 @@ super + v
 super + F6
 	droidcamcli audio
 
+super + g
+	gamelaunch
+
 # open mpv with webcam video
 super + shift + v
 	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
@@ -123,7 +126,8 @@ super + shift + w
 #
 
 super + p
-	$TERMINAL -e pulsemixer
+	pavucontrol
+	#$TERMINAL -e pulsemixer
 
 super + shift + p 
 	patchage
