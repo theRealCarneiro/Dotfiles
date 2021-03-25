@@ -6,45 +6,8 @@ reload_env(){
 		dwm-msg run_command reload_xresources & # make dwm reload xrdb
 	fi
 	polyLaunch & # restart polybar
-	spicetify apply -n & # apply spotify theme
+	#spicetify apply -n & # apply spotify theme
 }
-
-#rand(){
-	#wpp=$(find $HOME/Bibliotecas/Imagens/Wallpapers -type f | shuf | head -n1)
-#}
-
-#theme(){
-	#wpp=$(grep wallpaper $HOME/.config/wal/colorschemes/dark/$1.json | cut -c16- | sed 's/..$//')
-	#wal --theme $1 &
-	#reload_env &
-#}
-
-#generate(){
-	#wpp=$1
-	#wal -i "$wpp"
-	#reload_env &
-#}
-
-#if [ $# -ne 0 ]; then #if there are args
-	#case $1 in
-		#"--rand")		
-			#rand ;;
-		#"--theme")
-			#theme $2 ;;
-		#"--generate")
-			#generate $2 ;;
-		#*)
-			#wpp=$1 ;;
-	#esac
-
-	#if [ "${wpp##*$PWD*}" -a $1 != "--theme" ]; then #full path of image
-		#echo $PWD/$wpp > $wall
-	#else
-		#echo $wpp > $wall
-	#fi
-#fi
-
-#pcmanfm -w "$(cat $wall)"
 
 wall="$XDG_CONFIG_HOME/wallpaper"
 if [ $# -ne 0 ]; then #if there are args

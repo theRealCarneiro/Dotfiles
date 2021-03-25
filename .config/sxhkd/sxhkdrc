@@ -38,6 +38,9 @@ super + F6
 super + g
 	gamelaunch
 
+super + ctrl + c
+	dmenucalc
+
 # open mpv with webcam video
 super + shift + v
 	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed

@@ -137,7 +137,7 @@ mark h ~/
 
 command makeclean make clean
 command make make
-command unzip atool -x "%f" -q
+command unzip atool -x %c -q
 command setbg setbg %f
 command! df df -h %m 2> /dev/null
 command! diff vim -d %f %F
