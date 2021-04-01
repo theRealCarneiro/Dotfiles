@@ -1,0 +1,11 @@
+#!/bin/env bash
+resultado=''
+exp=' '
+while [ "$exp" != "" ] ; do
+	exp=$(echo 'Clear' | dmenu -i -p  "= $resultado")
+	if [ "$exp" = "Clear" ]; then
+		resultado=''
+	else
+		[ "$exp" != "" ] && resultado=$(awk "BEGIN{printf $exp}")
+	fi
+done

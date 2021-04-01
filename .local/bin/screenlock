@@ -1,0 +1,40 @@
+#!/bin/sh
+C=#${foreground#*#}22
+D=#${foreground#*#}cc
+T=#${foreground#*#}ff
+W=#${color1#*#}bb
+V=#${foreground#*#}bb
+B='#00000000'  # blank
+BG=#${background#*#}aa
+
+gpg-connect-agent --no-autostart reloadagent /bye 
+pgrep i3lock ||
+i3lock -B 0.4	  \
+--radius=100	\
+--insidevercolor=$C   \
+--ringvercolor=$V     \
+\
+--insidewrongcolor=$C \
+--ringwrongcolor=$W   \
+\
+--insidecolor=$BG      \
+--ringcolor=$D        \
+--linecolor=$B        \
+--separatorcolor=$D   \
+\
+--verifcolor=$T        \
+--wrongcolor=$T        \
+--timecolor=$T        \
+--datecolor=$T        \
+--layoutcolor=$T      \
+--keyhlcolor=$W       \
+--bshlcolor=$W        \
+\
+--clock               \
+--indicator           \
+--time-font="SF Pro Display" \
+--date-font="SF Pro Display" \
+--timesize=40 \
+--datesize=14 \
+--timestr="%H:%M:%S"  \
+--datestr="%A, %d %B de %Y" 

@@ -1,0 +1,5 @@
+#!/bin/sh
+Nodes=$(bspc query -N -n .tiled -d)
+for node in $Nodes; do
+	bspc node "$node" -g hidden=on
+done

@@ -1,0 +1,18 @@
+#!/bin/sh
+t=0
+
+toggle() {
+    t=$(((t + 1) % 2))
+}
+
+trap "toggle" USR1
+
+while true; do
+	usage=$(cat /sys/class/drm/card0/device/gpu_busy_percent)
+	temp=''
+	[ $t -ne 0 ] && temp="$(sensors | grep "edge:" | cut -c16-17)°C"
+	echo $usage% $temp
+	sleep 1 &
+	wait $!
+done
+

@@ -55,7 +55,7 @@ font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
 
 modules-left = dwm bspwm i3 xworkspaces playerctl
 modules-center =  xwindow  
-modules-right = mic updates-arch-combined mail disk mem cpu temp date power
+modules-right = mic updates-arch-combined mail disk mem cpu gpu_usage date power
 
 tray-position = right 
 tray-padding = 8
@@ -127,6 +127,19 @@ tail = true
 click-left = kill -USR1 %pid%
 click-right = notify-send "Quem ta comendo RAM: $(ps axch -o cmd:15,%mem --sort=-%mem | head)"
 
+[module/gpu_usage]
+type = custom/script
+exec = gpu_usage
+label = %output%
+format-foreground = ${xrdb:color5}
+format-prefix = "﴿ "
+format-prefix-font = 5
+;click-right = temp_all_notify
+;interval = 20
+tail= true
+click-left = kill -USR1 %pid%
+
+
 [module/temp]
 type = custom/script
 exec = temp
@@ -136,8 +149,10 @@ label = %output%°
 format-foreground = ${xrdb:color5}
 format-prefix = " "
 format-prefix-font = 5
-click-left = temp_all_notify
-interval = 20
+click-right = temp_all_notify
+;interval = 20
+tail= true
+click-left = kill -USR1 %pid%
 
 [module/power]
 type = custom/text
@@ -177,6 +192,16 @@ click-right = notify-send -i Calendar "To do:" "$(calcurse -d 21)" &
 format-underline=${colors.primary}
 interval = 1
 
+[module/cpu_usage]
+type = custom/script
+click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)"
+format-foreground = ${xrdb:color4}
+format-prefix-font = 3
+format-prefix=" "  
+format-underline=${colors.primary}
+click-left=kill -USR1 %pid%
+exec = cpu_usage  
+tail = true
 
 [module/cpuUsage]
 type = custom/script

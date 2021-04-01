@@ -1,0 +1,4 @@
+#!/bin/sh
+name="$(dmenu -i -p  "Script name:")"
+path="$HOME/.local/bin/$name"
+$TERMINAL -e nvim "$path" && chmod +x "$path"

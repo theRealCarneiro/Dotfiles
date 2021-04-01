@@ -1,0 +1,16 @@
+#!/bin/sh
+
+wall=/home/gabriel/.config/wallpaper 
+toggle() {
+	wp=$(find /home/gabriel/Bibliotecas/Imagens/Wallpapers -type f | shuf | head -n1)
+	echo $wp > $wall
+	xwallpaper --zoom "$wp" 
+}
+
+trap "toggle" USR1
+
+while true; do
+	sleep 60 &
+	wait $! &&
+	toggle
+done

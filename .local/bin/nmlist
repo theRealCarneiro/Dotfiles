@@ -1,0 +1,10 @@
+#!/bin/sh
+maildir=$HOME/.local/share/mail/gmail/INBOX/new
+#maildir=$HOME/.local/share/mail/gmail/INBOX/cur
+for i in $(ls $maildir); do
+	mail_info=$mail_info"__________________\n"
+	mail_info=$mail_info$(grep "From: " $maildir/$i | utf8-decode)"\n"
+	mail_info=$mail_info$(grep "Subject: " $maildir/$i | utf8-decode)"\n"
+	mail_info=$mail_info"------------------\n"
+done
+notify-send "Novos emails" "$mail_info" -i Mail

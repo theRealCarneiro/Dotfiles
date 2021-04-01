@@ -1,0 +1,3 @@
+#!/bin/sh
+tema=$(ls $XDG_CONFIG_HOME/wal/colorschemes/dark | sed 's/.json//' | dmenu -i -p  "Escolha o tema")
+setbg --theme $tema

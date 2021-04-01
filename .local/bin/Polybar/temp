@@ -1,3 +1,35 @@
 #!/bin/sh
 
-sensors | awk '$1 == "temp1:" {print $2}' | cut -c2-3
+t=0
+
+toggle() {
+    t=$(((t + 1) % 2))
+    echo $t
+}
+
+trap "toggle" USR1
+
+while true; do
+	if [ $t -ne 0 ]; then
+		temp=$(sensors | grep "SYSTIN" | cut -c26-27) 
+	else
+		gabinete=$(sensors | grep "SYSTIN" | cut -c26-27) 
+		cpu=$(sensors | grep "CPUTIN" | cut -c26-27) 
+		gpu=$(sensors | grep "edge:" | cut -c16-17) 
+		temp="$(echo "﬙ " $cpu° "﴿ " $gpu)"
+	fi
+	#case $t in
+		#0) #gabinete
+			#temp=$(sensors | grep "SYSTIN" | cut -c26-27) ;;
+		#1) #cpu
+			#temp=$(sensors | grep "CPUTIN" | cut -c26-27) ;;
+		#2) #gpu
+			#temp=$(sensors | grep "edge:" | cut -c16-17) ;;
+	#esac
+	echo $temp
+	sleep 1 &
+	wait $!
+done
+
+
+#sensors | awk '$1 == "temp1:" {print $2}' | cut -c2-3

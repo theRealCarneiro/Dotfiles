@@ -1,0 +1,19 @@
+#!/bin/sh
+t=0
+
+toggle() {
+    t=$(((t + 1) % 2))
+    echo $t
+}
+
+trap "toggle" USR1
+
+while true; do
+	uso=$(mpstat --dec=0 1 1 | awk '{print 100-$12}')
+	temp=''
+	[ $t -ne 0 ] && temp="$(sensors | grep "CPUTIN:" | cut -c26-27)°C"
+	echo $(echo $uso | awk '{print $4}')% $temp
+	sleep 1 &
+	wait $!
+done
+

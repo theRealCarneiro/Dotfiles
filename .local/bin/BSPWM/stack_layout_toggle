@@ -1,0 +1,12 @@
+#!/bin/sh
+layout=$(bsp-layout get 1)
+case $layout in
+	tiled) layout=tall;;
+	tall) layout=tiled;;
+	*) layout=tall;;
+esac
+
+for i in $(seq 10 $END); do
+	bsp-layout set $layout $i
+done
+notify-send "Layout" "Layout changed to $layout layout"

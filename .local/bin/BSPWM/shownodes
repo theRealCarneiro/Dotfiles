@@ -1,0 +1,4 @@
+Nodes=$(bspc query -N -n .hidden)
+for node in $Nodes; do
+	bspc node "$node" -g hidden=off
+done
