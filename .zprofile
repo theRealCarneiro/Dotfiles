@@ -33,6 +33,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export WINEPREFIX="$XDG_DATA_HOME/wine"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/.password-store"
+export GOPATH="$XDG_DATA_HOME/go"
 
 # Other configs
 export NNN_USE_EDITOR=1
