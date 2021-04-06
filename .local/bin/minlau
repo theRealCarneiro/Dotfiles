@@ -1,0 +1,29 @@
+#!/bin/bash
+
+config_path=$HOME/.config/games/config.ini
+
+get_config(){
+	config=$(awk "/\[$1\]/ {p=1;next}p" $config_path)
+	for i in $config; do
+		[[ $i == [* ]] && break
+	done
+
+	if [[ $i == [* ]]; then
+		i=$(echo $i | sed 's/\[/\\\[/')
+		eval "$(echo $config | sed "s/$i.*//")"
+	else
+		eval "$(echo $config | sed 's/\"\ /\"\n/')"
+	fi
+}
+
+get_config global
+get_config $1
+
+if [[ $GAMEMODE = "" || $GAMEMODE = 0 || $GAMEMODE = 'false' ]]; then
+	"$WINE" "$LAUNCH" "$ARGS"
+else
+	gamemoderun "$WINE" "$LAUNCH" "$ARGS"
+fi
+
+[[ $KILL != '' ]] && killall $KILL
+

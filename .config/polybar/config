@@ -167,9 +167,10 @@ click-right = kill -USR1 $(pgrep randbg)
 [module/mic]
 type = custom/script
 content-font = 2
-label-foreground = ${xrdb:color6}
-exec = echo 
+label-foreground = ${xrdb:color1}
+exec = echo  " $(pactl list sources | grep -A6 "Droidcam (echo" | awk '/Volume/{print $5}')"
 exec-if = pgrep droidcam-cli
+interval = 3
 
 [module/nettrafic]
 type = custom/script
