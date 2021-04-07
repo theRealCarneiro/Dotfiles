@@ -19,6 +19,8 @@ get_config(){
 get_config global
 get_config $1
 
+[[ $WINEPREFIX != "" ]] && mkdir -p $WINEPREFIX
+
 if [[ $GAMEMODE = "" || $GAMEMODE = 0 || $GAMEMODE = 'false' ]]; then
 	"$WINE" "$LAUNCH" "$ARGS"
 else
