@@ -1,5 +1,5 @@
 #!/bin/sh
-choice=$(echo 'bspwm\ndwm\nspectrwm\ni3wm\nopenbox\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse\nvifm\nneomutt\nmbsync\npywal\njgmenu\nlegendary' | \
+choice=$(echo 'bspwm\ndwm\nspectrwm\ni3wm\nopenbox\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse\nvifm\nneomutt\nmbsync\npywal\njgmenu\nlegendary\nminlau' | \
 	dmenu -i -p  "Abrir aquivo de configuração:")
 case $choice in
 	bspwm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
@@ -32,5 +32,6 @@ case $choice in
 	pywal)		$TERMINAL -e nvim $XDG_CONFIG_HOME/wal ;;
 	jgmenu)		$TERMINAL -e nvim $XDG_CONFIG_HOME/jgmenu/jgmenurc ;;
 	legendary)	$TERMINAL -e nvim $XDG_CONFIG_HOME/legendary/config.ini ;;
+	minlau)		$TERMINAL -e nvim $XDG_CONFIG_HOME/games/config.ini;;
 esac
 	

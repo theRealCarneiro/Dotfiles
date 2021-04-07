@@ -5,6 +5,9 @@ colors:
   cursor:
     text:       '{background}'
     cursor:     '{cursor}'
+  vi_mode_cursor:
+    text:       '{background}'
+    cursor:     '{cursor}'
   normal:
     black:      '{color0}'
     red:        '{color1}'

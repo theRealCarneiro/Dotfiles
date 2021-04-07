@@ -1,0 +1,15 @@
+#!/bin/sh
+
+install=$HOME/.local/share/lutris/runners/wine
+tarball=$HOME/Downloads
+url="https://lutris.net/api/runners?format=json&search=wine"
+jason=$(curl "$url")
+ver=$(echo $jason | sed 's/{/\n/g'  | sed 's/,.*/ /g' | grep version |\
+	sed 's/.*://g' | sed 's/"//g' | tac -s' ' | tail -n +3 | \
+	rofi -dmenu -p "Escolha a versão:" -no-config)
+[ "$ver" = "" ] && exit
+
+link=$(echo $jason | sed 's/{/\n/g' | grep $ver | sed 's/.*url":"//g' | sed 's/".*//g')
+wget -P $tarball $link
+tar -xf $tarball/${link##*/} -C $install
+rm $tarball/${link##*/}

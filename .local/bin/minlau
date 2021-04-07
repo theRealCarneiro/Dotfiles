@@ -9,7 +9,7 @@ get_config(){
 	done
 
 	if [[ $i == [* ]]; then
-		i=$(echo $i | sed 's/\[/\\\[/')
+		i=$(echo $i | sed 's/\[/\\\[/') # chage []hto \[\]
 		eval "$(echo $config | sed "s/$i.*//")"
 	else
 		eval "$(echo $config | sed 's/\"\ /\"\n/')"
