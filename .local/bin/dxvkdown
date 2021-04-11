@@ -1,0 +1,20 @@
+#!/bin/sh
+
+install=$XDG_DATA_HOME/lutris/runtime/dxvk
+tarball=$XDG_CACHE_HOME/minlau
+mkdir -p "$tarball"
+
+url="https://api.github.com/repos/lutris/dxvk/releases"
+jason=$(curl "$url")
+
+ver="$(echo $jason | sed 's/{/\n/g' | grep tag_name | \
+	sed 's/.*tag_name\": \"//' | sed 's/\",.*//' | \
+	rofi -dmenu -p "Escolha a versão:" -no-config -columns 3)"
+[ "$ver" = "" ] && exit
+
+link=$(echo $jason | sed 's/{/\n/g' | grep $ver | \
+	sed 's/}/\n/g' | grep "tar.gz" | sed 's/.*url": "//g' | sed 's/".*//g')
+
+wget -P $tarball $link
+tar -xf $tarball/${link##*/} -C $install
+rm $tarball/${link##*/}
