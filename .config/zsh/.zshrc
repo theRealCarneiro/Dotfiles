@@ -1,7 +1,7 @@
 # Colors
 #cat /home/gabriel/.cache/wal/sequences
 #neofetch
-
+fpath+=( $XDG_CONFIG_HOME/zsh/completion )
 #source "/usr/share/autojump/autojump.zsh"
 
 # Keys
@@ -13,6 +13,12 @@ compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 _comp_options+=(globdots)
+
+#if [ -d $XDG_CONFIG_HOME/zsh/completion ]; then
+	#for i in $(ls $XDG_CONFIG_HOME/zsh/completion); do 
+		#source $XDG_CONFIG_HOME/zsh/completion/$i
+	#done
+#fi
 
 # History cache
 HISTSIZE=10000

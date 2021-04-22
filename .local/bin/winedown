@@ -4,18 +4,40 @@ install=$XDG_DATA_HOME/lutris/runners/wine
 tarball=$XDG_CACHE_HOME/minlau
 mkdir -p "$tarball"
 
-url="https://lutris.net/api/runners?format=json&search=wine"
-jason=$(curl "$url")
+lutris_url="https://lutris.net/api/runners?format=json&search=wine"
+tkg_url="https://api.github.com/repos/Frogging-Family/wine-tkg-git/releases"
+lutris_wine="$(curl --silent "$lutris_url")"
+tkg_wine="$(curl --silent "$tkg_url")"
 
-ver=$(echo $jason | sed 's/{/\n/g'  | sed 's/,.*/ /g' | grep version |\
-	sed 's/.*://g' | sed 's/"//g' | tac -s' ' | tail -n +3 | \
-	rofi -dmenu -p "Escolha a versão:" -no-config -columns 3)
+if [ "$1" = "--list" ]; then
+	lutris_ver=$(echo "$lutris_wine" | sed 's/{/\n/g' | \
+		sed 's/,.*/ /g; s/.*://g; s/"//g'|	tail -n +4)
 
-[ "$ver" = "" ] && exit
+	tgk_ver=$(echo "$tkg_wine" | grep "name.*wine.*pkg" | \
+		sed 's/.*wine-//; s/"//g; s/\.r.*//;')
 
-link=$(echo $jason | sed 's/{/\n/g' | grep $ver | sed 's/.*url":"//g' \
-	| sed 's/".*//g')
+	echo "$lutris_ver" | tac | column
+	echo "$tgk_ver" | column
+	exit
+fi
 
-wget -P $tarball $link
-tar -xf $tarball/${link##*/} -C $install
-rm $tarball/${link##*/}
+#if [ -z $1 ]; then
+	#ver=$(echo "$jason" | sed 's/{/\n/g' | sed 's/,.*/ /g; s/.*://g; s/"//g'|\
+		#tac -s' ' | tail -n +3 | \
+		#rofi -dmenu -p "Escolha a versão:" -no-config -columns 3)
+	#[ "$ver" = "" ] && exit
+#else
+	#ver=$1
+#fi
+ver=$1
+
+link_tkg=$(echo "$tkg_wine" | grep "download_url.*$ver\." | sed 's/.* //; s/"//g')
+[ "$link_tkg" != "" ] && link=$link_tkg || \
+
+link_lutris=$(echo "$lutris_wine" | sed 's/{/\n/g' | grep $ver | sed 's/.*url":"//g; s/".*//g')
+[ "$link_lutris" != "" ] && link=$link_lutris
+echo $link
+
+#wget -P $tarball $link
+#tar -xf $tarball/${link##*/} -C $install
+#rm $tarball/${link##*/}
