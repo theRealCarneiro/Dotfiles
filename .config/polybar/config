@@ -53,7 +53,7 @@ font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
 font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;2"
 font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
 font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;1"
-font-7 = "JetBrains Mono Nerd Font:pixelsize=16:antialias=true:autohint=true:style:Medium;3"
+font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Medium;3"
 
 modules-left = dwm bspwm i3 playerctl
 modules-center =  xwindow  
