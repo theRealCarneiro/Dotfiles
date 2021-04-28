@@ -1,38 +1,38 @@
 #!/bin/sh
-choice=$(echo 'bspwm\ndwm\nspectrwm\ni3wm\nopenbox\nsxhkd\nnvim\nlf\npolybar\nrofi\n.Xresources\n.xprofile\n.Xmodmap\n.zprofile\n.xinitrc\ndunst\nzsh\nrcfiles\nspotifyd\npicom\nalacritty\nqutebrowser\nBCD\nPulse\nvifm\nneomutt\nmbsync\npywal\njgmenu\nlegendary\nminlau\nwinetkg' | \
-	dmenu -i -p  "Abrir aquivo de configuração:")
+files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi .Xresources .xprofile .Xmodmap .zprofile .xinitrc dunst zsh spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg'
+
+files="$(echo $files | sed 's/ /\n/g')"
+choice=$(echo "$files" | dmenu -i -p  "Config:")
 case $choice in
-	bspwm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
-	dwm)			$TERMINAL -e nvim $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
-	spectrwm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/spectrwm/spectrwm.conf ;;
-	i3wm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/i3/config ;;
-	openbox)		$TERMINAL -e nvim $XDG_CONFIG_HOME/openbox/rc.xml ;;
-	sxhkd)		$TERMINAL -e nvim $XDG_CONFIG_HOME/sxhkd/ ;;
-	nvim)		$TERMINAL -e nvim $XDG_CONFIG_HOME/nvim/init.vim ;;
-	lf)			$TERMINAL -e nvim $XDG_CONFIG_HOME/lf/lfrc ;;
-	polybar)		$TERMINAL -e nvim $XDG_CONFIG_HOME/polybar/config ;;
-	rofi)		$TERMINAL -e nvim $XDG_CONFIG_HOME/rofi/config.rasi ;;
-	.Xresources)	$TERMINAL -e nvim $XDG_CONFIG_HOME/X11/.Xresources ;;
-	.xprofile)	$TERMINAL -e nvim $XDG_CONFIG_HOME/X11/.xprofile ;;
-	.Xmodmap)		$TERMINAL -e nvim $XDG_CONFIG_HOME/X11/.Xmodmap ;;
-	.zprofile)	$TERMINAL -e nvim $HOME/.zprofile ;;
-	.xinitrc)		$TERMINAL -e nvim $HOME/.xinitrc ;;
-	dunst)		$TERMINAL -e nvim $XDG_CONFIG_HOME/dunst/dunstrc ;;
-	zsh)			$TERMINAL -e nvim $XDG_CONFIG_HOME/zsh/.zshrc ;;
-	rcfiles)		$TERMINAL -e nvim $HOME/.local/bin/rcfiles ;;
-	spotifyd)		$TERMINAL -e nvim $XDG_CONFIG_HOME/spotifyd/spotifyd.conf ;;
-	picom)		$TERMINAL -e nvim $XDG_CONFIG_HOME/picom/picom.conf ;;
-	alacritty)	$TERMINAL -e nvim $XDG_CONFIG_HOME/alacritty ;;
-	qutebrowser)	$TERMINAL -e nvim $XDG_CONFIG_HOME/qutebrowser/config.py ;;
-	BCD)			$TERMINAL -e nvim $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
-	Pulse)		$TERMINAL -e nvim $XDG_CONFIG_HOME/pulse/default.pa ;;
-	vifm)		$TERMINAL -e nvim $XDG_CONFIG_HOME/vifm/vifmrc ;;
-	neomutt)		$TERMINAL -e nvim $XDG_CONFIG_HOME/mutt/muttrc ;;
-	mbsync)		$TERMINAL -e nvim $XDG_CONFIG_HOME/isync/mbsyncrc ;;
-	pywal)		$TERMINAL -e nvim $XDG_CONFIG_HOME/wal ;;
-	jgmenu)		$TERMINAL -e nvim $XDG_CONFIG_HOME/jgmenu/jgmenurc ;;
-	legendary)	$TERMINAL -e nvim $XDG_CONFIG_HOME/legendary/config.ini ;;
-	minlau)		$TERMINAL -e nvim $XDG_CONFIG_HOME/minlau/config.ini;;
-	winetkg)		$TERMINAL -e nvim $XDG_CONFIG_HOME/frogminer/wine-tkg.cfg ;;
+	bspwm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
+	dwm)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
+	spectrwm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spectrwm/spectrwm.conf ;;
+	i3wm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/i3/config ;;
+	openbox)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/openbox/rc.xml ;;
+	sxhkd)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/sxhkd/ ;;
+	nvim)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/nvim/init.vim ;;
+	lf)			$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/lf/lfrc ;;
+	polybar)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/polybar/config ;;
+	rofi)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/rofi/config.rasi ;;
+	.Xresources)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/.Xresources ;;
+	.xprofile)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/.xprofile ;;
+	.Xmodmap)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/.Xmodmap ;;
+	.zprofile)	$TERMINAL -e $EDITOR $HOME/.zprofile ;;
+	.xinitrc)		$TERMINAL -e $EDITOR $HOME/.xinitrc ;;
+	dunst)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/dunst/dunstrc ;;
+	zsh)			$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/zsh/.zshrc ;;
+	spotifyd)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spotifyd/spotifyd.conf ;;
+	picom)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/picom/picom.conf ;;
+	alacritty)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/alacritty ;;
+	qutebrowser)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/qutebrowser/config.py ;;
+	BCD)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
+	Pulse)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/pulse/default.pa ;;
+	vifm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/vifm/vifmrc ;;
+	neomutt)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/mutt/muttrc ;;
+	mbsync)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/isync/mbsyncrc ;;
+	pywal)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/wal ;;
+	jgmenu)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/jgmenu/jgmenurc ;;
+	legendary)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/legendary/config.ini ;;
+	minlau)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/minlau/config.ini;;
+	winetkg)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/frogminer/wine-tkg.cfg ;;
 esac
-	

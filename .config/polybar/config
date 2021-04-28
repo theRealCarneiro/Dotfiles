@@ -52,8 +52,10 @@ font-2 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:sty
 font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
 font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;2"
 font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
+font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;1"
+font-7 = "JetBrains Mono Nerd Font:pixelsize=16:antialias=true:autohint=true:style:Medium;3"
 
-modules-left = dwm bspwm i3 xworkspaces playerctl
+modules-left = dwm bspwm i3 playerctl
 modules-center =  xwindow  
 modules-right = mic updates-arch-combined mail disk mem cpu gpu_usage date power
 
@@ -63,7 +65,7 @@ tray-offset-x = 0
 tray-foreground = ${colors.foreground}
 tray-background = ${colors.background}
 
-;wm-restack = ${env:WM}
+wm-restack = ${env:WM}
 
 override-redirect = false
 
@@ -80,7 +82,7 @@ margin-bottom = 0
 [module/updates-arch-combined]
 type = custom/script
 exec = arch_updates
-format-prefix-font = 5
+format-prefix-font = 7
 ;label-font = 2
 format-prefix = " "
 #format-underline = ${colors.primary}
@@ -97,7 +99,7 @@ format-foreground = ${xrdb:color8}
 ;format-foreground = #7851A9
 ;${xrdb:color5}
 format-prefix = " "
-format-prefix-font = 5
+format-prefix-font = 7
 click-middle = $TERMINAL -e neomutt &
 click-right = mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc gmail & notify-send "Sincronizando email" "Procurando novos emails" -i Mail &
 click-left = $BROWSER www.gmail.com &
@@ -131,7 +133,7 @@ click-right = notify-send "Quem ta comendo RAM: $(ps axch -o cmd:15,%mem --sort=
 type = custom/script
 exec = gpu_usage
 label = %output%
-format-foreground = ${xrdb:color5}
+format-foreground = ${xrdb:color4}
 format-prefix = "﴿ "
 format-prefix-font = 5
 ;click-right = temp_all_notify
@@ -205,15 +207,15 @@ click-left=kill -USR1 %pid%
 exec = cpu_usage  
 tail = true
 
-[module/cpuUsage]
-type = custom/script
-;click-left=~/.config/polybar/scripts/cpu/cpu
-click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)"
-exec = ~/.config/i3blocks/scripts/cpu_usage/cpu_usage  
-format-prefix-font = 3
-format-prefix=" "  
-format-underline=${colors.primary}
-interval = 1
+;[module/cpuUsage]
+;type = custom/script
+;;click-left=~/.config/polybar/scripts/cpu/cpu
+;click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)"
+;exec = ~/.config/i3blocks/scripts/cpu_usage/cpu_usage  
+;format-prefix-font = 3
+;format-prefix=" "  
+;format-underline=${colors.primary}
+;interval = 1
 
 
 [module/playerctl]
@@ -466,21 +468,21 @@ label-focused-foreground = ${colors.primary}
 ;label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
-;label-occupied-foreground = ${xrdb:color8}
-label-occupied-foreground = #4a4a4a
+label-occupied-foreground = ${colors.foreground}
+;label-occupied-foreground = #4a4a4a
 label-occupied-font = 2
-#label-occupied = %icon%
+;label-occupied = %icon%
 label-occupied = 
 label-occupied-padding = 3
 
 label-urgent-font = 3
 ;label-urgent = %icon%!
 label-urgent = 
-label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.primary}
 label-urgent-padding = 3
 
 label-empty-font = 2
-;label-empty = %icon%
+;label-empty = %name%
 label-empty = 
 label-empty-foreground = ${colors.foreground-alt}
 label-empty-padding = 3
@@ -618,10 +620,10 @@ label-song-ellipsis = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = " "
 ;label-font = 2
-format-prefix-font = 5
-format-foreground = ${xrdb:color4}
+format-prefix-font = 8
+format-foreground = ${xrdb:color5}
 ;format-prefix-foreground = ${colors.foreground-alt}
 #format-underline = ${colors.primary}
 label = %percentage:2%%

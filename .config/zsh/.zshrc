@@ -29,11 +29,11 @@ HISTFILE=$HOME/.cache/zsh/history
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 plugins=(git)
 #source $HOME/.config/zsh/themes/bira.zsh-theme
-source $HOME/.config/zsh/themes/minimal.zsh-theme
-source $HOME/.config/zsh/plugins/key-bindings.zsh
-source $HOME/.config/zsh/plugins/git.zsh
-source $HOME/.config/zsh/plugins/prompt_info_functions.zsh
-source $HOME/.config/zsh/plugins/theme-and-appearance.zsh
+source /home/gabriel/.config/zsh/themes/minimal.zsh-theme
+source /home/gabriel/.config/zsh/plugins/key-bindings.zsh
+source /home/gabriel/.config/zsh/plugins/git.zsh
+source /home/gabriel/.config/zsh/plugins/prompt_info_functions.zsh
+source /home/gabriel/.config/zsh/plugins/theme-and-appearance.zsh
 
 # Alias
 alias makebcd="\

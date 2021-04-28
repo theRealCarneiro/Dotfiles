@@ -4,8 +4,9 @@ install=$XDG_DATA_HOME/lutris/runtime/dxvk
 tarball=$XDG_CACHE_HOME/minlau
 mkdir -p "$tarball"
 
-url="https://api.github.com/repos/lutris/dxvk/releases"
-jason="$(curl --silent "$url")"
+url_lutris="https://api.github.com/repos/lutris/dxvk/releases"
+url_doitsujin="https://api.github.com/repos/doitsujin/dxvk/releases"
+jason="$(curl --silent "$url_lutris") $(curl --silent "$url_doitsujin")"
 
 if [ "$1" = "--list" ]; then
 	ver=$(echo "$jason" | grep "tag_name" | sed 's/.* //g; s/"//g; s/,//g')

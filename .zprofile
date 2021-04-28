@@ -8,7 +8,7 @@ export EDITOR="nvim"
 export TERMINAL="alacritty"
 export READER="zathura"
 export BROWSER="brave"
-export WM="dwm"
+export WM="bspwm"
 
 # Config
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -21,6 +21,7 @@ export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
