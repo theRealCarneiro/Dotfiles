@@ -2,9 +2,9 @@
 stty -ixon #disable pause with ctrl + s
 
 # Auto complete
-fpath+=( $XDG_CONFIG_HOME/zsh/completion )
+fpath+=( $ZDOTDIR/completion )
 autoload -U compinit
-compinit
+compinit -i
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 _comp_options+=(globdots)
@@ -12,27 +12,21 @@ _comp_options+=(globdots)
 # History cache
 HISTSIZE=10000
 SAVEHIST=10000
-HISTFILE=$HOME/.cache/zsh/history
+HISTFILE=$XDG_CACHE_HOME/zsh/history
 
 # Plugins
-#plugins=(git)
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/gabriel/.config/zsh/themes/minimal.zsh-theme
-source /home/gabriel/.config/zsh/plugins/git.zsh
-source /home/gabriel/.config/zsh/plugins/prompt_info_functions.zsh
-source /home/gabriel/.config/zsh/plugins/theme-and-appearance.zsh
-source /home/gabriel/.config/zsh/plugins/zsh-vi-mode.zsh
-#source /home/gabriel/.config/zsh/plugins/key-bindings.zsh
+source $ZDOTDIR/themes/minimal.zsh-theme
+source $ZDOTDIR/plugins/git.zsh
+source $ZDOTDIR/plugins/prompt_info_functions.zsh
+source $ZDOTDIR/plugins/theme-and-appearance.zsh
+source $ZDOTDIR/plugins/zsh-vi-mode.zsh
 
 # Alias
-alias makebcd="\
-	sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Midi-Hotkey"
-alias makedwm="\
-	sudo make install -C $HOME/Bibliotecas/Projects/suckless/dwm/"
-alias config='\
-	/usr/bin/git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
+setopt complete_aliases
+alias makebcd="sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Midi-Hotkey"
+alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/suckless/dwm/"
+alias config='git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
 
 LFCD="$HOME/.local/bin/lfcd"
-if [ -f "$LFCD" ]; then
-	source "$LFCD"
-fi
+[ -f "$LFCD" ] && source "$LFCD"

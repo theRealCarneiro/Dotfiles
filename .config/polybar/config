@@ -57,7 +57,7 @@ font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:sty
 
 modules-left = dwm bspwm i3 playerctl
 modules-center =  xwindow  
-modules-right = mic updates-arch-combined mail disk mem cpu gpu_usage date power
+modules-right = mic updates-arch-combined mail disk mem cpu gpu_usage keyboard-layout date power
 
 tray-position = right 
 tray-padding = 8
@@ -78,6 +78,15 @@ cursor-scroll = ns-resize
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[module/keyboard-layout]
+type = custom/script
+exec = kbmap
+format-prefix = " "
+format-prefix-font = 8
+format-foreground = ${xrdb:color3}
+tail = true
+click-left = kill -USR1 %pid%
 
 [module/updates-arch-combined]
 type = custom/script

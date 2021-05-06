@@ -1,8 +1,5 @@
 export PATH=$PATH:$HOME/.config/nvim/bundle/vim-live-latex-preview/bin:/usr/local/go/bin:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')
 
-# Runit services
-#export SVDIR=/run/runit/service
-
 # Default programs
 export EDITOR="nvim"
 export TERMINAL="alacritty"
@@ -37,10 +34,10 @@ export PASSWORD_STORE_DIR="$XDG_DATA_HOME/.password-store"
 export GOPATH="$XDG_DATA_HOME/go"
 
 # Other configs
-export NNN_USE_EDITOR=1
 source "/home/gabriel/.cache/wal/shell"
 source "/home/gabriel/.config/lf/icons"
 source "/home/gabriel/.config/i3/workspaces"
+#export SVDIR=/run/runit/service # Runit services
 
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
 	exec startx -- vt1 &> /dev/null

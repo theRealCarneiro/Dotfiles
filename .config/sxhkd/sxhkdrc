@@ -8,8 +8,8 @@ super + r
 #super + Escape
 	#pkill -USR1 -x sxhkd
 	
-super + alt + Return
-	{setxkbmap us intl, setxkbmap br abnt2}
+super + x
+	kill -USR2 $(pgrep kbmap)
 
 
 # close window
@@ -63,6 +63,9 @@ super + Return
 # browser
 super + b 
 	$BROWSER
+
+super + shift + b
+	$TERMINAL -e bluetoothctl
 
 # file managers 
 super + e 

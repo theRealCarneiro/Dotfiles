@@ -154,6 +154,21 @@
 # enable the cursor style feature (default is true)
 #
 
+# Use vim keys in tab complete menu:
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+
+# sometimes it enters default vi mode so this disables it
+bindkey -e
+
+# fuzzy search backwards
+autoload -U up-line-or-beginning-search
+zle -N up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
 # Avoid sourcing plugin multiple times
 command -v 'zvm_version' >/dev/null && return
 
@@ -1004,7 +1019,7 @@ function zvm_vi_yank() {
 function zvm_vi_put_after() {
   local head= foot=
   local content=${CUTBUFFER}
-  [[ $content = '' ]] && content=$(xclip -o -selection clipboard)
+  [[ $content = '' ]] && content=$(xclip -o -selection clipboard 2>/dev/null)
   local offset=1
 
   if [[ ${content: -1} == $'\n' ]]; then
@@ -1057,7 +1072,7 @@ function zvm_vi_put_after() {
 function zvm_vi_put_before() {
   local head= foot=
   local content=${CUTBUFFER}
-  [[ $content = '' ]] && content=$(xclip -o -selection clipboard)
+  [[ $content = '' ]] && content=$(xclip -o -selection clipboard 2>/dev/null)
 
   if [[ ${content: -1} == $'\n' ]]; then
     local pos=$CURSOR
@@ -3135,7 +3150,7 @@ function zvm_init() {
   zvm_bindkey viins '^E' end-of-line
   zvm_bindkey viins '^B' backward-char
   zvm_bindkey viins '^F' forward-char
-  zvm_bindkey viins '^K' zvm_forward_kill_line
+  #zvm_bindkey viins '^K' zvm_forward_kill_line
   zvm_bindkey viins '^W' backward-kill-word
   zvm_bindkey viins '^U' zvm_viins_undo
   zvm_bindkey viins '^Y' yank
@@ -3146,6 +3161,9 @@ function zvm_init() {
   zvm_bindkey viins '^S' history-incremental-search-forward
   zvm_bindkey viins '^P' up-line-or-history
   zvm_bindkey viins '^N' down-line-or-history
+  zvm_bindkey viins '^K' up-line-or-beginning-search
+  zvm_bindkey viins '^J' down-line-or-beginning-search
+
 
   # Insert mode
   zvm_bindkey vicmd 'i'  zvm_enter_insert_mode

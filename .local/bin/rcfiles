@@ -1,5 +1,5 @@
 #!/bin/sh
-files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi .Xresources .xprofile .Xmodmap .zprofile .xinitrc dunst zsh spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg'
+files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg'
 
 files="$(echo $files | sed 's/ /\n/g')"
 choice=$(echo "$files" | dmenu -i -p  "Config:")
@@ -14,13 +14,14 @@ case $choice in
 	lf)			$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/lf/lfrc ;;
 	polybar)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/polybar/config ;;
 	rofi)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/rofi/config.rasi ;;
-	.Xresources)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/.Xresources ;;
-	.xprofile)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/.xprofile ;;
-	.Xmodmap)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/.Xmodmap ;;
-	.zprofile)	$TERMINAL -e $EDITOR $HOME/.zprofile ;;
-	.xinitrc)		$TERMINAL -e $EDITOR $HOME/.xinitrc ;;
+	Xresources)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/Xresources ;;
+	xprofile)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xprofile ;;
+	xmodmap)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xmodmap ;;
+	zprofile)		$TERMINAL -e $EDITOR $HOME/.zprofile ;;
+	xinitrc)		$TERMINAL -e $EDITOR $HOME/.xinitrc ;;
 	dunst)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/dunst/dunstrc ;;
-	zsh)			$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/zsh/.zshrc ;;
+	zsh)			$TERMINAL -e $EDITOR $ZDOTDIR/.zshrc ;;
+	bash)		$TERMINAL -e $EDITOR $HOME/.bashrc ;;
 	spotifyd)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spotifyd/spotifyd.conf ;;
 	picom)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/picom/picom.conf ;;
 	alacritty)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/alacritty ;;
