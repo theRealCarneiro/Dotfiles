@@ -3,7 +3,7 @@
 start_droidcam(){
 	droidcam-cli $1 192.168.0.10 4747 &
 	pactl load-module module-alsa-source device=hw:3,1,0 source_properties="device.description='Droidcam'"
-	pactl load-module module-echo-cancel aec_method=webrtc source_name=alsa_input.hw_3_1_0
+	#pactl load-module module-echo-cancel aec_method=webrtc source_name=alsa_input.hw_3_1_0
 	pactl set-default-source alsa_input.hw_3_1_0.2
 
 	echo a
@@ -13,7 +13,7 @@ start_droidcam(){
 kill_droidcam(){
 	kill -s INT $(pgrep droidcam-cli) &
 	pactl unload-module module-alsa-source
-	pactl unload-module module-echo-cancel
+	#pactl unload-module module-echo-cancel
 	case $1 in
 		audio) notify-send "Killed droidcam audio service" -i Mic;;
 		video) notify-send "Killed droidcam webcam service" -i Webcam;;

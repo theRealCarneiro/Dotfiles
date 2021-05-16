@@ -13,7 +13,7 @@
 
 [colors]
 ;foreground-alt = #7d7d7d
-background = ${env:bg_alpha:}
+background = ${env:background:}
 background-alt = ${xrdb:background:#222}
 foreground = ${xrdb:foreground:#222}
 foreground-alt = ${xrdb:color8:#222}
@@ -34,8 +34,8 @@ locale = pt_BR.UTF-8
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 0
-line-color = #f00
+line-size = 1
+line-color = ${colors.primary}
 
 border-size = 0
 border-color = ${colors.primary}
@@ -52,12 +52,12 @@ font-2 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:sty
 font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
 font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;2"
 font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
-font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;1"
+font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;2"
 font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Medium;3"
 
 modules-left = dwm bspwm i3 playerctl
-modules-center =  xwindow  
-modules-right = mic updates-arch-combined mail disk mem cpu gpu_usage keyboard-layout date power
+modules-center = xwindow  
+modules-right = mic keyboard-layout updates-arch-combined mail disk mem cpu gpu_usage date power
 
 tray-position = right 
 tray-padding = 8
@@ -81,10 +81,11 @@ margin-bottom = 0
 
 [module/keyboard-layout]
 type = custom/script
-exec = kbmap
+exec = killall kbmap; kbmap
 format-prefix = " "
-format-prefix-font = 8
-format-foreground = ${xrdb:color3}
+format-prefix-font = 7
+;format-foreground = ${xrdb:color3}
+format-underline = ${colors.primary}
 tail = true
 click-left = kill -USR1 %pid%
 
@@ -94,8 +95,8 @@ exec = arch_updates
 format-prefix-font = 7
 ;label-font = 2
 format-prefix = " "
-#format-underline = ${colors.primary}
-format-foreground = ${xrdb:color6}
+format-underline = ${colors.primary}
+;format-foreground = ${xrdb:color6}
 click-left = notify-send Checando Atualizações -t 1500 && notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(paru -Qum)" &
 click-right = alacritty -e sudo pacman -Syu &
 interval = 600
@@ -103,7 +104,8 @@ interval = 600
 [module/mail]
 type = custom/script
 exec = mailcheck
-format-foreground = ${xrdb:color8}
+format-underline = ${colors.primary}
+;format-foreground = ${xrdb:color8}
 ;label-font = 2
 ;format-foreground = #7851A9
 ;${xrdb:color5}
@@ -116,8 +118,9 @@ interval = 1
 
 [module/disk]
 type = custom/script
-exec = disk_usage
-format-foreground = ${xrdb:color2}
+exec = killall disk_usage; disk_usage
+;format-foreground = ${xrdb:color2}
+format-underline = ${colors.primary}
 ;label-font = 2
 format-prefix = " "
 format-prefix-font = 5
@@ -127,9 +130,9 @@ click-right = pcmanfm &
 
 [module/mem]
 type = custom/script
-exec = memory_usage 
-#format-underline = ${colors.primary}
-format-foreground = ${xrdb:color3}
+exec = killall memory_usage; memory_usage 
+format-underline = ${colors.primary}
+;format-foreground = ${xrdb:color3}
 ;label-font = 2
 label = %output:2%
 format-prefix = " "
@@ -140,9 +143,10 @@ click-right = notify-send "Quem ta comendo RAM: $(ps axch -o cmd:15,%mem --sort=
 
 [module/gpu_usage]
 type = custom/script
-exec = gpu_usage
+exec = killall gpu_usage; gpu_usage
 label = %output%
-format-foreground = ${xrdb:color4}
+;format-foreground = ${xrdb:color4}
+format-underline = ${colors.primary}
 format-prefix = "﴿ "
 format-prefix-font = 5
 ;click-right = temp_all_notify
@@ -155,7 +159,7 @@ click-right = temp_all_notify
 [module/temp]
 type = custom/script
 exec = temp
-#format-underline = ${colors.primary}
+format-underline = ${colors.primary}
 ;label-font = 2
 label = %output%°
 format-foreground = ${xrdb:color5}
@@ -178,7 +182,8 @@ click-right = kill -USR1 $(pgrep randbg)
 [module/mic]
 type = custom/script
 content-font = 2
-label-foreground = ${xrdb:color1}
+format-underline = ${colors.primary}
+;label-foreground = ${xrdb:color1}
 exec = echo  " $(pactl list sources | grep -A6 "Droidcam (echo" | awk '/Volume/{print $5}')"
 exec-if = pgrep droidcam-cli
 interval = 3
@@ -194,7 +199,7 @@ interval = 5
 [module/ip]
 type = custom/script
 exec = ~/.config/polybar/scripts/ip/ip
-format-underline=${colors.primary}
+format-underline = ${colors.primary}
 interval = 5
 
 [module/dateCal]
@@ -202,7 +207,7 @@ type = custom/script
 exec = ~/.config/polybar/scripts/date/date
 click-left = st -e calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse &
 click-right = notify-send -i Calendar "To do:" "$(calcurse -d 21)" &
-format-underline=${colors.primary}
+format-underline = ${colors.primary}
 interval = 1
 
 [module/cpu_usage]
@@ -211,7 +216,7 @@ click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=
 format-foreground = ${xrdb:color4}
 format-prefix-font = 3
 format-prefix=" "  
-format-underline=${colors.primary}
+format-underline = ${colors.primary}
 click-left=kill -USR1 %pid%
 exec = cpu_usage  
 tail = true
@@ -277,7 +282,7 @@ format-foreground = ${xrdb:color7}
 date-alt = %A, %d %B %Y 
 time-alt = %A, %d %B %Y %H:%M:%S
 format = <label>
-#format-underline = ${colors.primary}
+format-underline = ${colors.primary}
 label = %time%
 ;label-font = 2
 
@@ -632,9 +637,9 @@ interval = 2
 format-prefix = " "
 ;label-font = 2
 format-prefix-font = 8
-format-foreground = ${xrdb:color5}
+;format-foreground = ${xrdb:color5}
 ;format-prefix-foreground = ${colors.foreground-alt}
-#format-underline = ${colors.primary}
+format-underline = ${colors.primary}
 label = %percentage:2%%
 
 [module/memory]

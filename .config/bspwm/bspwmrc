@@ -5,7 +5,7 @@
 #### Program Launch ####
 #pgrep -fl 'pidswallow -gl' || pidswallow -gl &
 pidof polybar || polyLaunch &
-dunstLaunch &
+##dunstLaunch &
 xsetroot -cursor_name left_ptr & # Remove X cursor
 
 
@@ -60,4 +60,3 @@ bspc rule -a steam_app_304050 desktop='^10' #trove
 bspc rule -a darksoulsii.exe desktop='^10' #dark souls 2
 bspc rule -a steam_app_880940 desktop='^10' #pummel party
 bspc rule -a sekiro.exe desktop='^10' #sekiro
-

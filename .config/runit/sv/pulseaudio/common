@@ -1,0 +1,5 @@
+#!/bin/sh
+PULSE_RUNTIME_PATH="/run/user/$(id -u)/pulse"
+XDG_RUNTIME_DIR="/run/user/$(id -u)/"
+pulse_env="env PULSE_RUNTIME_PATH="$PULSE_RUNTIME_PATH" XDG_RUNTIME_DIR="$PULSE_RUNTIME_DIR
+pulse=$pulse_env" pulseaudio"

@@ -8,9 +8,14 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:SF Pro Display 12
 
+input type:pointer {
+    accel_profile flat
+}
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
+
 
 # workspaces
 set $workspace0 ""
@@ -24,6 +29,7 @@ set $workspace7 "7: "
 set $workspace8 "8: "
 set $workspace9 "9: "
 set $workspace10 "10: "
+
 
 # switch to workspace
 bindsym $mod+apostrophe workspace $workspace0
@@ -85,12 +91,12 @@ set $inactive-bg-color   #2f343fbb
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935bb
-set_from_resource $color1 i3wm.color1 #000000
+set $color1			#000000
 
 # window colors
 #                       border              background         text                 indicator
 client.focused          #ffffff		    $bg-color          $text-color          #2f343faa		$color1
-client.unfocused        #ffffff00	    $inactive-bg-color $inactive-text-color	    #2f343faa		#00000000
+client.unfocused        #ffffff00		    $inactive-bg-color $inactive-text-color #2f343faa		#00000000
 client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #2f343faa		#00000000
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #2f343faa		#00000000
 
@@ -99,4 +105,4 @@ gaps inner 15
 gaps outer 15
 default_border pixel 3
 
-exec polyLaunch &
+#exec polyLaunch &

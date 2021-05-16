@@ -37,8 +37,9 @@ export GOPATH="$XDG_DATA_HOME/go"
 source "/home/gabriel/.cache/wal/shell"
 source "/home/gabriel/.config/lf/icons"
 source "/home/gabriel/.config/i3/workspaces"
-#export SVDIR=/run/runit/service # Runit services
+export SVDIR=/run/runit/service # Runit services
+export USER_SVDIR=$HOME/runit/service # Runit services
 
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
-	exec startx -- vt1 &> /dev/null
+	exec startx $HOME/.config/X11/xinitrc -- vt1 &> /dev/null
 fi

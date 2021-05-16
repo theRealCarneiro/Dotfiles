@@ -1,0 +1,7 @@
+#!/bin/sh
+. $(dirname $0)/common
+while [ ! -d /run/user/$(id -u)/ ]; do
+    sleep 2
+done
+$pulse --use-pid-file=true --start
+exec tail --pid="$(cat $PULSE_RUNTIME_PATH/pid)" -f /dev/null

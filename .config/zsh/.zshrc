@@ -27,6 +27,7 @@ setopt complete_aliases
 alias makebcd="sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Midi-Hotkey"
 alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/suckless/dwm/"
 alias config='git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
+alias sv='SVDIR=$HOME/.config/runit/service sv'
 
 LFCD="$HOME/.local/bin/lfcd"
 [ -f "$LFCD" ] && source "$LFCD"
