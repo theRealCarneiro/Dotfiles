@@ -2,9 +2,10 @@
 
 reload_env(){
 	xrdb $XDG_CONFIG_HOME/X11/Xresources # Source Xresources
-	if [ $WM = "dwm" ]; then
-		dwm-msg run_command reload_xresources & # make dwm reload xrdb
-	fi
+	case $WM in
+		bspwm) bspc wm -r & ;;
+		dwm) dwm-msg run_command reload_xresources & ;;
+	esac
 	polyLaunch & # restart polybar
 	#spicetify apply -n & # apply spotify theme
 }

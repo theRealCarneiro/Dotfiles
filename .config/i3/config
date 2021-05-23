@@ -8,9 +8,6 @@ set $mod Mod4
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 font pango:SF Pro Display 12
 
-input type:pointer {
-    accel_profile flat
-}
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

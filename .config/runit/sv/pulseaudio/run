@@ -3,5 +3,5 @@
 while [ ! -d /run/user/$(id -u)/ ]; do
     sleep 2
 done
-$pulse --use-pid-file=true --start
-exec tail --pid="$(cat $PULSE_RUNTIME_PATH/pid)" -f /dev/null
+$pulse --use-pid-file=true --start --exit-idle-time=-1
+exec tail --pid="$(cat $PULSE_RUNTIME_PATH/pid 2>/dev/null)" -f /dev/null

@@ -4,23 +4,23 @@ st.alpha:				0.9
 st.alphaUnfocussed:		0.9	
 !st.termname:   		xterm-256color
 
-st.foreground:			#f5f3cf
-st.background:			#1b1610
-st.cursorColor:		#f5f3cf	
+st.foreground:			#a2bfc0
+st.background:			#0F161E
+st.cursorColor:		#a2bfc0	
 
-st.color0:			#1b1610
-st.color1:			#b75f2f
+st.color0:			#0F161E
+st.color1:			#AD5150
 st.color2:			#2E534C
-st.color3:			#FED32F
+st.color3:			#AA9B4F
 st.color4:			#2f5691
 st.color5:			#ba449c
 st.color6:			#334ea5
-st.color7:			#f5f3cf
+st.color7:			#a2bfc0
 st.color8:			#718586
-st.color9:			#b75f2f
+st.color9:			#AD5150
 st.color10:			#2E534C
-st.color11:			#FED32F
+st.color11:			#AA9B4F
 st.color12:			#2f5691
 st.color13:			#ba449c
 st.color14:			#334ea5
-st.color15:			#cabcac
+st.color15:			#a2bfc0

@@ -47,12 +47,12 @@ super + shift + v
 
 # toggle scratchpad
 super + ctrl + Return
-	tdrop -w 1880 -h 1020 -y 45 -x 20 \
+	tdrop -w 1882 -h 1021 -y 45 -x 19 \
 	alacritty --class scratchpad,scratchpad -t Scratchpad \
 	--config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml 
 	#&& {hidenodes, shownodes}
 super + shift + Return
-	tdrop -w 1880 -h 400 -y 660 -x 20 \
+	tdrop -w 1882 -h 401 -y 660 -x 19 \
 	alacritty --class scratchpad,scratchpad -t Scratchpad \
 	--config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml
 
@@ -138,13 +138,13 @@ super + p
 super + shift + p 
 	patchage
 
-super + F12
-	sv restart $HOME/.config/runit/service/pulseaudio \
-	&& notify-send "Restarted Pulseaudio" -i Audio 
-
 #super + F12
-	#systemctl --user restart pulseaudio.service \
+	#sv restart $HOME/.config/runit/service/pulseaudio \
 	#&& notify-send "Restarted Pulseaudio" -i Audio 
+
+super + F12
+	systemctl --user restart pulseaudio.service \
+	&& notify-send "Restarted Pulseaudio" -i Audio 
 
 super + shift + F12
 	systemctl --user restart BCD.service \

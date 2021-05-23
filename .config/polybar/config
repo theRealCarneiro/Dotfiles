@@ -81,7 +81,7 @@ margin-bottom = 0
 
 [module/keyboard-layout]
 type = custom/script
-exec = killall kbmap; kbmap
+exec = killall kbmap 2>/dev/null; kbmap
 format-prefix = " "
 format-prefix-font = 7
 ;format-foreground = ${xrdb:color3}
@@ -427,7 +427,7 @@ label-focused-background = ${colors.background}
 ;label-focused-background = ${colors.primary}
 label-focused-foreground = ${colors.primary}
 ;label-focused-foreground = ${xrdb:background}
-label-focused-underline= ${colors.primary}
+;label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
 ; unfocused = Unselected tag on unselected monitor
