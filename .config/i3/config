@@ -15,21 +15,31 @@ floating_modifier $mod
 
 
 # workspaces
-set $workspace0 ""
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
-set $workspace4 "4: "
-set $workspace5 "5: "
-set $workspace6 "6: "
-set $workspace7 "7: "
-set $workspace8 "8: "
-set $workspace9 "9: "
-set $workspace10 "10: "
+#set $workspace0 ""
+#set $workspace1 "1: "
+#set $workspace2 "2: "
+#set $workspace3 "3: "
+#set $workspace4 "4: "
+#set $workspace5 "5: "
+#set $workspace6 "6: "
+#set $workspace7 "7: "
+#set $workspace8 "8: "
+#set $workspace9 "9: "
+#set $workspace10 "10: "
 
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
 
 # switch to workspace
-bindsym $mod+apostrophe workspace $workspace0
+#bindsym $mod+apostrophe workspace $workspace0
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
@@ -42,7 +52,7 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 
 # move focused container to workspace
-bindsym $mod+Shift+apostrophe move container to workspace $workspace0
+#bindsym $mod+Shift+apostrophe move container to workspace $workspace0
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
@@ -88,7 +98,7 @@ set $inactive-bg-color   #2f343fbb
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935bb
-set $color1			#000000
+set_from_resource $color1 i3wm.color1 #000000
 
 # window colors
 #                       border              background         text                 indicator
@@ -102,4 +112,4 @@ gaps inner 15
 gaps outer 15
 default_border pixel 3
 
-#exec polyLaunch &
+exec polyLaunch &

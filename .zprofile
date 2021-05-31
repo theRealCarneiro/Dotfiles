@@ -16,7 +16,7 @@ export ATOM_HOME="$XDG_CONFIG_HOME/atom"
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
-#export XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"
+export XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"
 export X11="$XDG_CONFIG_HOME/X11"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
@@ -38,8 +38,10 @@ export GOPATH="$XDG_DATA_HOME/go"
 . "/home/gabriel/.cache/wal/shell"
 . "/home/gabriel/.config/lf/icons"
 . "/home/gabriel/.config/i3/workspaces"
-export SVDIR=/run/runit/service # Runit services
-export USER_SVDIR=$HOME/.config/runit/service # Runit services
+
+# Runit
+#export SVDIR=/run/runit/service # Runit services
+#export USER_SVDIR=$HOME/.config/runit/service # Runit services
 
 #if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
 	#exec startx $HOME/.config/X11/xinitrc -- vt1 &> /dev/null

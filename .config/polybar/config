@@ -13,7 +13,7 @@
 
 [colors]
 ;foreground-alt = #7d7d7d
-background = ${env:background:}
+background = ${env:bg_alpha:}
 background-alt = ${xrdb:background:#222}
 foreground = ${xrdb:foreground:#222}
 foreground-alt = ${xrdb:color8:#222}
@@ -57,7 +57,7 @@ font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:sty
 
 modules-left = dwm bspwm i3 playerctl
 modules-center = xwindow  
-modules-right = mic keyboard-layout updates-arch-combined mail disk mem cpu gpu_usage date power
+modules-right = mic updates-arch-combined mail disk mem cpu_usage date power
 
 tray-position = right 
 tray-padding = 8
@@ -91,15 +91,15 @@ click-left = kill -USR1 %pid%
 
 [module/updates-arch-combined]
 type = custom/script
-exec = arch_updates
+exec = cat /tmp/updates 2>/dev/null || echo 0
 format-prefix-font = 7
 ;label-font = 2
 format-prefix = " "
 format-underline = ${colors.primary}
 ;format-foreground = ${xrdb:color6}
 click-left = notify-send Checando Atualizações -t 1500 && notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(paru -Qum)" &
-click-right = alacritty -e sudo pacman -Syu &
-interval = 600
+click-right = arch_updates &
+interval = 5
 
 [module/mail]
 type = custom/script
@@ -111,8 +111,8 @@ format-underline = ${colors.primary}
 ;${xrdb:color5}
 format-prefix = " "
 format-prefix-font = 7
-click-middle = $TERMINAL -e neomutt &
-click-right = mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc gmail & notify-send "Sincronizando email" "Procurando novos emails" -i Mail &
+click-middle = nmlist &
+click-right = mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc gmail & dunstify -a "Mail" -u low -i Mail -r "1" "Sincronizando email" "Procurando novos emails" &
 click-left = $BROWSER www.gmail.com &
 interval = 1
 
@@ -153,7 +153,7 @@ format-prefix-font = 5
 ;interval = 20
 tail= true
 click-left = kill -USR1 %pid%
-click-right = temp_all_notify
+click-right = temp_all_notify &
 
 
 [module/temp]
@@ -165,7 +165,7 @@ label = %output%°
 format-foreground = ${xrdb:color5}
 format-prefix = " "
 format-prefix-font = 5
-click-right = temp_all_notify
+click-right = temp_all_notify &
 ;interval = 20
 tail= true
 click-left = kill -USR1 %pid%
@@ -212,8 +212,8 @@ interval = 1
 
 [module/cpu_usage]
 type = custom/script
-click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)"
-format-foreground = ${xrdb:color4}
+click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)" &
+;format-foreground = ${xrdb:color4}
 format-prefix-font = 3
 format-prefix=" "  
 format-underline = ${colors.primary}
@@ -260,7 +260,7 @@ type = custom/text
 content-font = 2
 content-padding=0
 content = "玲" 
-click-left = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+click-left = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous &
 
 [module/spotify]
 type = custom/script
@@ -269,7 +269,7 @@ exec = playerctl --player=spotify metadata --format "{{ title }}" 2>/dev/null
 format-prefix = " "
 format-prefix-font = 2
 ;format-prefix-foreground = ${colors.foreground}
-click-left = xdo activate -n spotify
+click-left = xdo activate -n spotify &
 ;interval = 1
 
 [module/date]
@@ -290,7 +290,8 @@ label = %time%
 type = internal/xwindow
 label = %title:0:50:...%
 ;label-font=2
-label-empty-foreground = #1793d1
+;label-empty-foreground = #1793d1
+label-empty-foreground = ${env:color1}
 ;label-empty-foreground = ${xrdb:color6}
 label-empty = "  "
 
@@ -526,7 +527,7 @@ index-sort = true
 
 ; Create click handler used to focus workspace
 ; Default: true
-enable-click = false
+enable-click = true
 
 ; Create scroll handlers used to cycle workspaces
 ; Default: true
@@ -581,8 +582,8 @@ label-mode-background = #e60053
 label-focused-font = 6
 label-focused = %name%
 label-focused-background = ${colors.background}
-label-focused-foreground = ${xrdb:color3}
-label-focused-underline= ${colors.primary}
+label-focused-foreground = ${colors.primary}
+;label-focused-underline= ${colors.primary}
 label-focused-padding = 3
 
 ; Available tokens:
@@ -591,7 +592,7 @@ label-focused-padding = 3
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-unfocused-foreground = ${xrdb:color6}
+label-unfocused-foreground = ${xrdb:foreground}
 label-unfocused-font = 6
 label-unfocused = %name%
 label-unfocused-padding = 3

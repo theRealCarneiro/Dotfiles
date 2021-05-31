@@ -2,6 +2,8 @@
 #
 ## i3
 #
+super + q
+	i3-msg kill
 
 # change focus
 super + {h,j,k,l}
@@ -9,7 +11,7 @@ super + {h,j,k,l}
 
 # resize
 super + ctrl + {h,j,k,l}
-	i3-msg resize {shrink width,shrink height,grow height, grow width} 10 px or 10 ppt
+	i3-msg resize {shrink width,shrink height,grow height, grow width} 3 px or 3 ppt
 
 # move focused window
 super + shift + {h,j,k,l}

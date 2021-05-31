@@ -8,8 +8,8 @@ super + r
 #super + Escape
 	#pkill -USR1 -x sxhkd
 	
-super + x
-	kill -USR2 $(pgrep kbmap)
+#super + x
+	#kill -USR2 $(pgrep kbmap)
 
 
 # close window
@@ -119,10 +119,13 @@ super + shift + x
 	screenlock
 
 super + shift + m
-	mailsync & notify-send "Sincronizando email" "Procurando novos emails" -i Mail
+	mailsync & dunstify -a "Mail" -u low -i Mail -r "1" "Sincronizando email" "Procurando novos emails"
 
 super + ctrl + m
 	$BROWSER gmail.com
+
+super + ctrl + shift + m
+	nmlist
 
 super + shift + w
 	kill -USR1 $(pgrep randbg)

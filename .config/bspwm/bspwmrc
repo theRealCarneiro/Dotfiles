@@ -5,7 +5,6 @@
 #### Program Launch ####
 #pgrep -fl 'pidswallow -gl' || pidswallow -gl &
 pidof polybar || polyLaunch &
-##dunstLaunch &
 xsetroot -cursor_name left_ptr & # Remove X cursor
 
 
@@ -17,9 +16,6 @@ bspc config pointer_follows_focus false
 
 ##### Monitors #####
 bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-#bspc monitor -d 1 2 3 4 5 6 7 8 9 10
-#bspc monitor -d    4 5 6 7 8 9 
-#bspc monitor -d 1 2 3 4 5 6 7 8 9 
 #bspc monitor HDMI-A-0 -d 1 2 3 4 5 6 7 8 9 10 
 
 

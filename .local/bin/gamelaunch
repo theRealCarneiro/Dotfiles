@@ -1,6 +1,6 @@
 #!/bin/bash
 #game=$(ls $HOME/Desktop | sed 's/.desktop//' | dmenu -i -p  "Escolha o game")
-game=$(echo -en "$(cat $HOME/Desktop/* | \
+game=$(echo -en "$(cat $XDG_DATA_HOME/applications/Games/* | \
 	grep -E "^Name=|^Icon=" | \
 	sed 's/^Icon=/\\0icon\\x1f/' | \
 	sed 's/^Name=//' | \
