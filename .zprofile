@@ -1,4 +1,4 @@
-export PATH=$PATH:$HOME/.config/nvim/bundle/vim-live-latex-preview/bin:/usr/local/go/bin:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')
+export PATH=$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')
 
 # Default programs
 export EDITOR="nvim"

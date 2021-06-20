@@ -1,5 +1,11 @@
 #!/bin/sh
 
+if [ "$1" = "backup" ]; then
+	pacman -Qqen > /home/gabriel/.cache/packages/pacman
+	pacman -Qqem > /home/gabriel/.cache/packages/aur
+	exit
+fi
+
 old_count=$(cat /tmp/updates 2> /dev/null || echo 0)
 
 [ "$1" = 'notify' ] && \
@@ -20,7 +26,7 @@ fi
 updates=$(( $updates_arch_count + $updates_aur_count ))
 echo $updates
 
-if [ "$updates" -gt "$old_count" ]; then
+if [ "$updates" -gt "$old_count" -o "$1" = 'notify' ]; then
 	dunstify -i Pacman -r "1" "Updates" "$updates_arch\n$updates_aur" 
 fi
 

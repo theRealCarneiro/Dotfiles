@@ -125,6 +125,9 @@ super + shift + m
 super + ctrl + shift + m
 	nmlist
 
+super + u
+	arch_updates notify
+
 super + shift + w
 	kill -USR1 $(pgrep randbg)
 
