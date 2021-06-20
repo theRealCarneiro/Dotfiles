@@ -1,0 +1,32 @@
+#!/bin/sh 
+
+set_layout(){
+	kblay=$(setxkbmap -print | awk -F"+" '/xkb_symbols/ {print $2}')
+	case $kblay in
+		'us') setxkbmap br abnt2 &&  kb='abnt2' ;;
+		*) setxkbmap us && kb='us';;
+	esac
+	[ "$1" = notify ] && notify-send 'Key Map' "$kb"
+}
+
+t=0
+
+toggle() {
+	set_layout 
+	setxkbmap -print|awk -F"+" '/xkb_symbols/ {print $2}'|cut -c1-2|tr [a-z] [A-Z]
+}
+
+toggle2() {
+	set_layout "notify"
+	setxkbmap -print|awk -F"+" '/xkb_symbols/ {print $2}'|cut -c1-2|tr [a-z] [A-Z]
+}
+
+trap "toggle" USR1
+trap "toggle2" USR2
+
+setxkbmap -print|awk -F"+" '/xkb_symbols/ {print $2}'|cut -c1-2|tr [a-z] [A-Z]
+while true; do
+	sleep 5 &
+	wait $!
+done
+

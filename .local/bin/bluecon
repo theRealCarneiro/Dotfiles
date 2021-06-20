@@ -1,0 +1,13 @@
+#!/bin/sh
+
+devices="$(bluetoothctl devices)"
+device_name="$(echo "$devices" | cut -c26- | dmenu)"
+device=$(echo "$devices" | grep "$device_name" | cut -c7- | cut -c-18)
+status=$(bluetoothctl info $device | grep Connected | cut -c13-)
+
+if [ $status = 'no' ]; then
+	bluetoothctl connect $device && status='Connected'
+else
+	bluetoothctl disconnect $device && status='Disconnected'
+fi
+! [ -z $status ] && dunstify -a "Bluetooth" -u low -i Bluetooth -r "1" "Bluetooth" "$device_name $status"
