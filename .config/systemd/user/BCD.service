@@ -1,0 +1,12 @@
+[Unit]
+Description=BCD 3000 led control
+Wants=sound.target
+After=sound.target
+
+[Service]
+ExecStart=/usr/local/bin/BCD
+Restart=always
+RestartSec=5s
+
+[Install]
+WantedBy=default.target

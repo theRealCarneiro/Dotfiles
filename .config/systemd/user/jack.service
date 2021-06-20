@@ -1,0 +1,18 @@
+[Unit]
+Description=JACK server using %i.conf profile
+Documentation=man:jackd(1)
+After=sound.target local-fs.target
+
+[Service]
+Type=notify
+ExecStart=jackd -dalsa -dhw:BCD3000 -r44100 -p1024 -n2 -Xraw -i4 
+Restart=on-failure
+RestartSec=5s
+LimitRTPRIO=95
+LimitRTTIME=infinity
+LimitMEMLOCK=infinity
+# Caution: use on memory-limited devices only
+# OOMScoreAdjust=-1000
+
+[Install]
+WantedBy=default.target
