@@ -5,7 +5,7 @@ configuration {
 	kb-row-right:		"Super+l";
 	kb-row-up:		"Up,Super+k";
 	kb-row-down:		"Down,Super+j";
-	show-icons:		false;
+	show-icons:		true;
 	display-run:		"$ ";
 	display-drun:		"Run: ";
 	display-ssh:		"SSH: ";

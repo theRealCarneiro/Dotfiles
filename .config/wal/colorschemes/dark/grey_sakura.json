@@ -8,6 +8,7 @@
 	},
 
 	"colors":{
+		"main":"#DE5519",
 		"color0":"#1e1f29",
 		"color1":"#DE5519",
 		"color2":"#2E534C",

@@ -1,4 +1,7 @@
 key_bindings:
+   - { key: PageDown,                             action: ScrollLineDown   }
+   - { key: PageUp,                               action: ScrollLineUp     }
+   - { key: Space,       mods: Control,           action: ToggleViMode     }
    - { key: K,           mods: Alt,               action: ScrollLineUp     }
    - { key: J,           mods: Alt,               action: ScrollLineDown   }
    - { key: K,           mods: Alt|Shift,         action: ScrollPageUp     }

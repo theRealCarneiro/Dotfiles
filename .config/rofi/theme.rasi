@@ -42,5 +42,5 @@
 }
 
 element selected {
-	text-color:		@red;
+	text-color:		@main;
 }

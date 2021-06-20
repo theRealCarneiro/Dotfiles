@@ -9,5 +9,6 @@
 	magenta:    {color5};
 	cyan:       {color6};
 	white:      {color7};
+	main:	  {main};
 }}
 

@@ -17,7 +17,7 @@ background = ${env:bg_alpha:}
 background-alt = ${xrdb:background:#222}
 foreground = ${xrdb:foreground:#222}
 foreground-alt = ${xrdb:color8:#222}
-primary = ${xrdb:color1:#222}
+primary = ${xrdb:main:#222}
 secondary = ${xrdb:color4:#222}
 alert = ${colors.primary:#222}
 
@@ -57,7 +57,7 @@ font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:sty
 
 modules-left = dwm bspwm i3 playerctl
 modules-center = xwindow  
-modules-right = mic updates-arch-combined mail disk mem cpu_usage date power
+modules-right = mic updates-arch mail disk mem cpu net date power
 
 tray-position = right 
 tray-padding = 8
@@ -67,7 +67,7 @@ tray-background = ${colors.background}
 
 wm-restack = ${env:WM}
 
-override-redirect = false
+override-redirect = true
 
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
@@ -79,17 +79,24 @@ cursor-scroll = ns-resize
 margin-top = 0
 margin-bottom = 0
 
+[module/net]
+type = custom/script
+exec = getent hosts google.com > /dev/null && echo "  " || echo "  "
+format-prefix-font = 7
+format-underline = ${colors.primary}
+interval = 1
+
 [module/keyboard-layout]
 type = custom/script
 exec = killall kbmap 2>/dev/null; kbmap
 format-prefix = " "
-format-prefix-font = 7
+format-prefix-font = 8
 ;format-foreground = ${xrdb:color3}
 format-underline = ${colors.primary}
 tail = true
 click-left = kill -USR1 %pid%
 
-[module/updates-arch-combined]
+[module/updates-arch]
 type = custom/script
 exec = cat /tmp/updates 2>/dev/null || echo 0
 format-prefix-font = 7
@@ -97,8 +104,7 @@ format-prefix-font = 7
 format-prefix = " "
 format-underline = ${colors.primary}
 ;format-foreground = ${xrdb:color6}
-click-left = notify-send Checando Atualizações -t 1500 && notify-send -i Pacman "Updates" "Pacman:\n$(checkupdates) \nAUR:\n $(paru -Qum)" &
-click-right = arch_updates &
+click-left = arch_updates notify &
 interval = 5
 
 [module/mail]
@@ -130,7 +136,7 @@ click-right = pcmanfm &
 
 [module/mem]
 type = custom/script
-exec = killall memory_usage; memory_usage 
+exec = killall memory_usage 2>/dev/null; memory_usage 
 format-underline = ${colors.primary}
 ;format-foreground = ${xrdb:color3}
 ;label-font = 2
@@ -277,7 +283,7 @@ type = internal/date
 interval = 1
 date = %d/%m
 time = %H:%M:%S
-format-foreground = ${xrdb:color7}
+format-foreground = ${colors.foreground}
 ;format-foreground = #4f4f4f
 date-alt = %A, %d %B %Y 
 time-alt = %A, %d %B %Y %H:%M:%S
@@ -291,7 +297,7 @@ type = internal/xwindow
 label = %title:0:50:...%
 ;label-font=2
 ;label-empty-foreground = #1793d1
-label-empty-foreground = ${env:color1}
+label-empty-foreground = ${colors.primary}
 ;label-empty-foreground = ${xrdb:color6}
 label-empty = "  "
 
@@ -340,7 +346,7 @@ label-active-font = 3
 ;label-focused = %icon%
 label-active = 
 label-active-background = ${colors.background}
-label-active-foreground = ${xrdb:color1}
+label-active-foreground = ${colors.primary}
 label-active-padding = 3
  
 label-focused-font = 3

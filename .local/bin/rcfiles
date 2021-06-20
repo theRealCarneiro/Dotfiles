@@ -1,5 +1,5 @@
 #!/bin/sh
-files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg'
+files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru'
 
 files="$(echo $files | sed 's/ /\n/g')"
 choice=$(echo "$files" | dmenu -i -p  "Config:")
@@ -17,8 +17,8 @@ case $choice in
 	Xresources)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/Xresources ;;
 	xprofile)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xprofile ;;
 	xmodmap)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xmodmap ;;
+	xinitrc)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xinitrc ;;
 	zprofile)		$TERMINAL -e $EDITOR $HOME/.zprofile ;;
-	xinitrc)		$TERMINAL -e $EDITOR $HOME/.xinitrc ;;
 	dunst)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/dunst/dunstrc ;;
 	zsh)			$TERMINAL -e $EDITOR $ZDOTDIR/.zshrc ;;
 	bash)		$TERMINAL -e $EDITOR $HOME/.bashrc ;;
@@ -36,4 +36,5 @@ case $choice in
 	legendary)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/legendary/config.ini ;;
 	minlau)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/minlau/config.ini;;
 	winetkg)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/frogminer/wine-tkg.cfg ;;
+	paru)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/paru/paru.conf ;;
 esac

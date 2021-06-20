@@ -1,13 +1,16 @@
 #!/bin/bash
+
 bg=$(xgetres background)
 . $HOME/.cache/wal/colors.sh 
 export bg_alpha="#df${bg###}"
 
 killall polybar 
 
-#pgrep i3lock && while true; do
-	#pgrep i3lock || break
-#done
+#bar='bar'
+#wm='bspwm i3 dwm'
+#if echo $wm | grep -w $WM > /dev/null; then
+	#bar=$WM
+#fi
 
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
 	MONITOR=$m polybar --reload bar &

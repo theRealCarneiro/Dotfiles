@@ -65,7 +65,8 @@ super + b
 	$BROWSER
 
 super + shift + b
-	$TERMINAL -e bluetoothctl
+	bluecon
+	#$TERMINAL -e bluetoothctl
 
 # file managers 
 super + e 
@@ -102,10 +103,7 @@ super + ctrl + b
 
 
 # print to clipboard
-Print 
-	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i \
-	&& notify-send -i Camera "Screenshot" "Copiado para a área de transferencia"
-super + Delete 
+{Print, super + Delete }
 	maim -u -m 1 -f png | xclip -selection clipboard -t image/png -i \
 	&& notify-send -i Camera "Screenshot" "Copiado para a área de transferencia"
 
@@ -121,7 +119,7 @@ super + shift + x
 super + shift + m
 	mailsync & dunstify -a "Mail" -u low -i Mail -r "1" "Sincronizando email" "Procurando novos emails"
 
-super + ctrl + m
+{super + ctrl + m, XF86Mail}
 	$BROWSER gmail.com
 
 super + ctrl + shift + m

@@ -33,9 +33,9 @@ configuration {
 
 #textbox {
 	font:			"SF Pro Display 20";
-	text-color:		@red;
+	text-color:		@main;
 	border:			0px 0px 2px 0px;
-	border-color:		@red;
+	border-color:		@main;
 }
 
 #inputbar {
@@ -43,5 +43,5 @@ configuration {
 }
 
 element selected {
-    text-color:		@red;
+    text-color:		@main;
 }

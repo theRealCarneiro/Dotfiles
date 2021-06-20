@@ -1,25 +1,27 @@
 #!/bin/sh
 
-updates_arch=$(checkupdates 2> /dev/null | wc -l )
+old_count=$(cat /tmp/updates 2> /dev/null || echo 0)
 
-updates_aur=$(paru -Qum 2> /dev/null | wc -l)
+[ "$1" = 'notify' ] && \
+	dunstify -a "Updates" -u low -i Pacman -r "1" "Buscando atualizações" 
 
-updates=$(($updates_arch + $updates_aur))
+if ! updates_arch=$(checkupdates 2> /dev/null); then
+	updates_arch_count=0
+else
+	updates_arch_count=$(echo "$updates_arch" | wc -l)
+fi
+
+if ! updates_aur=$(paru -Qum 2> /dev/null); then
+	updates_aur_count=0
+else
+	updates_aur_count=$(echo "$updates_aur" | wc -l)
+fi
+
+updates=$(( $updates_arch_count + $updates_aur_count ))
+echo $updates
+
+if [ "$updates" -gt "$old_count" ]; then
+	dunstify -i Pacman -r "1" "Updates" "$updates_arch\n$updates_aur" 
+fi
 
 echo "$updates" > /tmp/updates
-
-#if ! updates_arch=$(checkupdates 2> /dev/null | wc -l ); then
-    #updates_arch=0
-#fi
-
-#if ! updates_aur=$(paru -Qum 2> /dev/null | wc -l); then
-    #updates_aur=0
-#fi
-
-#updates=$(($updates_arch + $updates_aur))
-
-#if [ "$updates" -gt 0 ]; then
-    #echo "$updates"
-#else
-    #echo "0"
-#fi

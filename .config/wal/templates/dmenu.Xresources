@@ -3,5 +3,5 @@ dmenu.lineheight:		25
 
 dmenu.background: 		{background}
 dmenu.foreground: 		{foreground}
-dmenu.selbackground: 	{color1}
+dmenu.selbackground: 	{main}
 dmenu.selforeground: 	{background}

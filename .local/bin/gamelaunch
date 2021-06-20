@@ -1,13 +1,11 @@
 #!/bin/bash
 #game=$(ls $HOME/Desktop | sed 's/.desktop//' | dmenu -i -p  "Escolha o game")
 game=$(echo -en "$(cat $XDG_DATA_HOME/applications/Games/* | \
-	grep -E "^Name=|^Icon=" | \
-	sed 's/^Icon=/\\0icon\\x1f/' | \
-	sed 's/^Name=//' | \
+	grep -E "^Name=|^Icon=" | sed 's/^Icon=/\\0icon\\x1f/; s/^Name=//' | \
 	sed -e 'N;s/\n/ /')" | \
 	rofi -dmenu -p "Launch: " -i -config $HOME/.config/rofi/gamelauncher.rasi)
 
 [[ $game = '' ]] && exit
 game="$(echo $game | sed 's/$//')"
 
-$(grep '^Exec' "$HOME/Desktop/$game.desktop" | tail -1 | sed 's/^Exec=//' | sed 's/%.//' | sed 's/^"//g' | sed 's/" *$//g') 
+$(grep '^Exec' "$XDG_DATA_HOME/applications/Games/$game.desktop" | tail -1 | sed 's/^Exec=//' | sed 's/%.//' | sed 's/^"//g' | sed 's/" *$//g') 

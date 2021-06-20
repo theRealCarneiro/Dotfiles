@@ -4,6 +4,7 @@ export foreground={foreground}
 export cursor={cursor}
 
 # Colors
+export main={main}
 export color0={color0}
 export color1={color1}
 export color2={color2}
