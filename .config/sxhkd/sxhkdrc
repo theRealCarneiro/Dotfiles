@@ -45,6 +45,10 @@ super + ctrl + c
 super + shift + v
 	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
 
+# open calendar
+super + alt + c
+	$TERMINAL --class calendar,calendar -t Calcurse -e calcurse
+
 # toggle scratchpad
 super + ctrl + Return
 	tdrop -w 1882 -h 1021 -y 45 -x 19 \

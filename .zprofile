@@ -43,6 +43,6 @@ export GOPATH="$XDG_DATA_HOME/go"
 #export SVDIR=/run/runit/service # Runit services
 #export USER_SVDIR=$HOME/.config/runit/service # Runit services
 
-#if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
-	#exec startx $HOME/.config/X11/xinitrc -- vt1 &> /dev/null
-#fi
+if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
+	exec startx $HOME/.config/X11/xinitrc -- vt1 &> /dev/null
+fi

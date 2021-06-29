@@ -55,12 +55,12 @@ font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
 font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;2"
 font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Medium;3"
 
-modules-left = dwm bspwm i3 playerctl
+modules-left = bspwm i3 playerctl
 modules-center = xwindow  
-modules-right = mic updates-arch mail disk mem cpu net date power
+modules-right = mic updates-arch mail disk mem cpu net timedate power
 
 tray-position = right 
-tray-padding = 8
+tray-padding = 5
 tray-offset-x = 0
 tray-foreground = ${colors.foreground}
 tray-background = ${colors.background}
@@ -105,6 +105,7 @@ format-prefix = " "
 format-underline = ${colors.primary}
 ;format-foreground = ${xrdb:color6}
 click-left = arch_updates notify &
+click-right = $TERMINAL -e paru -Syu &
 interval = 5
 
 [module/mail]
@@ -118,8 +119,8 @@ format-underline = ${colors.primary}
 format-prefix = " "
 format-prefix-font = 7
 click-middle = nmlist &
-click-right = mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc gmail & dunstify -a "Mail" -u low -i Mail -r "1" "Sincronizando email" "Procurando novos emails" &
-click-left = $BROWSER www.gmail.com &
+click-left = mbsync -c "$XDG_CONFIG_HOME"/isync/mbsyncrc gmail & dunstify -a "Mail" -u low -i Mail -r "1" "Sincronizando email" "Procurando novos emails" &
+click-right = $BROWSER www.gmail.com &
 interval = 1
 
 [module/disk]
@@ -208,13 +209,16 @@ exec = ~/.config/polybar/scripts/ip/ip
 format-underline = ${colors.primary}
 interval = 5
 
-[module/dateCal]
-type = custom/script 
-exec = ~/.config/polybar/scripts/date/date
-click-left = st -e calcurse -C $HOME/.config/calcurse -D $HOME/.config/calcurse &
-click-right = notify-send -i Calendar "To do:" "$(calcurse -d 21)" &
+[module/timedate]
+type = custom/script
+exec = timedate 
 format-underline = ${colors.primary}
-interval = 1
+;format-foreground = ${xrdb:color3}
+;label-font = 2
+tail = true
+click-left = kill -USR1 %pid%
+click-right = $TERMINAL --class calendar,calendar -t Calcurse -e calcurse &
+click-middle = dunstify -i Calendar -r "1" "To do:" "$(calcurse -d 21)" &
 
 [module/cpu_usage]
 type = custom/script
@@ -226,16 +230,6 @@ format-underline = ${colors.primary}
 click-left=kill -USR1 %pid%
 exec = cpu_usage  
 tail = true
-
-;[module/cpuUsage]
-;type = custom/script
-;;click-left=~/.config/polybar/scripts/cpu/cpu
-;click-right = notify-send "Quem ta comendo CPU: $(ps axch -o cmd:15,%cpu --sort=-%cpu | head)"
-;exec = ~/.config/i3blocks/scripts/cpu_usage/cpu_usage  
-;format-prefix-font = 3
-;format-prefix=" "  
-;format-underline=${colors.primary}
-;interval = 1
 
 
 [module/playerctl]

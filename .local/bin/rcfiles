@@ -1,5 +1,5 @@
 #!/bin/sh
-files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru'
+files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse'
 
 files="$(echo $files | sed 's/ /\n/g')"
 choice=$(echo "$files" | dmenu -i -p  "Config:")
@@ -37,4 +37,5 @@ case $choice in
 	minlau)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/minlau/config.ini;;
 	winetkg)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/frogminer/wine-tkg.cfg ;;
 	paru)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/paru/paru.conf ;;
+	calcurse)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/calcurse ;;
 esac

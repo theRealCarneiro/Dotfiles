@@ -1,6 +1,7 @@
 alacritty
 alsa-utils
 arandr
+arch-install-scripts
 atool
 audacity
 autoconf
@@ -52,6 +53,7 @@ groff
 grub
 grub-customizer
 gzip
+highlight
 htop
 hwdetect
 intel-ucode
@@ -113,6 +115,7 @@ pulseaudio
 pulseaudio-alsa
 pulseaudio-bluetooth
 pulsemixer
+python-opencv
 python-pip
 python-pywal
 python-tldextract
@@ -120,7 +123,6 @@ qalculate-gtk
 qjackctl
 qutebrowser
 radeontop
-ranger
 raylib
 read-edid
 refind
@@ -162,6 +164,7 @@ wmctrl
 xarchiver
 xcb-imdkit
 xcb-util-errors
+xclip
 xdo
 xdotool
 xf86-input-wacom

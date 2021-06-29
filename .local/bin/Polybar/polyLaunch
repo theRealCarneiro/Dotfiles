@@ -2,7 +2,7 @@
 
 bg=$(xgetres background)
 . $HOME/.cache/wal/colors.sh 
-export bg_alpha="#df${bg###}"
+export bg_alpha="#ff${bg###}"
 
 killall polybar 
 

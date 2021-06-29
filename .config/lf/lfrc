@@ -4,7 +4,7 @@ set hidden true
 set tabstop 5
 set sortby ext
 set icons true
-set drawbox true
+#set drawbox true
 set previewer /home/gabriel/.config/lf/preview
 
 # Custom Scripts
