@@ -1,5 +1,7 @@
 #!/bin/sh
 
+tempfile='/tmp/updates'
+
 if [ "$1" = "backup" ]; then
 	pacman -Qqen > /home/gabriel/.cache/packages/pacman
 	pacman -Qqem > /home/gabriel/.cache/packages/aur
@@ -7,11 +9,12 @@ if [ "$1" = "backup" ]; then
 fi
 
 if [ "$1" = "clean" ]; then
-	rm /tmp/updates 2> /dev/null
+	[ -f $tempfile ] && rm $tempfile
+	echo clean
 	exit
 fi
 
-old_count=$(cat /tmp/updates 2> /dev/null || echo 0)
+old_count=$(cat $tempfile 2> /dev/null || echo 0)
 
 [ "$1" = 'notify' ] && \
 	dunstify -a "Updates" -u low -i Pacman -r "1" "Buscando atualizações" 
@@ -35,4 +38,4 @@ if [ "$updates" -gt "$old_count" -o "$1" = 'notify' -a "$updates" -gt 0 ]; then
 	dunstify -i Pacman -r "1" "Updates" "$updates_arch\n$updates_aur" 
 fi
 
-echo "$updates" > /tmp/updates
+echo "$updates" > $tempfile

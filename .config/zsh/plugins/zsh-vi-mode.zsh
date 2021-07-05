@@ -45,12 +45,20 @@
 # ZVM_VI_INSERT_MODE_LEGACY_UNDO:
 # using legacy undo behavior in vi insert mode
 #
-# ZVM_VI_HIGHLIGHT_BACKGROUND:
-# the behavior of highlight (surrounds, visual-line, etc) in vi mode
+# ZVM_VI_HIGHLIGHT_FOREGROUND:
+# the behavior of highlight foreground (surrounds, visual-line, etc) in vi mode
+#
+# the behavior of highlight background (surrounds, visual-line, etc) in vi mode
+#
+# ZVM_VI_HIGHLIGHT_EXTRASTYLE:
+# the behavior of highlight extra style (i.e. bold, underline) in vi mode
 #
 # For example:
-#   ZVM_VI_HIGHLIGHT_BACKGROUND=red      # Color name
-#   ZVM_VI_HIGHLIGHT_BACKGROUND=#ff0000  # Hex value
+#   ZVM_VI_HIGHLIGHT_FOREGROUND=green           # Color name
+#   ZVM_VI_HIGHLIGHT_FOREGROUND=#008800         # Hex value
+#   ZVM_VI_HIGHLIGHT_BACKGROUND=red             # Color name
+#   ZVM_VI_HIGHLIGHT_BACKGROUND=#ff0000         # Hex value
+#   ZVM_VI_HIGHLIGHT_EXTRASTYLE=bold,underline  # bold and underline
 #
 # ZVM_VI_SURROUND_BINDKEY
 # the key binding mode for surround operating (default is 'classic')
@@ -176,7 +184,7 @@ command -v 'zvm_version' >/dev/null && return
 typeset -gr ZVM_NAME='zsh-vi-mode'
 typeset -gr ZVM_DESCRIPTION='💻 A better and friendly vi(vim) mode plugin for ZSH.'
 typeset -gr ZVM_REPOSITORY='https://github.com/jeffreytse/zsh-vi-mode'
-typeset -gr ZVM_VERSION='0.8.3'
+typeset -gr ZVM_VERSION='0.8.4'
 
 # Plugin initial status
 ZVM_INIT_DONE=false
@@ -282,7 +290,9 @@ fi
 
 : ${ZVM_VI_INSERT_MODE_LEGACY_UNDO:=false}
 : ${ZVM_VI_SURROUND_BINDKEY:=classic}
-: ${ZVM_VI_HIGHLIGHT_BACKGROUND:=${color1}}
+: ${ZVM_VI_HIGHLIGHT_BACKGROUND:=${main}}
+: ${ZVM_VI_HIGHLIGHT_FOREGROUND:=${foreground}}
+: ${ZVM_VI_HIGHLIGHT_EXTRASTYLE:=default}
 : ${ZVM_VI_EDITOR:=${EDITOR:-vim}}
 : ${ZVM_TMPDIR:=${TMPDIR:-/tmp/}}
 
@@ -599,7 +609,7 @@ function zvm_escape_non_printed_characters() {
       str="${str}^${c}"
     elif [[ "$c" == '' ]]; then
       str="${str}^?"
-    elif [[ "$c" == ' ' ]]; then
+    elif [[ "$c" == '' ]]; then
       str="${str}^@"
     else
       str="${str}${c}"
@@ -1219,6 +1229,7 @@ function zvm_default_handler() {
         [vV]c) zvm_vi_change;;
         [vV]d) zvm_vi_delete;;
         [vV]y) zvm_vi_yank;;
+		[vV]S) zvm_change_surround S;;
         [cdyvV]*) zvm_range_handler "${keys}${extra_keys}";;
         *)
           for ((i=0;i<$#keys;i++)) do
@@ -1702,7 +1713,7 @@ function zvm_range_handler() {
 # Edit command line in EDITOR
 function zvm_vi_edit_command_line() {
   # Create a temporary file and save the BUFFER to it
-  local tmp_file=$(mktemp ${ZVM_TMPDIR}zvm.XXXXXX)
+  local tmp_file=$(mktemp ${ZVM_TMPDIR}zshXXXXXX)
   echo "$BUFFER" > "$tmp_file"
 
   # Edit the file with the specific editor, in case of
@@ -1884,7 +1895,18 @@ function zvm_change_surround() {
       read -k 1 key
       zvm_exit_oppend_mode
       ;;
-    S|y|a) key=$surround; [[ -z $@ ]] && zle visual-mode;;
+    S|y|a)
+      if [[ -z $surround ]]; then
+        zvm_enter_oppend_mode
+        read -k 1 key
+        zvm_exit_oppend_mode
+      else
+        key=$surround
+      fi
+      if [[ $ZVM_MODE == $ZVM_MODE_VISUAL ]]; then
+        zle visual-mode
+      fi
+      ;;
   esac
 
   # Check if it is ESCAPE key (<ESC> or ZVM_VI_ESCAPE_BINDKEY)
@@ -2635,15 +2657,22 @@ function zvm_highlight() {
       case "$ZVM_MODE" in
         $ZVM_MODE_VISUAL|$ZVM_MODE_VISUAL_LINE)
           local ret=($(zvm_calc_selection))
-          local bpos=$ret[1] epos=$ret[2]
-          region=("$((bpos)) $((epos)) bg=$ZVM_VI_HIGHLIGHT_BACKGROUND")
+		local bpos=$((ret[1])) epos=$((ret[2]))
+          local bg=$ZVM_VI_HIGHLIGHT_BACKGROUND
+          local fg=$ZVM_VI_HIGHLIGHT_FOREGROUND
+          local es=$ZVM_VI_HIGHLIGHT_EXTRASTYLE
+          region=("$bpos $epos fg=$fg,bg=$bg,$es")
           ;;
       esac
       redraw=true
       ;;
     custom)
+      local bpos=$2 epos=$3
+      local bg=${4:-$ZVM_VI_HIGHLIGHT_BACKGROUND}
+      local fg=${5:-$ZVM_VI_HIGHLIGHT_FOREGROUND}
+      local es=${6:-$ZVM_VI_HIGHLIGHT_EXTRASTYLE}
       region=("${ZVM_REGION_HIGHLIGHT[@]}")
-      region+=("$2 $3 bg=${4:-$ZVM_VI_HIGHLIGHT_BACKGROUND}")
+	 region+=("$bpos $epos fg=$fg,bg=$bg,$es")
       redraw=true
       ;;
     clear)
@@ -2660,8 +2689,10 @@ function zvm_highlight() {
     local rawhighlight=()
     for ((i=1; i<=${#region_highlight[@]}; i++)); do
       local raw=true
+      local spl=(${(@s/ /)region_highlight[i]})
+      local pat="${spl[1]} ${spl[2]}"
       for ((j=1; j<=${#ZVM_REGION_HIGHLIGHT[@]}; j++)); do
-        if [[ "${region_highlight[i]}" == "${ZVM_REGION_HIGHLIGHT[j]}" ]]; then
+        if [[ "$pat" == "${ZVM_REGION_HIGHLIGHT[j]:0:$#pat}" ]]; then
           raw=false
           break
         fi
@@ -2739,8 +2770,6 @@ function zvm_enter_insert_mode() {
     if ! zvm_is_empty_line; then
       CURSOR=$((CURSOR+1))
     fi
-  else
-    return
   fi
 
   zvm_reset_repeat_commands $ZVM_MODE_NORMAL $ZVM_INSERT_MODE

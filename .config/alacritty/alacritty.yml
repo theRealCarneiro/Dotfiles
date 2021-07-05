@@ -4,7 +4,7 @@ import:
  - /home/gabriel/.config/alacritty/keys.yml
  - /home/gabriel/.config/alacritty/fonts.yml
 
-background_opacity: 0.95
+background_opacity: 0.90
 # Import additional configuration files
 #
 # These configuration files will be loaded in order, replacing values in files

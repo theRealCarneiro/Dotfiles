@@ -15,6 +15,8 @@ bison
 bluez
 bluez-hid2hci
 bluez-plugins
+browserpass
+browserpass-chromium
 bspwm
 calcurse
 ccache
@@ -54,10 +56,10 @@ grub
 grub-customizer
 gzip
 highlight
-htop
 hwdetect
 intel-ucode
 intltool
+isync
 jack2
 java11-openjfx
 jdk11-openjdk
@@ -93,6 +95,7 @@ mpv
 mupen64plus
 muse
 namcap
+nano
 neofetch
 neovim
 net-tools

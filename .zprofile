@@ -22,6 +22,7 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export SXHKD_SHELL='/bin/sh'
 
 # Cache
 export XDG_CACHE_HOME="$HOME/.cache"

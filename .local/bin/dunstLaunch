@@ -1,11 +1,11 @@
 #!/bin/sh 
 . /home/gabriel/.cache/wal/colors.sh
-dunst -lf  "${color1}" \
+dunst -lf  "${main}" \
       -lb  "${background}" \
       -lfr "${background}" \
-      -nf  "${color1}" \
+      -nf  "${main}" \
       -nb  "${background}" \
       -nfr "${background}" \
-      -cf  "${color1}" \
+      -cf  "${main}" \
       -cb  "${background}" \
-      -cfr "${color1}" 
+      -cfr "${main}" 
