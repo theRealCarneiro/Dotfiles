@@ -27,6 +27,7 @@ export SXHKD_SHELL='/bin/sh'
 # Cache
 export XDG_CACHE_HOME="$HOME/.cache"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 
 # Data
 export XDG_DATA_HOME="$HOME/.local/share"

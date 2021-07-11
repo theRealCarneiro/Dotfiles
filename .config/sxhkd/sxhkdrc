@@ -27,6 +27,11 @@ super + shift + q
 # start programs
 #
 
+# kill gpg
+super + x
+	gpg-connect-agent --no-autostart reloadagent /bye && \
+	notify-send GPG "Restarted agent"
+
 # start droidcam video service
 super + v
 	droidcamcli video

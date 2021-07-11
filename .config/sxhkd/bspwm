@@ -67,7 +67,8 @@ super + {_,shift + }{1-9,0}
 
 # focus monitor
 super + Tab 
-	bspc monitor -f {DVI-D-0,HDMI-A-0}
+	bspc desktop last --focus
+	#bspc monitor -f {DVI-D-0,HDMI-A-0}
 
 # send to other monitor
 super + shift + Tab

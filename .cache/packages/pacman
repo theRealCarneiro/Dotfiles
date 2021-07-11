@@ -47,6 +47,7 @@ gens-gs
 gettext
 gimp
 git
+glfw-x11
 go
 gpart
 gparted
@@ -217,5 +218,6 @@ yajl
 yarn
 youtube-dl
 zathura-pdf-mupdf
+zip
 zsh-completions
 zsh-syntax-highlighting

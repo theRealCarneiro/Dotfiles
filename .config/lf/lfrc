@@ -21,7 +21,7 @@ cmd open ${{
 	case $(file --mime-type "$f" -bL) in
 		text/*|application/json) $EDITOR "$fx";;
 		video/*) xdg-open "$f" & ;;
-		image/*) devour sxiv "$f" $(dirname "$f");;
+		image/*) sxiv "$f" $(dirname "$f") &;;
 		application/pdf) zathura "$f" ;;
 	     application/zip) unzip "$f" ;;
 		application/gzip) tar -xzf "$f" ;;
