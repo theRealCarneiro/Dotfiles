@@ -1,0 +1,29 @@
+{
+	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/Minimalist/Piramide_Psi.jpg",
+	"alpha": "100",
+	"special":{
+		"background":"#260049",
+		"foreground":"#fefefe",
+		"cursor":"#fefefe"
+	},
+
+	"colors":{
+		"main":"#00b9e5",
+		"color0":"#260049",
+		"color1":"#ed027b",
+		"color2":"#107051",
+		"color3":"#ff7729",
+		"color4":"#5586fd",
+		"color5":"#ba449c",
+		"color6":"#00b9e5",
+		"color7":"#cabcac",
+		"color8":"#718586",
+		"color9":"#ed027b",
+		"color10":"#107051",
+		"color11":"#ff7729",
+		"color12":"#5586fd",
+		"color13":"#ba449c",
+		"color14":"#00b9e5",
+		"color15":"#cabcac"
+	}
+}

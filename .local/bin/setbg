@@ -1,42 +1,39 @@
 #!/bin/sh
 
-reload_env(){
-	xrdb $XDG_CONFIG_HOME/X11/Xresources # Source Xresources
-	case $WM in
-		bspwm) bspc wm -r & ;;
-		dwm) dwm-msg run_command reload_xresources & ;;
-	esac
-	polyLaunch & # restart polybar
-	#spicetify apply -n & # apply spotify theme
+wall="$XDG_CONFIG_HOME/wallpaper"
+wall_home="$HOME/Bibliotecas/Imagens/Wallpapers"
+wal_themes="$HOME/.config/wal/colorschemes"
+
+rand(){
+	wpp=$(find $wall_home -type f | shuf | head -n1)
+	echo $wpp > $wall
 }
 
-wall="$XDG_CONFIG_HOME/wallpaper"
-if [ $# -ne 0 ]; then #if there are args
+theme(){
+	[ "$2" = "light" ] && light="-l"
+	theme=$1
+	! [ -f "$wal_themes/$2/$theme.json" ] && exit 1
+	wpp=$(grep wallpaper $wal_themes/$2/$theme.json | cut -c16- | sed 's/..$//')
+	echo $wpp > $wall
+	wal -e --theme $theme $light
+	reloenv &
+}
 
-	if [ $1 = "--rand" ]; then
-		wpp=$(find $HOME/Bibliotecas/Imagens/Wallpapers -type f | shuf | head -n1)
+generate(){
+	[ $# -eq 0 ] && exit
+	wpp=$(realpath $1)
+	! [ -f "$wpp" ] && exit 1
+	echo $wpp > $wall
+	wal -i -e "$wpp"
+	reloenv &
+}
 
+[ $# -gt 0 ] && case $1 in
+	"--theme-dark") theme $2 dark ;;
+	"--theme-light") theme $2 light ;;
+	"--generate") generate $2 ;;
+	"--wallpaper") [ -f $(realpath $2) ] && realpath $2 > $wall || exit 1 ;;
+	"--rand") rand ;;
+esac
 
-	elif [ $1 = "--theme" ]; then
-		wpp=$(grep wallpaper $HOME/.config/wal/colorschemes/dark/$2.json | cut -c16- | sed 's/..$//')
-
-		wal --theme $2
-		reload_env &
-
-
-	elif [ $1 = "--generate" ]; then
-		wpp=$2
-		wal -i "$wpp"
-		reload_env &
-
-	else
-		wpp=$1
-	fi
-
-	if [ "${wpp##*$PWD*}" -a "$1" != "--theme" ]; then #full path of image
-		echo $PWD/$wpp > $wall
-	else
-		echo $wpp > $wall
-	fi
-fi
 xwallpaper --zoom "$(cat $wall)" 

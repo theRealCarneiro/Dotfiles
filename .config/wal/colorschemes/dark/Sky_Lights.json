@@ -1,5 +1,5 @@
 {
-	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/forest_stairs.jpg",
+	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/Sky_Lights.png",
 	"alpha": "100",
 	"special":{
 		"background":"#1e1f29", 
@@ -8,21 +8,21 @@
 	},
 
 	"colors":{
-		"main":"#2E534C",
+		"main":"#2f5691",
 		"color0":"#1e1f29",
-		"color1":"#ae5f60", 
+		"color1":"#E75D5B", 
 		"color2":"#2E534C",
 		"color3":"#AA9B4F",
 		"color4":"#2f5691",
-		"color5":"#a690b0",
+		"color5":"#ba449c",
 		"color6":"#6E87AA",
 		"color7":"#cabcac",
-		"color8":"#4a4a4a",
-		"color9":"#ae5f60", 
+		"color8":"#718586",
+		"color9":"#E75D5B", 
 		"color10":"#2E534C",
 		"color11":"#AA9B4F",
 		"color12":"#2f5691",
-		"color13":"#a690b0",
+		"color13":"#ba449c",
 		"color14":"#6E87AA",
 		"color15":"#cabcac"
 	}

@@ -1,5 +1,6 @@
 #!/bin/sh 
-. /home/gabriel/.cache/wal/colors.sh
+. /home/gabriel/.cache/wal/shell
+killall dunst 2> /dev/null
 dunst -lf  "${main}" \
       -lb  "${background}" \
       -lfr "${background}" \

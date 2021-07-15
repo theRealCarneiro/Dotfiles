@@ -1,24 +1,24 @@
 {
-	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/Minimalist/Orange_Sakura.jpg",
+	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/xPunk/Steampunk.jpg",
 	"alpha": "100",
 	"special":{
-		"background":"#1e1f29", 
-		"foreground":"#cabcac", 
-		"cursor":"#a2bfc0"
+		"background":"#1b1610", 
+		"foreground":"#f5f3cf", 
+		"cursor":"#f5f3cf"
 	},
 
 	"colors":{
-		"main":"#DE5519",
-		"color0":"#1e1f29",
-		"color1":"#DE5519",
+		"main":"#b75f2f",
+		"color0":"#1b1610",
+		"color1":"#b75f2f",
 		"color2":"#2E534C",
 		"color3":"#FED32F",
 		"color4":"#2f5691",
 		"color5":"#ba449c",
 		"color6":"#334ea5",
-		"color7":"#cabcac",
+		"color7":"#f5f3cf",
 		"color8":"#718586",
-		"color9":"#DE5519",
+		"color9":"#b75f2f",
 		"color10":"#2E534C",
 		"color11":"#FED32F",
 		"color12":"#2f5691",

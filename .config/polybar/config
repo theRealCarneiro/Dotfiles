@@ -55,7 +55,7 @@ font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
 font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;2"
 font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Medium;3"
 
-modules-left = bspwm i3 playerctl
+modules-left = bspwm playerctl
 modules-center = xwindow  
 modules-right = mic updates-arch mail disk mem cpu net timedate power
 
@@ -592,7 +592,7 @@ label-focused-padding = 3
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-unfocused-foreground = ${xrdb:foreground}
+label-unfocused-foreground = ${colors.foreground}
 label-unfocused-font = 6
 label-unfocused = %name%
 label-unfocused-padding = 3
@@ -604,7 +604,7 @@ label-unfocused-padding = 3
 ;   %output%
 ; Default: %icon%  %name%
 label-visible = %name%
-label-visible-foreground = ${xrdb:color6}
+label-visible-foreground = ${colors.foreground-alt}
 label-visible-font = 6
 label-visible-padding = 3
 

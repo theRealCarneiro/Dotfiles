@@ -50,6 +50,7 @@ bspc rule -a scratchpad state=floating
 bspc rule -a scratchpad border=off
 bspc rule -a gui-Main state=floating
 bspc rule -a Zathura state=tiled
+bspc rule -a theme_prompt state=floating
 
 bspc rule -a overwatch.exe desktop='^10' #overwatch
 bspc rule -a battle.net.exe desktop='^10' #battle.net

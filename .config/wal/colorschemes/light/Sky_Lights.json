@@ -1,15 +1,15 @@
 {
-	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/sky_lights.png",
+	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/Sky_Lights.png",
 	"alpha": "100",
 	"special":{
-		"background":"#1e1f29", 
+		"background":"#080F37", 
 		"foreground":"#cabcac", 
 		"cursor":"#a2bfc0"
 	},
 
 	"colors":{
 		"main":"#2f5691",
-		"color0":"#1e1f29",
+		"color0":"#080F37",
 		"color1":"#E75D5B", 
 		"color2":"#2E534C",
 		"color3":"#AA9B4F",

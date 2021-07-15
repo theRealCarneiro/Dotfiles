@@ -1,10 +1,10 @@
 #!/bin/bash
 
 bg=$(xgetres background)
-. $HOME/.cache/wal/colors.sh 
+. $HOME/.cache/wal/shell 
 export bg_alpha="#ff${bg###}"
 
-killall polybar 
+killall polybar 2> /dev/null
 
 #bar='bar'
 #wm='bspwm i3 dwm'
@@ -13,5 +13,5 @@ killall polybar
 #fi
 
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-	MONITOR=$m polybar --reload bar &
+	MONITOR=$m polybar --reload bar -l error &
 done

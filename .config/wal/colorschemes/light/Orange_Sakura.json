@@ -2,14 +2,14 @@
 	"wallpaper": "/home/gabriel/Bibliotecas/Imagens/Wallpapers/Minimalist/Orange_Sakura.jpg",
 	"alpha": "100",
 	"special":{
-		"background":"#1e1f29", 
-		"foreground":"#cabcac", 
-		"cursor":"#a2bfc0"
+		"background":"#19100e",
+		"foreground":"#cabcac",
+		"cursor":"#cabcac"
 	},
 
 	"colors":{
 		"main":"#DE5519",
-		"color0":"#1e1f29",
+		"color0":"#19100e",
 		"color1":"#DE5519",
 		"color2":"#2E534C",
 		"color3":"#FED32F",

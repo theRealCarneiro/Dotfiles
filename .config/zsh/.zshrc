@@ -1,5 +1,5 @@
 # Keys
-stty -ixon #disable pause with ctrl + s
+stty -ixon # disable pause with ctrl + s
 
 # Auto complete
 fpath+=( $ZDOTDIR/completion )
@@ -15,12 +15,13 @@ SAVEHIST=10000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 
 # Plugins
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.cache/wal/shell 
 source $ZDOTDIR/themes/minimal.zsh-theme
 source $ZDOTDIR/plugins/git.zsh
 source $ZDOTDIR/plugins/prompt_info_functions.zsh
 source $ZDOTDIR/plugins/theme-and-appearance.zsh
 source $ZDOTDIR/plugins/zsh-vi-mode.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Alias
 setopt complete_aliases

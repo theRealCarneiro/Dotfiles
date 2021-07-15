@@ -3,9 +3,21 @@ while read file
 do
 	case "$1" in
 		"w")
-			setbg "$file" ;;
+			setbg --wallpaper "$file" ;;
+
+		"g")
+			setbg --generate "$file" ;;
+
+		"d")
+			setbg --theme-dark "$(basename "$file" | sed 's/\..*//g')" || \
+			notify-send "Dark theme not found" ;;
+
 		"l")
-			notify-send "Papel de parede da tela de bloqueio settado"
-			echo "$file" > $XDG_CONFIG_HOME/lock_background ;;
+			setbg --theme-light "$(basename "$file" | sed 's/\..*//g')" || \
+			notify-send "Light theme not found" ;;
+
+		"b")
+			echo "$file" > $XDG_CONFIG_HOME/lock_background 
+			notify-send "Papel de parede da tela de bloqueio settado" ;;
 	esac
 done
