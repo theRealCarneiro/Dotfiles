@@ -20,11 +20,11 @@ theme(){
 }
 
 generate(){
-	[ $# -eq 0 ] && exit
+	[ $# -eq 0 ] && exit 1
 	wpp=$(realpath $1)
 	! [ -f "$wpp" ] && exit 1
 	echo $wpp > $wall
-	wal -i -e "$wpp"
+	wal -e -i "$wpp"
 	reloenv &
 }
 

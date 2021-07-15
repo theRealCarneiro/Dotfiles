@@ -1,0 +1,15 @@
+#!/bin/sh
+t=0
+
+toggle() {
+    t=$(((t + 1) % 2))
+}
+
+trap "toggle" USR1
+
+while true; do
+	[ $t -eq 0 ] && date +%H:%M:%S || date  "+%A %d de %B %Y %H:%M:%S" 
+	sleep 1 &
+	wait $!
+done
+

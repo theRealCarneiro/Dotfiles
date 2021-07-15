@@ -6,12 +6,6 @@ export bg_alpha="#ff${bg###}"
 
 killall polybar 2> /dev/null
 
-#bar='bar'
-#wm='bspwm i3 dwm'
-#if echo $wm | grep -w $WM > /dev/null; then
-	#bar=$WM
-#fi
-
 for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
 	MONITOR=$m polybar --reload bar -l error &
 done
