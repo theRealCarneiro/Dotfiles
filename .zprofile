@@ -7,6 +7,10 @@ export READER="zathura"
 export BROWSER="brave"
 export WM="bspwm"
 
+# Misc
+export SXHKD_SHELL='/bin/sh'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # Config
 export XDG_CONFIG_HOME="$HOME/.config"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
@@ -21,8 +25,6 @@ export X11="$XDG_CONFIG_HOME/X11"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export SXHKD_SHELL='/bin/sh'
 
 # Cache
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -35,11 +37,12 @@ export WINEPREFIX="$XDG_DATA_HOME/wine"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/.password-store"
 export GOPATH="$XDG_DATA_HOME/go"
+export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
 
 # Other configs
 . "/home/gabriel/.cache/wal/shell"
 . "/home/gabriel/.config/lf/icons"
-#. "/home/gabriel/.config/i3/workspaces"
+. "/home/gabriel/.config/i3/workspaces"
 
 # Runit
 #export SVDIR=/run/runit/service # Runit services
