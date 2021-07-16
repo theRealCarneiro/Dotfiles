@@ -24,7 +24,7 @@ case $choice in
 	bash)		$TERMINAL -e $EDITOR $HOME/.bashrc ;;
 	spotifyd)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spotifyd/spotifyd.conf ;;
 	picom)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/picom/picom.conf ;;
-	alacritty)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/alacritty ;;
+	alacritty)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.yml ;;
 	qutebrowser)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/qutebrowser/config.py ;;
 	bcd)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
 	Pulse)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/pulse/default.pa ;;

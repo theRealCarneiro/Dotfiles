@@ -39,7 +39,7 @@ export GOPATH="$XDG_DATA_HOME/go"
 # Other configs
 . "/home/gabriel/.cache/wal/shell"
 . "/home/gabriel/.config/lf/icons"
-. "/home/gabriel/.config/i3/workspaces"
+#. "/home/gabriel/.config/i3/workspaces"
 
 # Runit
 #export SVDIR=/run/runit/service # Runit services
