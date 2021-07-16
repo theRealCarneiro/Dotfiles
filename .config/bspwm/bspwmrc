@@ -48,7 +48,7 @@ bspc rule -a calendar border=off
 bspc rule -a calendar state=floating
 bspc rule -a scratchpad state=floating
 bspc rule -a scratchpad border=off
-bspc rule -a gui-Main state=floating
+bspc rule -a gui-Main state=floating # jflap
 bspc rule -a Zathura state=tiled
 bspc rule -a theme_prompt state=floating
 
