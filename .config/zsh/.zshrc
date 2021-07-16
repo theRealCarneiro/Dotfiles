@@ -27,7 +27,7 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 setopt complete_aliases
 alias makebcd="sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Midi-Hotkey"
 alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/suckless/dwm/"
-alias config='git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/Bibliotecas/Projects/Dotfiles --work-tree=$HOME'
 alias sv='SVDIR=$HOME/.config/runit/service sv'
 alias startx="startx $HOME/.config/X11/xinitrc"
 
