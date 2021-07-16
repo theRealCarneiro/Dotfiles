@@ -1,38 +1,14 @@
-# vim: filetype=sxhkd :
 #
 # bspwm hotkeys
 #
-
-super + q
-	xdo close
-
-super + shift + space
-	bspc config border_width {0, 3}
-
-#super + F8
-	#bspc config top_padding {0, 25}
-
-# gaps
-super + F11
-	bspc config window_gap {0, 15}
-
-super + equal
-	bspc config window_gap $(( $(bspc config window_gap) - 5 ))
-
-super + minus
-	bspc config window_gap $(( $(bspc config window_gap) + 5 ))
 
 # restart bspwm
 super + shift + r
 	bspc wm -r
 
-# alternate between the tiled and monocle layout
-super + m
-	bspc desktop -l next
-
-super + shift + s 
-	stack_layout_toggle
-
+# close node
+super + q
+	bspc node --close
 
 #
 # state/flags
@@ -41,6 +17,10 @@ super + shift + s
 # set the window state
 super + {t,shift + t,shift + f,f}
 	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# alternate between the tiled and monocle layout
+super + m
+	bspc desktop -l next
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -51,50 +31,59 @@ super + ctrl + {m,x,y,z}
 #
 
 # focus or send to the given desktop
-
-super + grave
-	bspc desktop 10 -f
-	#bspc desktop  -f
-
-super + shift + grave
-	bspc node -d focused:^10
-
-super + {_,shift + }{1-9,0}
+super + {_,shift +}{1-9,grave}
 	bspc {desktop -f,node -d} focused:^{1-9,10}
 
-#super + ctrl +{1-9,0}
-#	bspc desktop -f HDMI-A-0:^{1-9,0}
+# focus monitor/send node to monitor
+super +{_, shift +} {comma, period}
+	bspc {monitor -f, node -m} {prev,next}
 
-# focus monitor
+# focus last desktop
 super + Tab 
 	bspc desktop last --focus
-	#bspc monitor -f {DVI-D-0,HDMI-A-0}
 
-# send to other monitor
-super + shift + Tab
-	bspc node -m {HDMI-A-0, DVI-D-0}
+# focus node
+super + {h, j, k, l}
+	bspc node -f {west ,next.,prev.,east }window.local 
+
+# focus next/prev desktop
+super + shift + {j,k}
+	bspc desktop -f {prev,next}
+
+#
+# move/resize
+#
+
+# send node to given direction
+super + ctrl + shift + {h,j,k,l}
+	bspc node -s {west,south,north,east} windows.local
+
+# send node to next/prev desktop
+super + shift + {h,l}
+	bspc node -d {prev && bspc desktop -f prev,next && bspc desktop -f next}
 
 # switch with biggest node in workspace
 super + space
 	bspc node -f biggest.local && bspc node -s last.local && bspc node -f biggest.local
 
-# focus node in the stack
-super + {j,k}
-	bspc node -f {next.,prev.}window.local 
+# move a floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
 
-super + {h, j, k, l}
-	bspc node -f {west ,next.,prev.,east }window.local 
+# resize
+super + {ctrl + h,ctrl + j,ctrl + k,ctrl + l}
+	{bspc node -z left -30 0 || bspc node -z right -30 0,	\
+	bspc node -z top 0 30 || bspc node -z bottom  0 30,	\
+	bspc node -z top 0 -30 || bspc node -z bottom  0 -30,	\
+	bspc node -z left 30 0 || bspc node -z right 30 0}
 
-# focus next desktop
-super + shift + {j,k}
-	bspc desktop -f {prev,next}
+# gap size
+super + {minus, equal}
+	bspc config window_gap $(( $(bspc config window_gap) {-,+} 5 ))
 
-super + shift + {h,l}
-	bspc node -d {prev && bspc desktop -f prev,next && bspc desktop -f next}
-
-# send node to given direction
-super + ctrl + shift + {h,j,k,l}
-	bspc node -s {west,south,north,east}
+# cycle nodes  
+super + {apostrophe,semicolon}
+	bspc node '@/' -C {backward,forward}
 
 #
 # preselect
@@ -116,23 +105,4 @@ super + alt + space
 super + alt + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-
-#
-# move/resize
-#
-
-# move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
-
-super + {ctrl + h,ctrl + j,ctrl + k,ctrl + l}
-	{bspc node -z left -30 0 || bspc node -z right -30 0,	\
-	bspc node -z top 0 30 || bspc node -z bottom  0 30,	\
-	bspc node -z top 0 -30 || bspc node -z bottom  0 -30,	\
-	bspc node -z left 30 0 || bspc node -z right 30 0}
-
-super + comma
-	bspc node '@/' -C backward
-
-super + period
-	bspc node '@/' -C forward
+# vim: filetype=sxhkd :

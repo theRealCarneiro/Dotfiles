@@ -2,68 +2,13 @@
 # wm independent hotkeys
 #
 
-# make sxhkd reload its configuration files:
-super + r
-	pkill -USR1 -x sxhkd
-#super + Escape
-	#pkill -USR1 -x sxhkd
-	
-#super + x
-	#kill -USR2 $(pgrep kbmap)
-
-
-# close window
+# kill window
 super + shift + q
 	xdo kill
-
-#super + {_,shift + }q
-	#{case $WM in				\
-		#dwm)	dwm-msg run_command killclient 1;;	\
-		#*)	xdo close;; 		\
-	#esac						\
-	#, xdo kill}
 
 #
 # start programs
 #
-
-# kill gpg
-super + x
-	gpg-connect-agent --no-autostart reloadagent /bye && \
-	notify-send GPG "Restarted agent"
-
-# start droidcam video service
-super + v
-	droidcamcli video
-
-# start droidcam audio service
-super + F6
-	droidcamcli audio
-
-super + g
-	gamelaunch
-
-super + ctrl + c
-	dmenucalc
-
-# open mpv with webcam video
-super + shift + v
-	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
-
-# open calendar
-super + alt + c
-	$TERMINAL --class calendar,calendar -t Calcurse -e calcurse
-
-# toggle scratchpad
-super + ctrl + Return
-	tdrop -w 1882 -h 1021 -y 45 -x 19 \
-	alacritty --class scratchpad,scratchpad -t Scratchpad \
-	--config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml 
-	#&& {hidenodes, shownodes}
-super + shift + Return
-	tdrop -w 1882 -h 401 -y 660 -x 19 \
-	alacritty --class scratchpad,scratchpad -t Scratchpad \
-	--config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml
 
 # terminal emulator
 super + Return
@@ -73,23 +18,17 @@ super + Return
 super + b 
 	$BROWSER
 
-super + shift + b
-	bluecon
-	#$TERMINAL -e bluetoothctl
-
 # file managers 
-super + e 
-     $TERMINAL -e vifmrun
-super + ctrl + e 
-     pcmanfm
-
-# rofi
-super + shift + d
-	rofi -show drun 
+super + {_, ctrl +} e 
+	{$TERMINAL -e vifmrun, pcmanfm}
 	
 # dmenu
 super + d 
 	dmenu_run
+
+# rofi
+super + shift + d
+	rofi -show drun 
 
 # edit rcfiles 
 super + c 
@@ -99,6 +38,58 @@ super + c
 super + s
 	editscripts
 
+# game launcher
+super + g
+	gamelaunch
+
+# dmenu calculator
+super + ctrl + c
+	dmenucalc
+
+# toggle scratchpad
+super + {ctrl, shift} + Return
+	scratchpad {1882 1021 45 19, 1882 401 660 19}
+
+# open calendar
+super + alt + c
+	$TERMINAL --class calendar,calendar -t Calcurse -e calcurse
+
+# dmenu bluetooth prompt
+super + shift + b
+	bluecon
+
+# i3lock
+super + shift + x
+	screenlock
+
+# start droidcam video service
+super + v
+	droidcamcli video
+
+# start droidcam audio service
+super + F6
+	droidcamcli audio
+
+# open mpv with webcam video
+super + shift + v
+	$TERMINAL -e mpv av://v4l2:/dev/video0 --profile=low-latency --untimed
+
+# open mail
+{super + ctrl + m, XF86Mail}
+	$BROWSER gmail.com
+
+# sync mail
+super + shift + m
+	mailsync notify
+
+# force new mail notify
+super + ctrl + shift + m
+	nmlist
+
+#
+# toggle programs
+#
+
 # picom
 super + F10
 	toggle picom 
@@ -107,9 +98,22 @@ super + F10
 super + F9
 	toggle polybar polyLaunch
 
+# random bg daemon
 super + ctrl + b
 	toggle randbg
 
+# reload graphical shit
+super + ctrl + r
+	reloenv
+
+# make sxhkd reload its configuration files:
+super + r
+	pkill -USR1 -x sxhkd
+
+# kill gpg
+super + x
+	gpg-connect-agent --no-autostart reloadagent /bye && \
+	notify-send GPG "Restarted agent"
 
 # print to clipboard
 {Print, super + Delete }
@@ -121,22 +125,11 @@ super + shift + Delete
 	maim -s -u -m 1 -f png | xclip -selection clipboard -t image/png -i \
 	&& notify-send -i Camera "Screenshot" "Copiado para a área de transferencia"
 
-# i3lock
-super + shift + x
-	screenlock
-
-super + shift + m
-	mailsync & dunstify -a "Mail" -u low -i Mail -r "1" "Sincronizando email" "Procurando novos emails"
-
-{super + ctrl + m, XF86Mail}
-	$BROWSER gmail.com
-
-super + ctrl + shift + m
-	nmlist
-
+# fetch updates and notify
 super + u
 	arch_updates notify
 
+# force random bg daemon to change wpp
 super + shift + w
 	kill -USR1 $(pgrep randbg)
 
@@ -144,12 +137,8 @@ super + shift + w
 ## Audio 
 #
 
-super + p
-	pavucontrol
-	#$TERMINAL -e pulsemixer
-
-super + shift + p 
-	patchage
+super + {_, shift +} p
+	{pavucontrol, patchage}
 
 #super + F12
 	#sv restart $HOME/.config/runit/service/pulseaudio \
@@ -169,27 +158,14 @@ super + shift + F8
 	systemctl --user start spotifyd.service \
 	&& notify-send "Started Spotifyd" -i Spotify}
 
-#super + c
-	#$TERMINAL -e spt
-
 XF86AudioPlay
 	kill -USR2 $(pgrep playerctl_title)
-	#play-pause
 
 XF86AudioPrev
 	playerctl --player=spotifyd previous
 
 XF86AudioNext
 	playerctl --player=spotifyd next
-
-
-# next song
-#XF86AudioNext
-	#dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-
-# previous
-#XF86AudioPrev
-	#dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 
 #
 ## power options
