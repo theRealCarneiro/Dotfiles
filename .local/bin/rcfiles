@@ -1,8 +1,8 @@
 #!/bin/sh
-files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser BCD Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv'
+files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv'
 
 files="$(echo $files | sed 's/ /\n/g')"
-choice=$(echo "$files" | dmenu -i -p  "Config:")
+choice=$(echo "$files" | sort | dmenu -i -p  "Config:")
 case $choice in
 	bspwm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
 	dwm)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
@@ -26,7 +26,7 @@ case $choice in
 	picom)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/picom/picom.conf ;;
 	alacritty)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/alacritty ;;
 	qutebrowser)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/qutebrowser/config.py ;;
-	BCD)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
+	bcd)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
 	Pulse)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/pulse/default.pa ;;
 	vifm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/vifm/vifmrc ;;
 	neomutt)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/mutt/muttrc ;;
