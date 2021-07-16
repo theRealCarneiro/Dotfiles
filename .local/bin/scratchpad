@@ -1,0 +1,10 @@
+#!/bin/sh
+
+width=$1
+height=$2
+x=$3
+y=$4
+
+tdrop -w $width -h $height -y $x -x $y \
+alacritty --class scratchpad,scratchpad -t Scratchpad \
+--config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml 

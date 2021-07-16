@@ -1,5 +1,3 @@
 #!/bin/sh
-#choice=$(ls /home/gabriel/.local/bin | dmenu -i -p  "Editar script: ") &&
-#$HOME/.local/bin/"$choice"
-choice=$(find $HOME/.local/bin -type f,l | cut -c26- | cut -d "/" -f2- | dmenu -i -p "Editar script: ") &&
-$TERMINAL -e nvim "$(find $HOME/.local/bin -name "$choice")"
+choice=$(find $HOME/.local/bin -type f,l | cut -c26- | cut -d "/" -f2- | sort | dmenu -i -p "Editar script: ") &&
+$TERMINAL -e $EDITOR "$(find $HOME/.local/bin -name "$choice")"

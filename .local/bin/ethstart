@@ -1,3 +1,0 @@
-#!/bin/sh
-#ethminer -G -P stratum1+tcp://0x96EF60B4a39A35F9339D59caC1BdCe0Ca92B4B0a@us1.ethpool.org:3333
-ethminer -G -P stratum1+tcp://0x96EF60B4a39A35F9339D59caC1BdCe0Ca92B4B0a@us1.ethermine.org:4444
