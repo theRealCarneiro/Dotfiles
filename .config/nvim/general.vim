@@ -8,9 +8,9 @@ syntax on " Enable syntax highlight
 set guifont=Hack\ Nerd\ Font\ 14
 set number " Line number
 set encoding=utf-8
-set tabstop=5 " Tab size
-set softtabstop=5 " Tab size
-set shiftwidth=5 " Tab size   
+set tabstop=4 " Tab size
+set softtabstop=4 " Tab size
+set shiftwidth=4 " Tab size   
 set nocompatible " Disable vi compatibility
 set clipboard+=unnamedplus " Use system clipboard
 set mouse=a " Enable mouse suport 
