@@ -1,0 +1,37 @@
+#compdef setbg
+
+_setbg(){
+  if (( CURRENT < 3 )); then
+    args+=(
+      '--theme-dark[Set dark wal theme]'
+      '--theme-light[Set light wal theme]'
+      '--rand[Set random background]'
+      '--generate[Generate new wal colorscheme]'
+      '--wallpaper[Set Wallpaper]'
+    )
+    _arguments $args[@] 
+    return
+  fi
+
+  (( CURRENT > 3 )) || case $words[2] in
+    "--theme-dark") 
+      _alternative "($(ls $XDG_CONFIG_HOME/wal/colorschemes/dark | sed 's/.json//; s/$/ /'))"
+	 return
+      ;;
+    "--theme-light") 
+      _alternative "($(ls $XDG_CONFIG_HOME/wal/colorschemes/light | sed 's/.json//; s/$/ /'))"
+	 return
+      ;;
+    "--generate")
+	 _alternative 'files:filename:_files'
+	 return
+	 ;;
+    "--wallpaper")
+	 _alternative 'files:filename:_files'
+	 return
+	 ;;
+    "--rand")
+	 return
+	 ;;
+  esac
+}
