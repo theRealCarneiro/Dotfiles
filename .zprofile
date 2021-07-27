@@ -50,4 +50,4 @@ export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
 
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
 	exec startx $HOME/.config/X11/xinitrc -- vt1 &> /dev/null
-fi 
+fi
