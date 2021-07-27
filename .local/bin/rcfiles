@@ -1,42 +1,43 @@
 #!/bin/sh
-files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv'
+files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv neofetch'
 
 files="$(echo $files | sed 's/ /\n/g')"
 choice=$(echo "$files" | sort | dmenu -i -p  "Config:")
 case $choice in
 	bspwm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
-	dwm)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
-	spectrwm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spectrwm/spectrwm.conf ;;
+	dwm)		$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
+	spectrwm)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spectrwm/spectrwm.conf ;;
 	i3wm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/i3/config ;;
-	openbox)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/openbox/rc.xml ;;
+	openbox)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/openbox/rc.xml ;;
 	sxhkd)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/sxhkd/ ;;
 	nvim)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/nvim/init.vim ;;
 	lf)			$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/lf/lfrc ;;
-	polybar)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/polybar/config ;;
+	polybar)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/polybar/config ;;
 	rofi)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/rofi/config.rasi ;;
 	Xresources)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/Xresources ;;
-	xprofile)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xprofile ;;
-	xmodmap)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xmodmap ;;
-	xinitrc)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xinitrc ;;
-	zprofile)		$TERMINAL -e $EDITOR $HOME/.zprofile ;;
+	xprofile)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xprofile ;;
+	xmodmap)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xmodmap ;;
+	xinitrc)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xinitrc ;;
+	zprofile)	$TERMINAL -e $EDITOR $HOME/.zprofile ;;
 	dunst)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/dunst/dunstrc ;;
-	zsh)			$TERMINAL -e $EDITOR $ZDOTDIR/.zshrc ;;
+	zsh)		$TERMINAL -e $EDITOR $ZDOTDIR/.zshrc ;;
 	bash)		$TERMINAL -e $EDITOR $HOME/.bashrc ;;
-	spotifyd)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spotifyd/spotifyd.conf ;;
+	spotifyd)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/spotifyd/spotifyd.conf ;;
 	picom)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/picom/picom.conf ;;
 	alacritty)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/alacritty/alacritty.yml ;;
-	qutebrowser)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/qutebrowser/config.py ;;
-	bcd)			$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
+	qutebrowser)$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/qutebrowser/config.py ;;
+	bcd)		$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/BCD/BCD-3000-Midi-Hotkey/config.h ;;
 	Pulse)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/pulse/default.pa ;;
 	vifm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/vifm/vifmrc ;;
-	neomutt)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/mutt/muttrc ;;
+	neomutt)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/mutt/muttrc ;;
 	mbsync)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/isync/mbsyncrc ;;
 	pywal)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/wal ;;
 	jgmenu)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/jgmenu/jgmenurc ;;
 	legendary)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/legendary/config.ini ;;
 	minlau)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/minlau/config.ini;;
-	winetkg)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/frogminer/wine-tkg.cfg ;;
+	winetkg)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/frogminer/wine-tkg.cfg ;;
 	paru)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/paru/paru.conf ;;
-	calcurse)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/calcurse ;;
+	calcurse)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/calcurse ;;
 	sxiv)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/sxiv/exec/key-handler ;;
+	neofetch)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/neofetch/config.conf ;;
 esac

@@ -5,7 +5,10 @@ Plug 'dylanaraps/wal.vim' " Pywal
 Plug 'ryanoasis/vim-devicons' " Icons
 Plug 'itchyny/lightline.vim' " Status bar
 Plug 'itchyny/vim-gitbranch' "Git branch
+"Plug 'norcalli/nvim-colorizer.lua'
 Plug 'ap/vim-css-color' " Show colors
+"Plug 'chrisbra/Colorizer' " Show colors
+Plug 'evanleck/vim-svelte', {'branch': 'main'}
 Plug 'preservim/nerdcommenter' " Toggle comments
 Plug 'vimwiki/vimwiki' " Personal wiki
 Plug 'lambdalisue/fern.vim' " File explorer
@@ -18,6 +21,7 @@ Plug 'chriskempson/base16-vim'
 Plug 'lervag/vimtex'
 Plug 'kovetskiy/sxhkd-vim'
 Plug 'lambdalisue/fern-hijack.vim'
+Plug 'maxmellon/vim-jsx-pretty' " react syntax
 "Plug 'vim-syntastic/syntastic'
 Plug 'dense-analysis/ale'
 "Plug 'preservim/nerdtree' " File explorer
@@ -29,6 +33,11 @@ call plug#end()
 "map <leader>c :w! \| !compiler <c-r>%<CR>
 let g:tex_flavor = 'latex'
 autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
+"let &t_8f = "<Esc>[38;2;%lu;%lu;%lum"
+"let &t_8b = "<Esc>[48;2;%lu;%lu;%lum"
+"set t_Co=256
+"set termguicolors
+"lua require'colorizer'.setup()
 
 " Modules
 source $HOME/.config/nvim/general.vim
