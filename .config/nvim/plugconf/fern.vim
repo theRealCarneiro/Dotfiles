@@ -1,5 +1,6 @@
-let g:fern#drawer_width = 25
+let g:fern#drawer_width = 30
 let g:fern#default_hidden = 1
+let g:fern#hide_cursor = 1
 let g:fern#disable_drawer_smart_quit = 0
 
 noremap <silent> <C-f> :Fern %:h -drawer -toggle <CR>

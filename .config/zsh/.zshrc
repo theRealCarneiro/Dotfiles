@@ -15,7 +15,8 @@ SAVEHIST=10000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 
 # Plugins
-source $HOME/.cache/wal/shell 
+#source $HOME/.cache/wal/shell 
+source $HOME/.config/colorfig/generated/colors.sh 
 source $ZDOTDIR/themes/minimal.zsh-theme
 source $ZDOTDIR/plugins/git.zsh
 #source $ZDOTDIR/plugins/prompt_info_functions.zsh
@@ -30,6 +31,7 @@ alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/suckless/dwm/"
 alias dotfiles="git --git-dir=$DOTBARE_DIR --work-tree=$HOME"
 alias sv='SVDIR=$HOME/.config/runit/service sv'
 alias startx="startx $HOME/.config/X11/xinitrc"
+alias fm="vifmrun ."
 
 LFCD="$HOME/.local/bin/lfcd"
 [ -f "$LFCD" ] && source "$LFCD"

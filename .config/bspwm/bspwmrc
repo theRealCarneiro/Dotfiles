@@ -1,6 +1,8 @@
 #! /bin/sh
 
-. $HOME/.cache/wal/shell
+#. $HOME/.cache/wal/shell
+. $HOME/.config/colorfig/generated/colors.sh 
+
 
 #### Program Launch ####
 #pgrep -fl 'pidswallow -gl' || pidswallow -gl &
@@ -44,10 +46,11 @@ bspc config removal_adjustment true
 bspc config initial_polarity first_child
 bspc config automatic_scheme spiral
 
+bspc rule -a screenlock state=fullscreen
 bspc rule -a calendar border=off
 bspc rule -a calendar state=floating
 bspc rule -a scratchpad state=floating
-bspc rule -a scratchpad border=off
+#bspc rule -a scratchpad border=off
 bspc rule -a gui-Main state=floating # jflap
 bspc rule -a Zathura state=tiled
 bspc rule -a theme_prompt state=floating

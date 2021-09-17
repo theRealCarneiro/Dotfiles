@@ -54,10 +54,11 @@ font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;2"
 font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
 font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;2"
 font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Medium;3"
+font-8 = "Font Awesome 5 Brands Regular:pixelsize=6:antialias=true;2"
 
 modules-left = bspwm playerctl
 modules-center = xwindow  
-modules-right = mic updates-arch mail disk mem cpu net timedate power
+modules-right = tws mic updates-arch mail disk mem cpu eth bluetooth timedate power
 
 tray-position = right 
 tray-padding = 5
@@ -79,9 +80,25 @@ cursor-scroll = ns-resize
 margin-top = 0
 margin-bottom = 0
 
+[module/eth]
+type = internal/network
+interface = enp5s0
+interval = 3
+
+format-connected-underline = ${colors.primary}
+format-connected-prefix = "    "
+label-connected = %downspeed%
+
+format-disconnected-underline = ${colors.primary}
+format-disconnected-prefix = "    "
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
 [module/net]
 type = custom/script
-exec = getent hosts google.com > /dev/null && echo "  " || echo "  "
+exec = getent hosts google.com > /dev/null && echo "    " || echo "    "
 format-prefix-font = 7
 format-underline = ${colors.primary}
 interval = 1
@@ -193,6 +210,25 @@ format-underline = ${colors.primary}
 ;label-foreground = ${xrdb:color1}
 exec = echo  " $(pactl list sources | grep -A6 "Droidcam (echo" | awk '/Volume/{print $5}')"
 exec-if = pgrep droidcam-cli
+interval = 3
+
+[module/bluetooth]
+type = custom/script
+content-font = 1
+format-underline = ${colors.primary}
+;label-foreground = ${xrdb:color1}
+exec = echo " "
+click-left = rofi_bluetooth
+interval = 3
+
+[module/tws]
+type = custom/script
+content-font = 2
+format-underline = ${colors.primary}
+;label-foreground = ${xrdb:color1}
+exec = echo "  "
+exec-if = bluetoothctl info 41:42:E1:5E:9A:B8 | grep "Connected: yes"
+click-left = bluetoothctl disconnect 41:42:E1:5E:9A:B8
 interval = 3
 
 [module/nettrafic]
@@ -651,22 +687,6 @@ format-prefix-font = 3
 format-prefix = " "
 format-underline = ${colors.primary}
 label =  %percentage_used%%
-
-[module/eth]
-type = internal/network
-interface = enp6s0
-interval = 3.0
-
-#format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
-
-;format-disconnected = %local_ip%
-;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
 
 [settings]
 screenchange-reload = true

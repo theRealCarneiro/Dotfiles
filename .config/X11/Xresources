@@ -1,8 +1,13 @@
-#include "/home/gabriel/.cache/wal/colors.Xresources"
-#include "/home/gabriel/.config/dmenu/dmenu.Xresources"
-#include "/home/gabriel/.config/st/st.Xresources"
-#include "/home/gabriel/.config/dwm/dwm.Xresources"
-#include "/home/gabriel/.cache/wal/polybar.Xresources"
+#include "/home/gabriel/.config/colorfig/generated/Xresources"
+#include "/home/gabriel/.config/colorfig/generated/polybar.Xresources"
+#include "/home/gabriel/.config/colorfig/generated/dmenu.Xresources"
+#include "/home/gabriel/.config/colorfig/generated/st.Xresources"
+#include "/home/gabriel/.config/colorfig/generated/dwm.Xresources"
+!#include "/home/gabriel/.config/dmenu/dmenu.Xresources"
+!#include "/home/gabriel/.config/st/st.Xresources"
+!#include "/home/gabriel/.config/dwm/dwm.Xresources"
+!#include "/home/gabriel/.cache/wal/colors.Xresources"
+!#include "/home/gabriel/.cache/wal/polybar.Xresources"
 
 !Xcursor.size: 16
 

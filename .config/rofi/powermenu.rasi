@@ -22,11 +22,21 @@ configuration {
 	columns:			1;
 }
 
+listview {
+    scrollbar:    false;
+    border-color: var(transparent);
+}
+
+message {
+    border:       0 ;
+}
+
 #window {
 	y-offset:			-510;
 	x-offset:			860;
 	anchor:			north;
 	width:			180;
+	border:			0;
 	padding:			10;
 	background-color:	@bg;
 }
@@ -42,6 +52,17 @@ configuration {
 	enabled:			false;
 }
 
-element selected {
-    text-color:		@main;
+element selected.normal {
+    text-color:			@main;
+	background-color: @transparent;
+}
+
+element normal.normal {
+    background-color: @transparent;
+    text-color:       @fg;
+}
+
+element alternate.normal {
+    background-color: @transparent;
+    text-color:       @fg;
 }

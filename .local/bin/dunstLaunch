@@ -1,5 +1,6 @@
 #!/bin/sh 
-. /home/gabriel/.cache/wal/shell
+#. /home/gabriel/.cache/wal/shell
+. $HOME/.config/colorfig/generated/colors.sh 
 killall dunst 2> /dev/null
 dunst -lf  "${main}" \
       -lb  "${background}" \

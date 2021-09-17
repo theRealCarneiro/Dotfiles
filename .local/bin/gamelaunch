@@ -3,7 +3,7 @@
 game=$(echo -en "$(cat $XDG_DATA_HOME/applications/Games/* | \
 	grep -E "^Name=|^Icon=" | sed 's/^Icon=/\\0icon\\x1f/; s/^Name=//' | \
 	sed -e 'N;s/\n/ /')" | \
-	rofi -dmenu -p "Launch: " -i -config $HOME/.config/rofi/gamelauncher.rasi)
+	rofi -dmenu -p "Launch" -i -config $HOME/.config/rofi/gamelauncher.rasi)
 
 [[ $game = '' ]] && exit
 game="$(echo $game | sed 's/$//')"

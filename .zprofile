@@ -13,6 +13,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 # Config
 export XDG_CONFIG_HOME="$HOME/.config"
+export PM2_HOME="$XDG_CONFIG_HOME/pm2"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/.gtkrc-2.0"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
@@ -30,6 +31,7 @@ export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export XDG_CACHE_HOME="$HOME/.cache"
 export LESSHISTFILE="$XDG_CACHE_HOME/less/history"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql_history"
 
 # Data
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -40,7 +42,7 @@ export GOPATH="$XDG_DATA_HOME/go"
 export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
 
 # Other configs
-. "/home/gabriel/.cache/wal/shell"
+#. "/home/gabriel/.cache/wal/shell"
 . "/home/gabriel/.config/lf/icons"
 . "/home/gabriel/.config/i3/workspaces"
 

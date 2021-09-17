@@ -6,3 +6,8 @@ case $WM in
 esac
 dunstLaunch &
 polyLaunch &
+
+for i in $(seq 0 9); do
+	ls /dev/pts | grep $i >/dev/null && \
+		cat $XDG_CONFIG_HOME/colorfig/generated/sequences > /dev/pts/$i
+done

@@ -1,7 +1,8 @@
 #!/bin/sh
-wal_themes="$HOME/.config/wal/colorschemes"
+#wal_themes="$HOME/.config/wal/colorschemes"
+wal_themes="$HOME/.config/colorfig/themes"
 wall_list=$(cat $wal_themes/dark/* $wal_themes/light/* | \
-	grep wallpaper | cut -c16-  | \
-	sed 's/..$//' | sort | uniq)
+	grep wallpaper | cut -c11-  | \
+	sort | uniq)
 
 sxiv -t $wall_list -N theme_prompt

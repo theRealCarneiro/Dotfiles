@@ -2,7 +2,8 @@
 
 wall="$XDG_CONFIG_HOME/wallpaper"
 wall_home="$HOME/Bibliotecas/Imagens/Wallpapers"
-wal_themes="$HOME/.config/wal/colorschemes"
+wal_themes="$HOME/.config/colorfig/themes"
+#wal_themes="$HOME/.config/wal/colorschemes"
 
 rand(){
 	wpp=$(find $wall_home -type f | shuf | head -n1)
@@ -12,11 +13,15 @@ rand(){
 theme(){
 	[ "$2" = "light" ] && light="-l"
 	theme=$1
-	! [ -f "$wal_themes/$2/$theme.json" ] && exit 1
-	wpp=$(grep wallpaper $wal_themes/$2/$theme.json | cut -c16- | sed 's/..$//')
+	#! [ -f "$wal_themes/$2/$theme.json" ] && exit 1
+	#wpp=$(grep wallpaper $wal_themes/$2/$theme.json | cut -c16- | sed 's/..$//')
+	! [ -f "$wal_themes/$2/$theme.sh" ] && exit 1
+	wpp=$(grep wallpaper $wal_themes/$2/$theme.sh | cut -c11-)
 	echo $wpp > $wall
-	wal -e --theme $theme $light
+	#wal -e --theme $theme $light
+	colorfig --theme-$2 $theme
 	reloenv &
+	#which spicetify &>/dev/null && spicetify apply -n &
 }
 
 generate(){
@@ -26,6 +31,7 @@ generate(){
 	echo $wpp > $wall
 	wal -e -i "$wpp"
 	reloenv &
+	#which spicetify &>/dev/null && spicetify apply -n &
 }
 
 [ $# -gt 0 ] && case $1 in

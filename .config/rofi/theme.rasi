@@ -1,18 +1,31 @@
-@import "colors.rasi"
+@import "~/.config/colorfig/generated/colors.rasi"
 * {
 	transparent:		rgba(0,0,0,0);
 	background-color:	@transparent;
-	text-color:		@fg;
-	border:			none;
-	columns:			2;
-	font:			"SF Pro Display Medium 25";
+	foreground:			@fg;
+	foreground:			@fg;
+	text-color:			@fg;
+	border:				none;
+	columns:			3;
+	lines:				5;
+	font:				"SF Pro Display Medium 30";
+}
+
+entry {
+    text-color:        var(normal-foreground);
+    cursor:            text;
+    spacing:           0;
+    placeholder-color: rgba ( 128, 128, 128, 100 % );
+    placeholder:       "Type to filter";
 }
 
 #window {
 	fullscreen:		false;
 	anchor:			center;
-	width:			100%;
-	padding:			205;
+	/*width:			100%;*/
+
+	width:				1200;
+	/*padding:			205;*/
 	background-color:	@bg;
 	orientation:		horizontal;
 	children:			[ teste,mainbox,teste2 ];
@@ -28,19 +41,47 @@
 	expand:			false;
 }
 
+#textbox {
+	font:				"SF Pro Display 30";
+	border:				0px 0px 0px 0px;
+}
+
 #mainbox {
 	location:			center;
-	expand:			true;
+	expand:				true;
 	children:			[ inputbar, listview ];
 }
 
-#listview {
+listview {
+    scrollbar:    false;
+    border-color: var(transparent);
 }
 
 #inputbar {
-	color:			@fg;
+	enabled:			true;
+	color:				@fg;
 }
 
-element selected {
-	text-color:		@main;
+#prompt {
+	text-color:			@main;
+	border:				0px 0px 0px 0px;
+}
+
+element-icon { 
+	size: 2ch; 
+}
+
+element selected.normal {
+    text-color:			@main;
+	background-color:	@transparent;
+}
+
+element normal.normal {
+    background-color:	@transparent;
+    text-color:			@fg;
+}
+
+element alternate.normal {
+    background-color:	@transparent;
+    text-color:			@fg;
 }

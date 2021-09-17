@@ -7,6 +7,13 @@ set icons true
 #set drawbox true
 set previewer /home/gabriel/.config/lf/preview
 
+cmd touch ${{
+	set -f
+	printf "File Name: "
+	read ans
+	touch "$ans"
+}}
+
 # Custom Scripts
 cmd mkdir ${{
 	set -f 
@@ -75,7 +82,7 @@ map ga gitadd
 map gc gitcommit
 map gp gitpush
 map a push :aj<space>
-map m
+map t touch
 map mk make
 map mc makeClean
 map x delete

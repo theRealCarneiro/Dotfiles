@@ -9,8 +9,9 @@ mkfifo "$FIFO_UEBERZUG"
 trap cleanup EXIT
 tail --follow "$FIFO_UEBERZUG" | ueberzug layer --silent --parser bash &
 if [ $# -ne 0 ]; then
-	vifm $1 "$2"
+	[ -z $2 ] || vifm $1 "$2"
+	[ -z $2 ] && vifm $1
 else
-	vifm
+	vifm $1
 fi
 cleanup

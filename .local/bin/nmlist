@@ -7,6 +7,7 @@ for i in $(ls $maildir); do
 	mail_info=$mail_info$(grep "Subject: " $maildir/$i | utf8-decode)"\n"
 	mail_info=$mail_info"------------------\n"
 done
+echo a
 #notify-send "Novos emails" "$mail_info" -i Mail
 [ $(ls $maildir | wc -c) != 0 ] && \
 	dunstify -a "Mail" -u low -i Mail -r "1" "Novos emails" "$mail_info"
