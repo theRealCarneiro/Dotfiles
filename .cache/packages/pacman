@@ -106,9 +106,11 @@ muse
 namcap
 nano
 neofetch
+neomutt
 neovim
 net-tools
 nmap
+noto-fonts-emoji
 npm
 ntp
 os-prober
@@ -147,7 +149,6 @@ samba
 screen
 sed
 speedtest-cli
-stalonetray
 steam
 steam-native-runtime
 sudo
@@ -162,6 +163,7 @@ transmission-gtk
 ttf-font-awesome
 ttf-hack
 ueberzug
+upower
 vifm
 virtualbox
 virtualbox-guest-utils

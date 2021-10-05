@@ -47,6 +47,7 @@ bspc config initial_polarity first_child
 bspc config automatic_scheme spiral
 
 bspc rule -a screenlock state=fullscreen
+bspc rule -a screenlock sticky=on
 bspc rule -a calendar border=off
 bspc rule -a calendar state=floating
 bspc rule -a scratchpad state=floating
@@ -66,3 +67,4 @@ bspc rule -a steam_app_304050 desktop='^10' #trove
 bspc rule -a darksoulsii.exe desktop='^10' #dark souls 2
 bspc rule -a steam_app_880940 desktop='^10' #pummel party
 bspc rule -a sekiro.exe desktop='^10' #sekiro
+bspc rule -a steam_app_289070 desktop='^10' #civ vi

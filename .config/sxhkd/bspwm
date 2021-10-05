@@ -71,6 +71,7 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
 
 # resize
+#super + {ctrl + h,ctrl + j,ctrl + k,ctrl + l}
 super + {ctrl + h,ctrl + j,ctrl + k,ctrl + l}
 	{bspc node -z left -30 0 || bspc node -z right -30 0,	\
 	bspc node -z top 0 30 || bspc node -z bottom  0 30,	\

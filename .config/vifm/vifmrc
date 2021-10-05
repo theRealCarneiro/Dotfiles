@@ -187,6 +187,9 @@ fileviewer *.py,*.yml
 fileviewer .bashrc,.profile,.zprofile,.zshrc,*.zsh*,
 			\ highlight --out-format ansi -t 2 -S sh %c
 
+fileviewer bspwmrc,sxhkdrc,
+			\ highlight --out-format ansi -t 2 -S sh %c
+
 fileviewer *.ini,*.conf,
 			\ highlight --out-format ansi -t 2 %c
 

@@ -10,7 +10,7 @@ configuration {
 	kb-row-down:		"j,Down";
 }
 
-@import "colors"
+@import "~/.config/colorfig/generated/colors.rasi"
 * {
 	transparent:		rgba(0,0,0,0);
 	background-color:	@transparent;

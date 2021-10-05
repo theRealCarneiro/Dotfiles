@@ -13,7 +13,7 @@
 
 [colors]
 ;foreground-alt = #7d7d7d
-background = ${env:bg_alpha:}
+background = ${env:bg_alpha:#fff}
 background-alt = ${xrdb:background:#222}
 foreground = ${xrdb:foreground:#222}
 foreground-alt = ${xrdb:color8:#222}
@@ -58,7 +58,7 @@ font-8 = "Font Awesome 5 Brands Regular:pixelsize=6:antialias=true;2"
 
 modules-left = bspwm playerctl
 modules-center = xwindow  
-modules-right = tws mic updates-arch mail disk mem cpu eth bluetooth timedate power
+modules-right = tws mic updates-arch mail disk mem cpu net bluetooth timedate power
 
 tray-position = right 
 tray-padding = 5
@@ -86,14 +86,15 @@ interface = enp5s0
 interval = 3
 
 format-connected-underline = ${colors.primary}
-format-connected-prefix = "    "
+;format-connected-prefix = "    "
 label-connected = %downspeed%
 
 format-disconnected-underline = ${colors.primary}
-format-disconnected-prefix = "    "
+;format-disconnected-prefix = "    "
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
+label-disconnected =
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/net]
