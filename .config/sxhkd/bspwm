@@ -1,5 +1,5 @@
 #
-# bspwm hotkeys
+## bspwm hotkeys
 #
 
 # restart bspwm
@@ -11,12 +11,16 @@ super + q
 	bspc node --close
 
 #
-# state/flags
+## state/flags
 #
 
-# set the window state
-super + {t,shift + t,shift + f,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# set the window state {tiled, pseudo_tiled}
+super + {_,shift +} t
+	bspc node -t {tiled, pseudo_tiled}
+
+# set {fullscreen, floating}
+super + {_, shift +} f
+	bspc node -t {fullscreen, floating}
 
 # alternate between the tiled and monocle layout
 super + m
@@ -27,20 +31,26 @@ super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
 #
-# focus/swap
+## focus/swap
 #
 
 # focus or send to the given desktop
-super + {_,shift +}{1-9,grave}
-	bspc {desktop -f,node -d} focused:^{1-9,10}
+super + {_,shift +, ctrl +}{1-9,grave}
+	bspc {desktop -f focused:^,node -d focused:^, node -m next -d }{1-9,10}
 
 # focus monitor/send node to monitor
-super +{_, shift +} {comma, period}
+#super +{_, shift +} {comma, period}
+	#bspc {monitor -f, node -m} {prev,next}
+
+super + alt {_, shift +} {j, k}
+	bspc {monitor -f, node -m} {prev,next}
+
+super + {_, shift +} Tab
 	bspc {monitor -f, node -m} {prev,next}
 
 # focus last desktop
-super + Tab 
-	bspc desktop last --focus
+#super + Tab 
+	#bspc desktop last --focus
 
 # focus node
 super + {h, j, k, l}
@@ -51,7 +61,7 @@ super + shift + {j,k}
 	bspc desktop -f {prev,next}
 
 #
-# move/resize
+## move/resize
 #
 
 # send node to given direction
@@ -71,7 +81,6 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0, 0 20, 0 -20, 20 0}
 
 # resize
-#super + {ctrl + h,ctrl + j,ctrl + k,ctrl + l}
 super + {ctrl + h,ctrl + j,ctrl + k,ctrl + l}
 	{bspc node -z left -30 0 || bspc node -z right -30 0,	\
 	bspc node -z top 0 30 || bspc node -z bottom  0 30,	\
@@ -87,20 +96,20 @@ super + {apostrophe,semicolon}
 	bspc node '@/' -C {backward,forward}
 
 #
-# preselect
+## preselect
 #
 
 # preselect the direction
-super + alt + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+#super + alt + {h,j,k,l}
+	#bspc node -p {west,south,north,east}
 
 # preselect the ratio
-super + alt + {1-9}
-	bspc node -o 0.{1-9}
+#super + alt + {1-9}
+	#bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
-super + alt + space
-	bspc node -p cancel
+#super + alt + space
+	#bspc node -p cancel
 
 # cancel the preselection for the focused desktop
 super + alt + shift + space
