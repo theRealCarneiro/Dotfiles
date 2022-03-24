@@ -1,0 +1,16 @@
+#! /bin/sh 
+setbg & 
+picom & 
+dunst & 
+#tail -f /tmp/xobpipe | xob &
+sxhkdl &
+dbusfm &
+BCD &
+polkit-dumb-agent &
+pulsemeeter init &
+xhost SI:localuser:games & # allow games user to acces display
+
+#xss-lock -- termlockscreen start +resetsaver &
+xrdb $XDG_CONFIG_HOME/x11/Xresources
+xset r rate 300 50 
+xset s 600 

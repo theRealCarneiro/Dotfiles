@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Source .xprofile
+[ -f $XDG_CONFIG_HOME/x11/xprofile ] && . $XDG_CONFIG_HOME/x11/xprofile 
+
+# Start WM
+exec $WM
