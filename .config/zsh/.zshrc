@@ -10,8 +10,8 @@ zmodload zsh/complist
 _comp_options+=(globdots)
 
 # History cache
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 
 # Plugins
@@ -23,15 +23,19 @@ source $ZDOTDIR/plugins/git.zsh
 source $ZDOTDIR/plugins/theme-and-appearance.zsh
 source $ZDOTDIR/plugins/zsh-vi-mode.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $XDG_CONFIG_HOME/colorfig/generated/colors-tty.sh
 
 # Alias
 setopt complete_aliases
+alias todo="nvim $HOME/Bibliotecas/TODO"
 alias makebcd="sudo make install -C $HOME/Bibliotecas/Projects/BCD-3000-Midi-Hotkey"
 alias makedwm="sudo make install -C $HOME/Bibliotecas/Projects/suckless/dwm/"
 alias dotfiles="git --git-dir=$DOTBARE_DIR --work-tree=$HOME"
+alias etcgit='sudo git --git-dir=/etc/etcgit/repo --work-tree=/etc'
 alias sv='SVDIR=$HOME/.config/runit/service sv'
-alias startx="startx $HOME/.config/X11/xinitrc"
+alias startx="startx $HOME/.config/x11/xinitrc"
 alias fm="vifmrun ."
+alias yeet='yay -Rns '
 
 LFCD="$HOME/.local/bin/lfcd"
 [ -f "$LFCD" ] && source "$LFCD"

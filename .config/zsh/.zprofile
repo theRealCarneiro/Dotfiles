@@ -1,15 +1,16 @@
 export PATH=$PATH:$(du "$HOME/.local/bin" | cut -f2 | paste -sd ':')
 
 # Default programs
+export WM="bspwm"
 export EDITOR="nvim"
 export TERMINAL="alacritty"
 export READER="zathura"
 export BROWSER="brave"
-export WM="bspwm"
 
 # Misc
 export SXHKD_SHELL='/bin/sh'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export _JAVA_AWT_WM_NONREPARENTING=1
 
 # Config
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -21,8 +22,8 @@ export ATOM_HOME="$XDG_CONFIG_HOME/atom"
 export CARGO_HOME="$XDG_CONFIG_HOME/cargo"
 export RUSTUP_HOME="$XDG_CONFIG_HOME/rustup"
 export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
-export XAUTHORITY="$XDG_CONFIG_HOME/X11/.Xauthority"
-export X11="$XDG_CONFIG_HOME/X11"
+export XAUTHORITY=${XAUTHORITY:-"$XDG_CONFIG_HOME/x11/.Xauthority"}
+export X11="$XDG_CONFIG_HOME/x11"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
@@ -42,14 +43,14 @@ export GOPATH="$XDG_DATA_HOME/go"
 export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
 
 # Other configs
-#. "/home/gabriel/.cache/wal/shell"
 . "/home/gabriel/.config/lf/icons"
-. "/home/gabriel/.config/i3/workspaces"
+#. "/home/gabriel/.cache/wal/shell"
+#. "/home/gabriel/.config/i3/workspaces"
 
 # Runit
 #export SVDIR=/run/runit/service # Runit services
 #export USER_SVDIR=$HOME/.config/runit/service # Runit services
 
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
-	exec startx $HOME/.config/X11/xinitrc -- vt1 &> /dev/null
+	exec startx $HOME/.config/x11/xinitrc -- vt1 &> /dev/null
 fi
