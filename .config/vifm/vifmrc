@@ -139,6 +139,7 @@ command makeclean make clean
 command make make
 command unzip atool -x %c -q
 command setbg setbg %f
+command dragon dragon-drag-and-drop %f &
 command! df df -h %m 2> /dev/null
 command! diff nvim -d %f %F
 command! zip zip -r %f.zip %f
@@ -175,6 +176,8 @@ command! reload :write | restart
 "
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
+"fileview */,.*/ tree -L 1 -I .git %c
+
 fileviewer *.ts,*.js,*.html,*.css,*.scss,*.json,*.xml,*.md,*.toml,
 			\ highlight --out-format ansi -t 2 %c
 
@@ -421,6 +424,8 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 
 " Sample mappings
 nnoremap sbg :setbg<cr>
+
+nnoremap df :dragon<cr>
 
 " Start shell in current directory
 nnoremap s :shell<cr>

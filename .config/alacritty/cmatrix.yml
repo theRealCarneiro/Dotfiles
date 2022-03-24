@@ -1,0 +1,6 @@
+import: 
+ - ~/.config/alacritty/alacritty.yml
+ - ~/.config/colorfig/generated/alacritty_red_is_main.yml
+
+background_opacity: 0.85
+

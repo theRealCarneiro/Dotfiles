@@ -2,7 +2,8 @@ import:
  - ~/.config/colorfig/generated/alacritty.yml
  #- ~/.config/alacritty/wal.yml
 
-background_opacity: 0.95
+window:
+  opacity: 0.85
 
 cursor:
   style: Beam
