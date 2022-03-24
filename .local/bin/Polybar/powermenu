@@ -1,13 +1,14 @@
-#!/bin/sh	
-escolha=$(echo "Shutdown|Reboot|End X Session" | rofi \
-	-sep '|' -dmenu -i -mesg "Power Menu" -config .config/rofi/powermenu.rasi --password)
-     #-color-window "argb:f0$(echo ${background#*#}), argb:bb$(echo ${background#*#}), $color1" \
-     #-color-normal "argb:00$(echo ${background#*#}), #aeaeae, argb:00$(echo ${background#*#}), argb:00$(echo ${background#*#}), $color1" \
-     #-color-active "$background, $foreground, $background, $color1, $background") 
+#!/bin/sh
+
+options='Shutdown\nReboot\nEnd X Session'
+escolha=$(
+	printf "%b" "$options" |
+	rofi -dmenu -mesg "Power Menu" -config $XDG_CONFIG_HOME/rofi/powermenu.rasi
+)
 
 case $escolha in
-	   Shutdown) shutdown now;;
-	   Reboot) reboot;;
+	   "Shutdown") shutdown now;;
+	   "Reboot") reboot;;
 	   "End X Session") killall Xorg;;
 	   "Lock X Session") $HOME/.config/i3lock/lock.sh;;
 	   "Reload BSPWM") bspc wm -r;;

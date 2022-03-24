@@ -19,10 +19,7 @@ trap "toggle" USR1
 get_title(){
 	player=$(playerctl -l | sed -n $1'p')
 	song=$(timeout 1 playerctl -p $player metadata --format "{{ title }}" 2>/dev/null)
-	if [ ${#song} -ne 0 ]; then #checks if theres song playing
-		#if [ ${#song} -gt 30 ]; then #check length of the song
-			#song=$(echo "$(echo $song | cut -c-30)...") 
-		#fi
+	if ! [ -z "$song" ]; then 
 		case $player in
 			spotify*)echo  "  " $song;;
 			chromium*)echo 輸"  " $song;;

@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 bg=$(xgetres background)
 #. $HOME/.cache/wal/shell 
 . $HOME/.config/colorfig/generated/colors.sh 
-export bg_alpha="#ff${bg###}"
+export bg_alpha="#59${bg###}"
 
 killall polybar 2> /dev/null
 
