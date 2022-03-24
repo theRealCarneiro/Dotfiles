@@ -49,12 +49,13 @@ module-margin-right = 2
 font-0 = "SF Pro Display:pixelsize=14:antialias=true:style:Ultraheavy;2"
 font-1 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:style:Medium;2"
 font-2 = "JetBrains Mono Nerd Font:pixelsize=15:antialias=true:autohint=true:style:Bold;2"
-font-3 = "Font Awesome 5 Free Solid:pixelsize=15:antialias=true;2"
-font-4 = "Font Awesome 5 Free Solid:pixelsize=13:antialias=true;2"
-font-5 = "Font Awesome 5 Free Solid:pixelsize=11:antialias=true;1"
+font-3 = "Font Awesome 6 Free Solid:pixelsize=15:antialias=true;2"
+font-4 = "Font Awesome 6 Free Solid:pixelsize=13:antialias=true;2"
+font-5 = "Font Awesome 6 Free Solid:pixelsize=11:antialias=true;1"
 font-6 = "Font Awesome 5 Pro Solid:pixelsize=13:antialias=true;2"
 font-7 = "JetBrains Mono Nerd Font:pixelsize=17:antialias=true:autohint=true:style:Medium;3"
 font-8 = "Font Awesome 5 Brands Regular:pixelsize=6:antialias=true;2"
+font-9 = "JetBrains Mono Nerd Font:pixelsize=25:antialias=true:autohint=true:style:Medium;6"
 
 modules-left = bspwm playerctl
 modules-center = xwindow  
@@ -79,6 +80,14 @@ cursor-scroll = ns-resize
 [global/wm]
 margin-top = 0
 margin-bottom = 0
+
+[module/start]
+type = custom/text
+content = 
+content-font = 10
+content-foreground = ${colors.foreground}
+click-left = rofi -show drun
+
 
 [module/eth]
 type = internal/network
@@ -147,11 +156,12 @@ exec = killall disk_usage; disk_usage
 ;format-foreground = ${xrdb:color2}
 format-underline = ${colors.primary}
 ;label-font = 2
-format-prefix = " "
-format-prefix-font = 5
+format-prefix = " "
+format-prefix-font = 3
 tail = true
 click-left = kill -USR1 %pid%
-click-right = pcmanfm &
+;click-right = pcmanfm &
+click-right = alacritty -e vifmrun &
 
 [module/mem]
 type = custom/script
@@ -254,7 +264,7 @@ format-underline = ${colors.primary}
 ;label-font = 2
 tail = true
 click-left = kill -USR1 %pid%
-click-right = $TERMINAL --class calendar,calendar -t Calcurse -e calcurse &
+click-right = $TERMINAL --config-file $XDG_CONFIG_HOME/alacritty/cmatrix.yml --class calendar,calendar -t Calcurse -e calcurse &
 click-middle = dunstify -i Calendar -r "1" "To do:" "$(calcurse -d 21)" &
 
 [module/cpu_usage]
@@ -672,13 +682,13 @@ label-song-ellipsis = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+;format-prefix = " "
 ;label-font = 2
 format-prefix-font = 8
 ;format-foreground = ${xrdb:color5}
 ;format-prefix-foreground = ${colors.foreground-alt}
 format-underline = ${colors.primary}
-label = %percentage:2%%
+label = %{A1:cpu_eaters:}%{A3:temp_all_notify:}   %percentage:2%% %{A}%{A} 
 
 [module/memory]
 type = internal/memory
@@ -695,7 +705,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-;pseudo-transparency = false
+pseudo-transparency = true
 
 
 

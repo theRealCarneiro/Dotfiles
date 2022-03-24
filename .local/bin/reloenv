@@ -1,5 +1,5 @@
 #!/bin/sh
-xrdb $XDG_CONFIG_HOME/X11/Xresources
+xrdb $XDG_CONFIG_HOME/x11/Xresources
 case $WM in
 	bspwm) bspc wm -r & ;;
 	dwm) dwm-msg run_command reload_xresources & ;;

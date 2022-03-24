@@ -1,3 +1,6 @@
 #!/bin/sh
-choice=$(find $HOME/.local/bin -type f,l | cut -c26- | cut -d "/" -f2- | sort | dmenu -i -p "Editar script: ") &&
+scripts=$(find $HOME/.local/bin -type f,l | sed 's/.*\///' | sort)
+
+choice=$(printf "$scripts" | dmenu -i -p "Editar script: ") &&
+
 $TERMINAL -e $EDITOR "$(find $HOME/.local/bin -name "$choice")"

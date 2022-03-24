@@ -6,11 +6,12 @@ configuration {
 	kb-row-right:		"super+l";
 	kb-row-up:			"super+k,Up";
 	kb-row-down:		"super+j,Down";
+	matching:			"fuzzy";
 	show-icons:			true;
 	display-run:		"$ ";
 	display-drun:		"Run: ";
 	display-ssh:		"SSH: ";
-	theme:				"theme.rasi";
 	drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]";
 	drun-display-format: "{name}";
 }
+@theme "launchpad.rasi"

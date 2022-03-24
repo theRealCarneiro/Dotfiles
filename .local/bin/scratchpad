@@ -1,10 +1,106 @@
 #!/bin/sh
 
-width=$1
-height=$2
-x=$3
-y=$4
+#tdrop -w $1 -h $2 -y $3 -x $4 \
+#alacritty --class scratchpad,scratchpad -t Scratchpad 
+#exit
 
-tdrop -w $width -h $height -y $x -x $y \
-alacritty --class scratchpad,scratchpad -t Scratchpad \
---config-file $XDG_CONFIG_HOME/alacritty/scratchpad.yml 
+resolution=$(xrandr | grep current | sed -n 's/.*current //; s/,.*//; s/ x / /p')
+mon_width=${resolution%%\ [1-9]*}
+mon_height=${resolution##[1-9]*\ }
+
+width=$mon_width
+height=$mon_height
+x=0
+y=0
+
+gapps=0
+border_width=0
+top_padding=0
+bottom_padding=0
+left_padding=0
+right_padding=0
+
+
+for i in $(seq 1 $#); do
+	eval "arg=\$$i"
+	case $arg in
+		'--x' | '-x') 
+			eval "x=\$$(( $i + 1 ))"
+		;;
+		'--y' | '-y') 
+			eval "y=\$$(( $i + 1 ))"
+		;;
+		'--width' | '-w') 
+			eval "width=\$$(( $i + 1 ))"
+		;;
+		'--height' | '-h') 
+			eval "height=\$$(( $i + 1 ))"
+		;;
+		'--border-width' | '-b') 
+			eval "border_width=\$$(( $i + 1 ))"
+		;;
+		'--gapps' | '-g') 
+			eval "gapps=\$$(( $i + 1 ))"
+		;;
+		--*-padding) 
+			tmp=${arg##--}
+			eval "${tmp%%-padding}_padding=\$$(( $i + 1 ))"
+		;;
+
+		'--orientation' | '-o')
+			eval "orientation=\$$(( $i + 1 ))"
+		;;
+
+		'--bspwm-config')
+			bspwm_gapps=$(bspc config window_gap 2> /dev/null)
+			bspwm_border_width=$(bspc config border_width 2> /dev/null)
+			bspwm_top_padding=$(bspc config top_padding 2> /dev/null)
+			bspwm_bottom_padding=$(bspc config bottom_padding 2> /dev/null)
+			bspwm_left_padding=$(bspc config left_padding 2> /dev/null)
+			bspwm_right_padding=$(bspc config right_padding 2> /dev/null)
+
+			gapps=${bspwm_gapps:-0}
+			border_width=${bspwm_border_width:-0}
+			top_padding=${bspwm_top_padding:-0}
+			bottom_padding=${bspwm_bottom_padding:-0}
+			left_padding=${bspwm_left_padding:-0}
+			right_padding=${bspwm_right_padding:-0}
+		;;
+	esac
+done
+
+width=$(( $width - gapps * 2 - left_padding - right_padding - 2 * border_width ))
+height=$(( $height - gapps * 2 - top_padding - bottom_padding - 2 * border_width ))
+x=$(( $x + gapps + left_padding ))
+
+if [ "$orientation" = 'top' -o -z "$orientation" ]; then
+	y=$(( $y + gapps + top_padding ))
+else
+	y=$(( $mon_height - $height - gapps - 2 * $border_width ))
+fi
+
+hide (){
+	scratchpad_desktop=$(xdotool get_desktop_for_window "$id")
+	[ "$scratchpad_desktop" = "$(xdotool get_desktop)" ] && hide=true
+	xdotool set_desktop_for_window "$id" "$(xdotool get_desktop)"
+	! [ -z $hide ] &&
+	xdotool windowunmap "$id"
+}
+
+show (){
+	if [ -z "$id" ]; then 
+		alacritty --class scratchpad,scratchpad -t Scratchpad & sleep 0.1
+		id=$(xdotool search --classname scratchpad)
+	fi
+	xdotool windowmap "$id" windowmove "$id" "$x" "$y" 2> /dev/null
+	xdotool windowsize "$id" "$width" "$height" 2> /dev/null
+	exit
+}
+
+
+id=$(xdotool search --classname scratchpad)
+[ -z "$id" ] && show
+
+state=$(xprop -id "$id" | awk '/window state: /{print $3}' 2>/dev/null)
+[ "$state" = "Withdrawn" ] && status='show' || status='hide'
+$status

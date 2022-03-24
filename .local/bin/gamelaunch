@@ -1,17 +1,19 @@
-#!/bin/bash
+#!/bin/sh
 
-#game=$(ls $HOME/Desktop | sed 's/.desktop//' | dmenu -i -p  "Escolha o game")
-#game=$(echo -en "$(cat $XDG_DATA_HOME/applications/Games/* | \
-	#grep -E "^Name=|^Icon=" | sed 's/^Icon=/\\0icon\\x1f/; s/^Name=//' | \
-	#sed -e 'N;s/\n/ /')" | \
-	#rofi -dmenu -p "Launch" -i -config $HOME/.config/rofi/gamelauncher.rasi)
+game_dir="$XDG_DATA_HOME/applications/Games"
 
-game=$(echo -en "$(grep -Eh "^Name=|^Icon=" $XDG_DATA_HOME/applications/Games/* | \
-	sed 's/^Icon=/\\0icon\\x1f/; s/^Name=//' | \
-	sed -e 'N;s/\n/ /')" | \
-	rofi -dmenu -p "Launch" -i -config $HOME/.config/rofi/gamelauncher.rasi)
+game_list=$(
+	sed -n 's/^Icon=/\\0icon\\0037/p; s/^Name=//p; ' $game_dir/* | sed -e 'N;s/\n//'
+)
 
-[[ $game = '' ]] && exit
-game="$(echo $game | sed 's/$//')"
+game=$(printf "%b" "$game_list" | rofi -dmenu -p "" -i) || exit
 
-$(grep '^Exec' "$XDG_DATA_HOME/applications/Games/$game.desktop" | tail -1 | sed 's/^Exec=//' | sed 's/%.//' | sed 's/^"//g' | sed 's/" *$//g') 
+exec=$(sed -n 's/^Exec=//p' "$game_dir/$game.desktop")
+
+eval $(grep Comment "$game_dir/$game.desktop")
+
+user=games
+
+grep -w nogameuser "$game_dir/$game.desktop" 2>/dev/null && user=$USER
+
+sudo -u $user $exec

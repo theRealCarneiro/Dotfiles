@@ -2,9 +2,12 @@
 maildir=$HOME/.local/share/mail/gmail/INBOX/new
 #maildir=$HOME/.local/share/mail/gmail/INBOX/cur
 for i in $(ls $maildir); do
+	from=$(grep "From: " $maildir/$i | utf8-decode)
+	subject=$(grep "Subject: " $maildir/$i | sed 's/.*;$//' | utf8-decode | sed '/^$/d')
+
 	mail_info=$mail_info"__________________\n"
-	mail_info=$mail_info$(grep "From: " $maildir/$i | utf8-decode)"\n"
-	mail_info=$mail_info$(grep "Subject: " $maildir/$i | utf8-decode)"\n"
+	mail_info=$mail_info$from"\n"
+	mail_info=$mail_info$subject"\n"
 	mail_info=$mail_info"------------------\n"
 done
 echo a

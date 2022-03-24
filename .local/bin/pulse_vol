@@ -1,2 +1,4 @@
 #!/bin/sh
 $(/usr/bin/pactl set-$1-volume $2 $3%)
+dunstify $2 -h int:value:$3
+#echo $3 > /tmp/xobpipe

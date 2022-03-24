@@ -1,13 +1,14 @@
 #!/bin/sh 
 #. /home/gabriel/.cache/wal/shell
-. $HOME/.config/colorfig/generated/colors.sh 
+#. $HOME/.config/colorfig/generated/colors.sh 
 killall dunst 2> /dev/null
-dunst -lf  "${main}" \
-      -lb  "${background}" \
-      -lfr "${background}" \
-      -nf  "${main}" \
-      -nb  "${background}" \
-      -nfr "${background}" \
-      -cf  "${main}" \
-      -cb  "${background}" \
-      -cfr "${main}" 
+dunst # -conf $HOME/.config/dunst/dunstrc_xr_colors &
+#dunst -lf  "${main}" \
+      #-lb  "${background}" \
+      #-lfr "${background}" \
+      #-nf  "${main}" \
+      #-nb  "${background}" \
+      #-nfr "${background}" \
+      #-cf  "${main}" \
+      #-cb  "${background}" \
+      #-cfr "${main}" 

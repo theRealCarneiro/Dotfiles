@@ -3,13 +3,20 @@
 if [ -z "$2" ]; then
 	command=$1
 else 
-	command=$2
+	if [ "$2" = "--silent" ]; then
+		command=$1
+		silent=true
+	else
+		command=$2
+	fi
 fi
 
 if pgrep "$1" >/dev/null; then 
-	killall $1 &
-	dunstify -a "Toggle" -u low -r "1" "$1 killed"
+	pkill $1 &
+	[ -z "$silent" ] && dunstify -a "Toggle" -u low -r "1" "$1 killed"
+	! [ -z "$3" ] && eval "$3"
 else 
 	$command &
-	dunstify -a "Toggle" -u low -r "1" "$1 started"
+	[ -z "$silent" ] && dunstify -a "Toggle" -u low -r "1" "$1 started"
+	! [ -z "$4" ] && eval "$4"
 fi

@@ -1,8 +1,8 @@
 #!/bin/sh
-files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap zprofile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv neofetch colorfig'
+files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap profile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv neofetch colorfig pulsemeeter git qtile kmonad'
 
 files="$(echo $files | sed 's/ /\n/g')"
-choice=$(echo "$files" | sort | dmenu -i -p  "Config:")
+choice=$(printf "%b" "$files" | sort | dmenu -i -p  "Config:")
 case $choice in
 	bspwm)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/bspwm/bspwmrc ;;
 	dwm)		$TERMINAL -e $EDITOR $HOME/Bibliotecas/Projects/suckless/dwm/config.h ;;
@@ -14,11 +14,11 @@ case $choice in
 	lf)			$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/lf/lfrc ;;
 	polybar)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/polybar/config ;;
 	rofi)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/rofi/config.rasi ;;
-	Xresources)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/Xresources ;;
-	xprofile)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xprofile ;;
-	xmodmap)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xmodmap ;;
-	xinitrc)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/X11/xinitrc ;;
-	zprofile)	$TERMINAL -e $EDITOR $HOME/.zprofile ;;
+	Xresources)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/x11/Xresources ;;
+	xprofile)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/x11/xprofile ;;
+	xmodmap)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/x11/xmodmap ;;
+	xinitrc)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/x11/xinitrc ;;
+	profile)	$TERMINAL -e $EDITOR $HOME/.profile ;;
 	dunst)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/dunst/dunstrc ;;
 	zsh)		$TERMINAL -e $EDITOR $ZDOTDIR/.zshrc ;;
 	bash)		$TERMINAL -e $EDITOR $HOME/.bashrc ;;
@@ -34,11 +34,16 @@ case $choice in
 	pywal)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/wal ;;
 	jgmenu)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/jgmenu/jgmenurc ;;
 	legendary)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/legendary/config.ini ;;
-	minlau)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/minlau/config.ini;;
+	minlau)		$TERMINAL -e $EDITOR /home/games/.config/minlau/config.ini;;
 	winetkg)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/frogminer/wine-tkg.cfg ;;
 	paru)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/paru/paru.conf ;;
 	calcurse)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/calcurse ;;
 	sxiv)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/sxiv/exec/key-handler ;;
 	neofetch)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/neofetch/config.conf ;;
 	colorfig)	$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/colorfig/ ;;
+	pulsemeeter)$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/pulsemeeter/config.json ;;
+	git)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/git/config ;;
+	qtile)		$TERMINAL -e $EDITOR $XDG_CONFIG_HOME/qtile/config.py ;;
+	kmonad)     $TERMINAL -e $EDITOR $XDG_CONFIG_HOME/kmonad/config.kbd ;;
+	
 esac

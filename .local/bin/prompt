@@ -1,2 +1,2 @@
 #!/bin/sh
-[ $(echo 'Não\nSim' | dmenu -i -p  "$1") = "Sim" ] && $2
+[ $(printf "%b" 'Não\nSim' | dmenu -i -p  "$1") = "Sim" ] && $2
