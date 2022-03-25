@@ -1,7 +1,9 @@
 " Plug
 call plug#begin()
 
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
+
+Plug 'windwp/nvim-autopairs'
 Plug 'ryanoasis/vim-devicons' " Icons
 Plug 'itchyny/lightline.vim' " Status bar
 Plug 'itchyny/vim-gitbranch' "Git branch
@@ -48,7 +50,7 @@ let g:cursorhold_updatetime = 100
 set completeopt=menu,menuone,noselect
 
 "set viminfo+='1000,n$HOME/.config/nvim/viminfo
-"autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
+autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"
 
 " Modules
 source $HOME/.config/nvim/keymaps.vim
@@ -62,3 +64,4 @@ source $HOME/.config/nvim/plugconf/vimwiki.vim
 lua require 'plugconf.lspinstall'
 lua require 'plugconf.cmp'
 lua require 'plugconf.treesitter'
+lua require 'plugconf.autopairs'
