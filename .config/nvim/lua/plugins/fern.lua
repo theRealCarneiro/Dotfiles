@@ -39,12 +39,12 @@ vim.cmd [[
 	endfunction
 
 	augroup fern-custom
-	  autocmd! *
-	  autocmd FileType fern call s:init_fern()
+		autocmd! *
+		autocmd FileType fern call s:init_fern()
 	augroup END
 
 	augroup my-glyph-palette
-	  autocmd! *
-	  autocmd FileType fern call glyph_palette#apply()
+		autocmd! *
+		autocmd FileType fern call glyph_palette#apply()
 	augroup END
 ]]
