@@ -9,16 +9,20 @@ set_keymap('n', '<C-h>', '<C-w>h')
 set_keymap('n', '<C-j>', '<C-w>j')
 set_keymap('n', '<C-k>', '<C-w>k')
 set_keymap('n', '<C-l>', '<C-w>l')
+set_keymap('i', '<C-h>', '<Esc><C-w>h')
+set_keymap('i', '<C-j>', '<Esc><C-w>j')
+set_keymap('i', '<C-k>', '<Esc><C-w>k')
+set_keymap('i', '<C-l>', '<Esc><C-w>l')
+
+-- Quit
+set_keymap('n', '<C-q>', ':q!<CR>')
+set_keymap('i', '<C-q>', '<Esc>:q!<CR>')
+set_keymap('v', '<C-q>', '<Esc>:q!<CR>')
 
 -- Save
 set_keymap('n', '<C-s>', '<Esc>:w<CR>')
 set_keymap('i', '<C-s>', '<Esc>:w<CR>')
 set_keymap('v', '<C-s>', '<Esc>:w<CR>')
-
--- Quit
-set_keymap('n', '<C-q>', '<Esc>:q!<CR>')
-set_keymap('i', '<C-q>', '<Esc>:q!<CR>')
-set_keymap('v', '<C-q>', '<Esc>:q!<CR>')
 
 -- Copy
 set_keymap('n', '<C-c>', '"*y')

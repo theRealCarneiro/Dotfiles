@@ -16,11 +16,12 @@ local packer = require('packer').startup(function(use)
 	use { 'kovetskiy/sxhkd-vim' }
 	use { 'kmonad/kmonad-vim' }
 
+	use { 'lewis6991/gitsigns.nvim' }
 	use { 'theRealCarneiro/nvim-tabline' }
 	use { 'nvim-lualine/lualine.nvim' }
 	use { 'norcalli/nvim-colorizer.lua' }
 	use { 'windwp/nvim-autopairs' }
-	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 	use { 'neovim/nvim-lspconfig' }
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-buffer' }
@@ -40,5 +41,6 @@ require ('plugins.colorizer')
 require ('plugins.tabline')
 require ('plugins.lualine')
 require ('plugins.fern')
+require ('plugins.gitsigns')
 
 return packer
