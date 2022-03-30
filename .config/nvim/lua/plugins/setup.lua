@@ -1,6 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 local packer = require('packer').startup(function(use)
+	use { 'wbthomason/packer.nvim' }
 	use { 'lambdalisue/fern.vim' }
 	use { 'lambdalisue/fern-renderer-nerdfont.vim' }
 	use { 'lambdalisue/fern-hijack.vim' }
