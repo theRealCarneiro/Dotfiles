@@ -1,0 +1,1 @@
+/home/gabriel/.config/zsh/.zprofile
