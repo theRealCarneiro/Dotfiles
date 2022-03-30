@@ -14,16 +14,20 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=$XDG_CACHE_HOME/zsh/history
 
+# Colors
+[[ -f "$HOME/.config/colorfig/generated/colors.sh" ]] && \
+	source $HOME/.config/colorfig/generated/colors.sh 
+
+[[ -f "$XDG_CONFIG_HOME/colorfig/generated/colors-tty.sh" ]] && \
+	source $XDG_CONFIG_HOME/colorfig/generated/colors-tty.sh
+
 # Plugins
-#source $HOME/.cache/wal/shell 
-source $HOME/.config/colorfig/generated/colors.sh 
 source $ZDOTDIR/themes/minimal.zsh-theme
 source $ZDOTDIR/plugins/git.zsh
 #source $ZDOTDIR/plugins/prompt_info_functions.zsh
 source $ZDOTDIR/plugins/theme-and-appearance.zsh
 source $ZDOTDIR/plugins/zsh-vi-mode.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $XDG_CONFIG_HOME/colorfig/generated/colors-tty.sh
 
 # Alias
 setopt complete_aliases

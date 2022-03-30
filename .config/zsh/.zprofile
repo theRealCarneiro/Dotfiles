@@ -43,13 +43,14 @@ export GOPATH="$XDG_DATA_HOME/go"
 export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
 
 # Other configs
-. "/home/gabriel/.config/lf/icons"
-#. "/home/gabriel/.cache/wal/shell"
+[ -f "/home/gabriel/.config/lf/icons" ] && \
+	. "/home/gabriel/.config/lf/icons"
+
 #. "/home/gabriel/.config/i3/workspaces"
 
 # Runit
-#export SVDIR=/run/runit/service # Runit services
-#export USER_SVDIR=$HOME/.config/runit/service # Runit services
+export SVDIR=/run/runit/service # Runit services
+export USER_SVDIR=$HOME/.config/runit/service # Runit services
 
 if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
 	exec startx $HOME/.config/x11/xinitrc -- vt1 &> /dev/null
