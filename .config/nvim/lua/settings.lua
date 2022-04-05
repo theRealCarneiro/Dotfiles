@@ -17,5 +17,5 @@ set_options({
 	noshowmode = true,
 	mouse = 'a',
 	clipboard = 'unnamedplus',
-	undodir = '$XDG_CACHE_HOME/nvim/undodir',
+	undodir = '~/.cache/nvim/undodir',
 })
