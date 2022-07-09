@@ -1,6 +1,7 @@
 #!/bin/sh
 
-. $HOME/.cache/wal/shell 
+#. $HOME/.cache/wal/shell 
+. $XDG_CONFIG_HOME/colorfig/generated/colors.sh 
 
 C=#${foreground#*#}22
 D=#${foreground#*#}cc

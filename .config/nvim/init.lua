@@ -2,4 +2,4 @@ require ('settings')
 require ('plugins.setup')
 require ('keymaps')
 
-vim.cmd('autocmd VimEnter * :silent exec "!kill -s SIGWINCH $PPID"')
+vim.api.nvim_create_autocmd("VimEnter", { command = "silent !kill -s SIGWINCH $PPID" })

@@ -32,7 +32,9 @@ local packer = require('packer').startup(function(use)
 	use { 'L3MON4D3/LuaSnip' }
 	use { 'onsails/lspkind-nvim' }
 	use { 'saadparwaiz1/cmp_luasnip' }
+	use { 'folke/lua-dev.nvim' }
 	use { 'williamboman/nvim-lsp-installer' }
+
 end)
 
 require ('plugins.lspinstall')
@@ -44,5 +46,6 @@ require ('plugins.tabline')
 require ('plugins.lualine')
 require ('plugins.fern')
 require ('plugins.gitsigns')
+require ('plugins.colorfig')
 
 return packer

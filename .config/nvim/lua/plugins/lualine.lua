@@ -45,5 +45,9 @@ if (status) then
 end
 
 require('lualine').setup ({
-	options = { theme = theme },
+	options = {
+		theme = theme,
+		disabled_filetypes = {},
+		globalstatus = true
+	},
 })

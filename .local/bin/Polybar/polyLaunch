@@ -1,12 +1,15 @@
 #!/bin/sh
 
-bg=$(xgetres background)
-#. $HOME/.cache/wal/shell 
 . $HOME/.config/colorfig/generated/colors.sh 
-export bg_alpha="#59${bg###}"
+export bg_alpha="#59${background###}"
 
-killall polybar 2> /dev/null
+polybar-msg cmd quit >/dev/null 2>&1
 
-for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-	MONITOR=$m polybar --reload bar -l error &
+MONITOR=xrandr --query | grep " connected \(primary \)\?[0-9]" | cut -d" " -f1
+MONITOR=$MONITOR TRAY_POS=adaptive polybar --reload bar 2>&1 | tee -a /tmp/polybar.$m &
+
+for m in $(xrandr --query | grep " connected \?[0-9]" | cut -d" " -f1); do
+	MONITOR=$m TRAY_POS=unset polybar --reload bar 2>&1 | tee -a /tmp/polybar.$m &
 done
+
+#MONITOR='DVI-D-0' polybar --reload bar 2>&1 | tee -a /tmp/polybar.$m & disown

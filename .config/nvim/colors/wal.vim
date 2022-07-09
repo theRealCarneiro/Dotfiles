@@ -3,6 +3,12 @@
 " Webpage:      https://github.com/dylanaraps/wal
 " Description:  A colorscheme that uses your terminal colors, made to work with 'wal'.
 
+" Colorscheme name
+let g:colors_name = 'wal'
+
+" So that when I export to a setup that does not have wal
+if filereadable(expand('~/.config/nvim/colors/colors.vim')) 
+
 hi clear
 set background=dark
 
@@ -10,13 +16,11 @@ if exists('syntax_on')
     syntax reset
 endif
 
-" Colorscheme name
-let g:colors_name = 'wal'
-
-" highlight groups {{{
 
 " get hex colors for termguicolors
-source ~/.config/colorfig/generated/colors.vim
+source ~/.config/nvim/colors/colors.vim
+
+" highlight groups {{{
 
 " set t_Co=16
 exec "hi Normal ctermbg=NONE ctermfg=7 guibg=NONE guifg=".g:color7
@@ -197,3 +201,4 @@ exec "hi ALEWarning ctermbg=NONE ctermfg=3 guibg=NONE guifg=".g:color3
 let g:limelight_conceal_ctermfg = 8
 
 " }}}
+endif

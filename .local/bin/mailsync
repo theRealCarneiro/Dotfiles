@@ -5,3 +5,4 @@
 export GNUPGHOME="/home/gabriel/.config/gnupg"
 export PASSWORD_STORE_DIR="/home/gabriel/.local/share/.password-store" 
 mbsync -c /home/gabriel/.config/isync/mbsyncrc -a
+mailcheck

@@ -22,6 +22,9 @@ super + Return
 super + b 
 	$BROWSER
 
+super + w
+	whatsapp-nativefier
+
 # file managers {vifm, pcmanfm}
 super + {_, ctrl +}e 
 	{$TERMINAL -e vifmrun, pcmanfm}
@@ -123,9 +126,9 @@ super + r
 	pkill -USR1 -x sxhkd
 
 # kill gpg
-super + x
-	gpg-connect-agent --no-autostart reloadagent /bye && \
-	notify-send GPG "Restarted agent"
+#super + x
+	#gpg-connect-agent --no-autostart reloadagent /bye && \
+	#notify-send GPG "Restarted agent"
 
 # print to clipboard
 {Print, super + Delete  }
@@ -167,8 +170,8 @@ super + shift + p
 
 # Toggle Pulseaudio
 super + F12
-	systemctl --user restart pulseaudio.service \
-	&& notify-send "Restarted Pulseaudio" -i Audio 
+	systemctl --user restart pipewire.service \
+	&& notify-send "Restarted Audio Server" -i Audio 
 
 # Toggle BCD
 super + shift + F12

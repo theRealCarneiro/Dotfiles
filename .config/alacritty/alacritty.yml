@@ -25,19 +25,19 @@ key_bindings:
 
 font:
      normal:
-          family: JetBrains Mono Nerd Font
+          family: SF Mono
           style: Medium
 
      bold:
-          family: JetBrains Mono Nerd Font
+          family: SF Mono
           style: Bold
 
      italic:
-          family: JetBrains Mono Nerd Font
+          family: SF Mono
           style: Italic
 
      bold_italic:
-          family: JetBrains Mono Nerd Font
+          family: SF Mono
           style: Bold Italic
 
      size: 12

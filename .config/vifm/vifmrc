@@ -72,7 +72,7 @@ colorscheme Default
 " TIME_STAMP_FORMAT=%m/%d-%H:%M
 " See man date or man strftime for details.
 
-set timefmt=%m/%d\ %H:%M
+set timefmt=%d/%m\ %H:%M
 
 " Show list of matches on tab completion in command-line mode
 
@@ -112,13 +112,15 @@ endif
 
 " Set custom status line look
 
-set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
+set statusline="  %A %10u:%-7g %15s %= %20d  "
 
 " ------------------------------------------------------------------------------
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
+mark b ~/.local/bin/
+mark p ~/Bibliotecas/Projects
+mark c ~/.config
 mark h ~/
 
 " ------------------------------------------------------------------------------
@@ -139,7 +141,7 @@ command makeclean make clean
 command make make
 command unzip atool -x %c -q
 command setbg setbg %f
-command dragon dragon-drag-and-drop %f &
+command dragon dragon-drop %f &
 command! df df -h %m 2> /dev/null
 command! diff nvim -d %f %F
 command! zip zip -r %f.zip %f
@@ -176,7 +178,7 @@ command! reload :write | restart
 "
 " You can also add %CLEAR if you want to clear screen before running FUSE
 " program.
-"fileview */,.*/ tree -L 1 -I .git %c
+fileview */,.*/ tree -L 1 -I .git %c
 
 fileviewer *.ts,*.js,*.html,*.css,*.scss,*.json,*.xml,*.md,*.toml,
 			\ highlight --out-format ansi -t 2 %c

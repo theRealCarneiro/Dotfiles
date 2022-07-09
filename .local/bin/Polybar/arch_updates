@@ -19,23 +19,17 @@ old_count=$(cat $tempfile 2> /dev/null || echo 0)
 [ "$1" = 'notify' ] && \
 	dunstify -a "Updates" -u low -i Pacman -r "1" "Buscando atualizações" 
 
-if ! updates_arch=$(checkupdates 2> /dev/null); then
-	updates_arch_count=0
-else
-	updates_arch_count=$(echo "$updates_arch" | wc -l)
-fi
+updates_arch=$(checkupdates | cut -d ' ' -f1 2> /dev/null)
+updates_aur=$(paru -Qum 2> /dev/null | cut -d ' ' -f1)
+updates_arch_count=0
+updates_aur_count=0
 
-if ! updates_aur=$(paru -Qum 2> /dev/null); then
-	updates_aur_count=0
-else
-	updates_aur_count=$(echo "$updates_aur" | wc -l)
-fi
+[ -z "$updates_arch" ] || updates_arch_count=$(echo "$updates_arch" | wc -l)
+[ -z "$updates_aur" ] || updates_aur_count=$(echo "$updates_aur" | wc -l)
 
 updates=$(( $updates_arch_count + $updates_aur_count ))
-echo $updates
 
-if [ "$updates" -gt "$old_count" -o "$1" = 'notify' -a "$updates" -gt 0 ]; then
+[ "$updates" -gt "$old_count" -o "$updates" -gt 0 -a "$1" = 'notify' ] && \
 	dunstify -i Pacman -r "1" "Updates" "$updates_arch\n$updates_aur" 
-fi
 
 echo "$updates" > $tempfile

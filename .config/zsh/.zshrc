@@ -22,12 +22,14 @@ HISTFILE=$XDG_CACHE_HOME/zsh/history
 	source $XDG_CONFIG_HOME/colorfig/generated/colors-tty.sh
 
 # Plugins
+[[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] && \
+	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 source $ZDOTDIR/themes/minimal.zsh-theme
 source $ZDOTDIR/plugins/git.zsh
 #source $ZDOTDIR/plugins/prompt_info_functions.zsh
 source $ZDOTDIR/plugins/theme-and-appearance.zsh
 source $ZDOTDIR/plugins/zsh-vi-mode.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Alias
 setopt complete_aliases

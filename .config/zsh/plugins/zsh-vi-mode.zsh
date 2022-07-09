@@ -1,4 +1,3 @@
-#
 # zsh-vi-mode.zsh -- A better and friendly vi(vim) mode for Zsh
 # https://github.com/jeffreytse/zsh-vi-mode
 #
@@ -25,6 +24,27 @@
 # All Settings
 # Some of these variables should be set before sourcing this file.
 #
+# ZVM_CONFIG_FUNC
+# the config function (default is `zvm_config`), if this config function
+# exists, it will be called automatically, you can do some configurations
+# in this aspect before you source this plugin.
+#
+# For example:
+#
+# ```zsh
+# function zvm_config() {
+#   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
+#   ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# }
+#
+# source ~/zsh-vi-mode.zsh
+# ```
+#
+# ZVM_INIT_MODE
+# the pugin initial mode (default is doing the initialization when the first
+# new command line is starting. For doing the initialization instantly, you
+# can set it to `sourcing`.
+#
 # ZVM_VI_ESCAPE_BINDKEY
 # the vi escape key for all modes (default is ^[ => <ESC>), you can set it
 # to whatever you like, such as `jj`, `jk` and so on.
@@ -48,6 +68,7 @@
 # ZVM_VI_HIGHLIGHT_FOREGROUND:
 # the behavior of highlight foreground (surrounds, visual-line, etc) in vi mode
 #
+# ZVM_VI_HIGHLIGHT_BACKGROUND:
 # the behavior of highlight background (surrounds, visual-line, etc) in vi mode
 #
 # ZVM_VI_HIGHLIGHT_EXTRASTYLE:
@@ -162,14 +183,14 @@
 # enable the cursor style feature (default is true)
 #
 
+# Avoid sourcing plugin multiple times
+command -v 'zvm_version' >/dev/null && return
+
 # Use vim keys in tab complete menu:
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
-
-# sometimes it enters default vi mode so this disables it
-bindkey -e
 
 # fuzzy search backwards
 autoload -U up-line-or-beginning-search
@@ -177,20 +198,20 @@ zle -N up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
 zle -N down-line-or-beginning-search
 
-# Avoid sourcing plugin multiple times
-command -v 'zvm_version' >/dev/null && return
-
 # Plugin information
 typeset -gr ZVM_NAME='zsh-vi-mode'
 typeset -gr ZVM_DESCRIPTION='💻 A better and friendly vi(vim) mode plugin for ZSH.'
 typeset -gr ZVM_REPOSITORY='https://github.com/jeffreytse/zsh-vi-mode'
-typeset -gr ZVM_VERSION='0.8.4'
+typeset -gr ZVM_VERSION='0.8.5'
 
 # Plugin initial status
 ZVM_INIT_DONE=false
 
-# Disable reset prompt (i.e. disable the widget `reset-prompt`)
-ZVM_RESET_PROMPT_DISABLED=false
+# Postpone reset prompt (i.e. postpone the widget `reset-prompt`)
+# empty (No postponing)
+# true (Enter postponing)
+# false (Trigger reset prompt)
+ZVM_POSTPONE_RESET_PROMPT=
 
 # Operator pending mode
 ZVM_OPPEND_MODE=false
@@ -220,8 +241,9 @@ ZVM_READKEY_ENGINE_NEX='nex'
 ZVM_READKEY_ENGINE_ZLE='zle'
 ZVM_READKEY_ENGINE_DEFAULT=$ZVM_READKEY_ENGINE_NEX
 
-# Default alternative character for escape space character
+# Default alternative character for escape characters
 ZVM_ESCAPE_SPACE='\s'
+ZVM_ESCAPE_NEWLINE='^J'
 
 # Default vi modes
 ZVM_MODE_LAST=''
@@ -247,6 +269,14 @@ ZVM_REPEAT_COMMANDS=($ZVM_MODE_NORMAL i)
 
 ##########################################
 # Initial all default settings
+
+# Default config function
+: ${ZVM_CONFIG_FUNC:='zvm_config'}
+
+# Load config by calling the config function
+if command -v "$ZVM_CONFIG_FUNC" >/dev/null; then
+  $ZVM_CONFIG_FUNC
+fi
 
 # Set the readkey engine (default is NEX engine)
 : ${ZVM_READKEY_ENGINE:=$ZVM_READKEY_ENGINE_DEFAULT}
@@ -290,8 +320,8 @@ fi
 
 : ${ZVM_VI_INSERT_MODE_LEGACY_UNDO:=false}
 : ${ZVM_VI_SURROUND_BINDKEY:=classic}
-: ${ZVM_VI_HIGHLIGHT_BACKGROUND:=${main}}
-: ${ZVM_VI_HIGHLIGHT_FOREGROUND:=${foreground}}
+: ${ZVM_VI_HIGHLIGHT_BACKGROUND:=#cc0000}
+: ${ZVM_VI_HIGHLIGHT_FOREGROUND:=#eeeeee}
 : ${ZVM_VI_HIGHLIGHT_EXTRASTYLE:=default}
 : ${ZVM_VI_EDITOR:=${EDITOR:-vim}}
 : ${ZVM_TMPDIR:=${TMPDIR:-/tmp/}}
@@ -371,7 +401,12 @@ function zvm_keys() {
       ;;
   esac
 
-  echo "${keys// /$ZVM_ESCAPE_SPACE}"
+  # Escape the newline and space characters, otherwise, we can't
+  # get the output from subshell correctly.
+  keys=${keys//$'\n'/$ZVM_ESCAPE_NEWLINE}
+  keys=${keys// /$ZVM_ESCAPE_SPACE}
+
+  echo $keys
 }
 
 # Find the widget on a specified bindkey
@@ -462,13 +497,9 @@ function zvm_readkeys() {
   local pattern=
   local timeout=
 
-  # Escape the non-printed characters
-  pattern=$(zvm_escape_non_printed_characters "${keys}")
-  pattern=${pattern//$ZVM_ESCAPE_SPACE/ }
-
   while :; do
     # Keep reading key for escape character
-    if [[ "$key" == '' ]]; then
+    if [[ "$key" == $'\e' ]]; then
       while :; do
         local k=
         read -t $ZVM_ESCAPE_KEYTIMEOUT -k 1 k || break
@@ -507,7 +538,7 @@ function zvm_readkeys() {
 
     # Evaluate the readkey timeout
     # Special timeout for the escape sequence
-    if [[ "${keys}" ==  ]]; then
+    if [[ "${keys}" == $'\e' ]]; then
       timeout=$ZVM_ESCAPE_KEYTIMEOUT
       # Check if there is any one custom escape sequence
       for ((i=1; i<=${#result[@]}; i=i+2)); do
@@ -615,7 +646,13 @@ function zvm_escape_non_printed_characters() {
       str="${str}${c}"
     fi
   done
-  echo ${str// /$ZVM_ESCAPE_SPACE}
+
+  # Escape the newline and space characters, otherwise, we can't
+  # get the output from subshell correctly.
+  str=${str// /$ZVM_ESCAPE_SPACE}
+  str=${str//$'\n'/$ZVM_ESCAPE_NEWLINE}
+
+  echo -n $str
 }
 
 # Backward remove characters of an emacs region in the line
@@ -735,18 +772,19 @@ function zvm_vi_replace() {
     zvm_select_vi_mode $ZVM_MODE_REPLACE
 
     while :; do
+      # Read a character for replacing
+      zvm_update_cursor
+
       # Redisplay the command line, this is to be called from within
       # a user-defined widget to allow changes to become visible
       zle -R
 
-      # Read a character for replacing
-      zvm_update_cursor
       read -k 1 key
 
       # Escape key will break the replacing process, and enter key
       # will repace with a newline character.
       case $(zvm_escape_non_printed_characters $key) in
-        $ZVM_VI_OPPEND_ESCAPE_BINDKEY) break;;
+        '^['|$ZVM_VI_OPPEND_ESCAPE_BINDKEY) break;;
         '^M') key=$'\n';;
       esac
 
@@ -819,7 +857,14 @@ function zvm_vi_replace_chars() {
 
   # Read a character for replacing
   zvm_enter_oppend_mode
+
+  # Redisplay the command line, this is to be called from within
+  # a user-defined widget to allow changes to become visible
+  zle redisplay
+  zle -R
+
   read -k 1 key
+
   zvm_exit_oppend_mode
 
   # Escape key will break the replacing process
@@ -866,7 +911,7 @@ function zvm_vi_substitute() {
 
 # Substitute all characters of a line
 function zvm_vi_substitute_whole_line() {
-  zvm_select_vi_mode $ZVM_MODE_VISUAL_LINE;
+  zvm_select_vi_mode $ZVM_MODE_VISUAL_LINE false
   zvm_vi_substitute
 }
 
@@ -982,7 +1027,7 @@ function zvm_yank() {
     CUTBUFFER=${CUTBUFFER}$'\n'
   fi
   CURSOR=$bpos MARK=$epos
-  printf ${CUTBUFFER} | xclip -selection clipboard
+  printf "%s" ${CUTBUFFER} | xclip -selection clipboard
 }
 
 # Up case of the visual selection
@@ -1210,7 +1255,7 @@ function zvm_default_handler() {
   local extra_keys=$1
 
   # Exit vi mode if keys is the escape keys
-  case "$(zvm_escape_non_printed_characters $keys)" in
+  case $(zvm_escape_non_printed_characters "$keys") in
     '^['|$ZVM_VI_INSERT_ESCAPE_BINDKEY)
       zvm_exit_insert_mode
       ZVM_KEYS=${extra_keys}
@@ -1229,7 +1274,7 @@ function zvm_default_handler() {
         [vV]c) zvm_vi_change;;
         [vV]d) zvm_vi_delete;;
         [vV]y) zvm_vi_yank;;
-		[vV]S) zvm_change_surround S;;
+        [vV]S) zvm_change_surround S;;
         [cdyvV]*) zvm_range_handler "${keys}${extra_keys}";;
         *)
           for ((i=0;i<$#keys;i++)) do
@@ -1243,6 +1288,10 @@ function zvm_default_handler() {
       if [[ "${keys:0:1}" =~ [a-zA-Z0-9\ ] ]]; then
         zvm_self_insert "${keys:0:1}"
         zle redisplay
+        ZVM_KEYS="${keys:1}${extra_keys}"
+        return
+      elif [[ "${keys:0:1}" == $'\e' ]]; then
+        zvm_exit_insert_mode
         ZVM_KEYS="${keys:1}${extra_keys}"
         return
       fi
@@ -1385,7 +1434,7 @@ function zvm_navigation_handler() {
       '0') cmd=(zle vi-digit-or-beginning-of-line);;
       'h') cmd=(zle vi-backward-char);;
       'j') cmd=(zle down-line-or-history);;
-	 'k') cmd=(zle up-line-or-history);;
+      'k') cmd=(zle up-line-or-history);;
       'l') cmd=(zle vi-forward-char);;
       'w') cmd=(zle vi-forward-word);;
       'W') cmd=(zle vi-forward-blank-word);;
@@ -1714,7 +1763,11 @@ function zvm_range_handler() {
 function zvm_vi_edit_command_line() {
   # Create a temporary file and save the BUFFER to it
   local tmp_file=$(mktemp ${ZVM_TMPDIR}zshXXXXXX)
-  echo "$BUFFER" > "$tmp_file"
+
+  # Some users may config the noclobber option to prevent from
+  # overwriting existing files with the > operator, we should
+  # use >! operator to ignore the noclobber.
+  echo "$BUFFER" >! "$tmp_file"
 
   # Edit the file with the specific editor, in case of
   # the warning about input not from a terminal (e.g.
@@ -1911,7 +1964,7 @@ function zvm_change_surround() {
 
   # Check if it is ESCAPE key (<ESC> or ZVM_VI_ESCAPE_BINDKEY)
   case "$key" in
-    ''|"${ZVM_VI_ESCAPE_BINDKEY//\^\[/}")
+    $'\e'|"${ZVM_VI_ESCAPE_BINDKEY//\^\[/$'\e'}")
       zvm_highlight clear
       return
   esac
@@ -2657,7 +2710,7 @@ function zvm_highlight() {
       case "$ZVM_MODE" in
         $ZVM_MODE_VISUAL|$ZVM_MODE_VISUAL_LINE)
           local ret=($(zvm_calc_selection))
-		local bpos=$((ret[1])) epos=$((ret[2]))
+          local bpos=$((ret[1])) epos=$((ret[2]))
           local bg=$ZVM_VI_HIGHLIGHT_BACKGROUND
           local fg=$ZVM_VI_HIGHLIGHT_FOREGROUND
           local es=$ZVM_VI_HIGHLIGHT_EXTRASTYLE
@@ -2672,7 +2725,7 @@ function zvm_highlight() {
       local fg=${5:-$ZVM_VI_HIGHLIGHT_FOREGROUND}
       local es=${6:-$ZVM_VI_HIGHLIGHT_EXTRASTYLE}
       region=("${ZVM_REGION_HIGHLIGHT[@]}")
-	 region+=("$bpos $epos fg=$fg,bg=$bg,$es")
+      region+=("$bpos $epos fg=$fg,bg=$bg,$es")
       redraw=true
       ;;
     clear)
@@ -2814,8 +2867,15 @@ function zvm_append_eol() {
 # Self insert content to cursor position
 function zvm_self_insert() {
   local keys=${1:-$KEYS}
-  RBUFFER="${keys}${RBUFFER}"
-  CURSOR=$((CURSOR+1))
+
+  # Update the autosuggestion
+  if [[ ${POSTDISPLAY:0:$#keys} == $keys ]]; then
+    POSTDISPLAY=${POSTDISPLAY:$#keys}
+  else
+    POSTDISPLAY=
+  fi
+
+  LBUFFER+=${keys}
 }
 
 # Reset the repeat commands
@@ -2838,8 +2898,8 @@ function zvm_select_vi_mode() {
   zvm_exec_commands 'before_select_vi_mode'
 
   # Some plugins would reset the prompt when we select the
-  # keymap, so here we disable the reset-prompt temporarily.
-  ZVM_RESET_PROMPT_DISABLED=true
+  # keymap, so here we postpone executing reset-prompt.
+  zvm_postpone_reset_prompt true
 
   # Exit operator pending mode
   if $ZVM_OPPEND_MODE; then
@@ -2877,10 +2937,8 @@ function zvm_select_vi_mode() {
   # update the cursor, prompt and so on.
   zvm_exec_commands 'after_select_vi_mode'
 
-  # Enable reset-prompt
-  ZVM_RESET_PROMPT_DISABLED=false
-
-  $reset_prompt && zle reset-prompt
+  # Stop and trigger reset-prompt
+  $reset_prompt && zvm_postpone_reset_prompt false true
 
   # Start the lazy keybindings when the first time entering the
   # normal mode, when the mode is the same as last mode, we get
@@ -2902,15 +2960,38 @@ function zvm_select_vi_mode() {
   fi
 }
 
+# Postpone reset prompt
+function zvm_postpone_reset_prompt() {
+  local toggle=$1
+  local force=$2
+
+  if $toggle; then
+    ZVM_POSTPONE_RESET_PROMPT=true
+  else
+    if [[ $ZVM_POSTPONE_RESET_PROMPT == false || $force ]]; then
+      ZVM_POSTPONE_RESET_PROMPT=
+      zle reset-prompt
+    else
+      ZVM_POSTPONE_RESET_PROMPT=
+    fi
+  fi
+}
+
 # Reset prompt
 function zvm_reset_prompt() {
-  $ZVM_RESET_PROMPT_DISABLED && return
+  # Return if postponing is enabled
+  if [[ -n $ZVM_POSTPONE_RESET_PROMPT ]]; then
+    ZVM_POSTPONE_RESET_PROMPT=false
+    return
+  fi
+
   local -i retval
   if [[ -z "$rawfunc" ]]; then
     zle .reset-prompt -- "$@"
   else
     $rawfunc -- "$@"
   fi
+
   return retval
 }
 
@@ -2954,17 +3035,32 @@ function zvm_cursor_style() {
     # 256 colors the same way xterm does.
     xterm*|rxvt*|screen*|tmux*|konsole*|alacritty*|st*)
       case $style in
-        $ZVM_CURSOR_USER_DEFAULT) style='\e[0 q';;
         $ZVM_CURSOR_BLOCK) style='\e[2 q';;
         $ZVM_CURSOR_UNDERLINE) style='\e[4 q';;
         $ZVM_CURSOR_BEAM) style='\e[6 q';;
         $ZVM_CURSOR_BLINKING_BLOCK) style='\e[1 q';;
         $ZVM_CURSOR_BLINKING_UNDERLINE) style='\e[3 q';;
         $ZVM_CURSOR_BLINKING_BEAM) style='\e[5 q';;
+        $ZVM_CURSOR_USER_DEFAULT) style='\e[0 q';;
       esac
       ;;
     *) style='\e[0 q';;
   esac
+
+  # Restore default cursor color
+  if [[ $style == '\e[0 q' ]]; then
+    local old_style=
+
+    case $ZVM_MODE in
+      $ZVM_MODE_INSERT) old_style=$ZVM_INSERT_MODE_CURSOR;;
+      $ZVM_MODE_NORMAL) old_style=$ZVM_NORMAL_MODE_CURSOR;;
+      $ZVM_MODE_OPPEND) old_style=$ZVM_OPPEND_MODE_CURSOR;;
+    esac
+
+    if [[ $old_style =~ '\e\][0-9]+;.+\a' ]]; then
+      style=$style'\e\e]112\a'
+    fi
+  fi
 
   echo $style
 }
@@ -3067,7 +3163,13 @@ function zvm_zle-line-pre-redraw() {
   # there are one more panel in the same window, the program
   # in other panel could change the cursor shape, we need to
   # update cursor style when line is redrawing.
-  zvm_update_cursor
+  if [[ -n $TMUX ]]; then
+    zvm_update_cursor
+    # Fix display is not updated in the terminal of IntelliJ IDE.
+    # We should update display only when the last widget isn't a
+    # completion widget
+    [[ $LASTWIDGET =~ 'complet' ]] || zle redisplay
+  fi
   zvm_update_highlight
   zvm_update_repeat_commands
 }
@@ -3103,6 +3205,14 @@ function zvm_zle-line-finish() {
 
 # Initialize vi-mode for widgets, keybindings, etc.
 function zvm_init() {
+  # Check if it has been initalized
+  if $ZVM_INIT_DONE; then
+    return;
+  fi
+
+  # Mark plugin initial status
+  ZVM_INIT_DONE=true
+
   zvm_exec_commands 'before_init'
 
   # Correct the readkey engine
@@ -3181,11 +3291,19 @@ function zvm_init() {
   zvm_bindkey viins '^E' end-of-line
   zvm_bindkey viins '^B' backward-char
   zvm_bindkey viins '^F' forward-char
-  #zvm_bindkey viins '^K' zvm_forward_kill_line
+  zvm_bindkey viins '^K' zvm_forward_kill_line
   zvm_bindkey viins '^W' backward-kill-word
   zvm_bindkey viins '^U' zvm_viins_undo
   zvm_bindkey viins '^Y' yank
   zvm_bindkey viins '^_' undo
+
+  # Mode agnostic editing
+  zvm_bindkey viins '^[[H'  beginning-of-line
+  zvm_bindkey vicmd '^[[H'  beginning-of-line
+  zvm_bindkey viins '^[[F'  end-of-line
+  zvm_bindkey vicmd '^[[F'  end-of-line
+  zvm_bindkey viins '^[[3~' delete-char
+  zvm_bindkey vicmd '^[[3~' delete-char
 
   # History search
   zvm_bindkey viins '^R' history-incremental-search-backward
@@ -3194,7 +3312,6 @@ function zvm_init() {
   zvm_bindkey viins '^N' down-line-or-history
   zvm_bindkey viins '^K' up-line-or-beginning-search
   zvm_bindkey viins '^J' down-line-or-beginning-search
-
 
   # Insert mode
   zvm_bindkey vicmd 'i'  zvm_enter_insert_mode
@@ -3327,15 +3444,6 @@ function zvm_init() {
   zvm_exec_commands 'after_init'
 }
 
-# Precmd function
-function zvm_precmd_function() {
-  # Init zsh vi mode  when starting new command line at first time
-  if ! $ZVM_INIT_DONE; then
-    ZVM_INIT_DONE=true
-    zvm_init
-  fi
-}
-
 # Check if a command is existed
 function zvm_exist_command() {
   command -v "$1" >/dev/null
@@ -3360,6 +3468,10 @@ function zvm_exec_commands() {
   done
 }
 
-# Initialize the plugin when starting new command line
-precmd_functions+=(zvm_precmd_function)
+# Initialize this plugin according to the mode
+case $ZVM_INIT_MODE in
+  sourcing) zvm_init;;
+  *) precmd_functions+=(zvm_init);;
+esac
+
 

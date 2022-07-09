@@ -1,21 +1,17 @@
-local vim = vim
-local set_options = require('common').set_options
+--vim.cmd('colorscheme wal')
 
-vim.cmd('colorscheme wal')
 vim.g.mapleader = ";"
 vim.g.cursorhold_updatetime = 100
 
-set_options({
-	encoding = 'utf-8',
-	scrolloff = 8,
-	tabstop = 4,
-	softtabstop = 4,
-	shiftwidth = 4,
-	number = true,
-	termguicolors = true,
-	undofile = true,
-	noshowmode = true,
-	mouse = 'a',
-	clipboard = 'unnamedplus',
-	undodir = '~/.cache/nvim/undodir',
-})
+vim.o.number = true
+vim.o.termguicolors = true
+vim.o.showmode = false
+vim.o.undofile = true
+vim.o.tabstop = 4
+vim.o.scrolloff = 4
+vim.o.shiftwidth = 4
+vim.o.softtabstop = 4
+vim.o.mouse = 'a'
+vim.o.encoding = 'utf-8'
+vim.o.clipboard = 'unnamedplus'
+vim.o.undodir = vim.env.XDG_CACHE_HOME .. '/nvim/undodir'

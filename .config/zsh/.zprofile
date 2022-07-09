@@ -11,6 +11,7 @@ export BROWSER="brave"
 export SXHKD_SHELL='/bin/sh'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on'
 
 # Config
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -27,6 +28,7 @@ export X11="$XDG_CONFIG_HOME/x11"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
+export NEXTCLOUD_PHP_CONFIG=/etc/webapps/nextcloud/php.ini
 
 # Cache
 export XDG_CACHE_HOME="$HOME/.cache"
