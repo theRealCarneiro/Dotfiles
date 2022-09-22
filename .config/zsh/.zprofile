@@ -29,6 +29,8 @@ export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME/java"
 export NEXTCLOUD_PHP_CONFIG=/etc/webapps/nextcloud/php.ini
+export TDESKTOP_FORCE_PANEL_ICON=1
+export TDESKTOP_DISABLE_TRAY_COUNTER=1
 
 # Cache
 export XDG_CACHE_HOME="$HOME/.cache"

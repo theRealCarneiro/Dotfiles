@@ -1,6 +1,7 @@
 accountsservice
 alacritty
 alsa-utils
+android-tools
 apache
 arandr
 arch-install-scripts
@@ -14,7 +15,6 @@ bat
 bind
 binutils
 bison
-bitwarden
 bitwarden-cli
 bluez
 bluez-hid2hci
@@ -47,6 +47,7 @@ efibootmgr
 ethtool
 extra-cmake-modules
 fakeroot
+feh
 figlet
 file
 findutils
@@ -59,6 +60,7 @@ gettext
 gimp
 git
 git-lfs
+github-cli
 glade
 glfw-x11
 godot
@@ -69,11 +71,14 @@ groff
 grub
 grub-customizer
 gtk4
+guitarix
 gzip
 helvum
 highlight
+home-assistant
 htop
 hwdetect
+icecast
 inetutils
 intel-ucode
 intltool
@@ -101,6 +106,8 @@ linux-firmware
 linux-lqx
 linux-lqx-docs
 linux-lqx-headers
+linux-zen
+linux-zen-headers
 lmms
 lostfiles
 lsof
@@ -115,6 +122,7 @@ make
 man-pages
 mariadb
 micro
+mixxx
 moreutils
 mpd
 mpv
@@ -144,6 +152,7 @@ patch
 patchage
 pavucontrol
 pcmanfm
+pd
 php-imagick
 pinta
 pipewire-jack
@@ -160,6 +169,7 @@ python-flask
 python-flask-restful
 python-matplotlib
 python-pip
+python-pydantic
 python-pynvim
 python-pywal
 python-seaborn
@@ -179,6 +189,7 @@ refind
 reflector
 rofi
 samba
+scrcpy
 screen
 sed
 speedtest-cli

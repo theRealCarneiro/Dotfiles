@@ -42,4 +42,5 @@ generate(){
 	"--rand") rand ;;
 esac
 
-xwallpaper --zoom "$(cat $wall)" 
+#xwallpaper --zoom "$(cat $wall)" 
+feh --bg-scale "$(cat $wall)" --no-fehbg

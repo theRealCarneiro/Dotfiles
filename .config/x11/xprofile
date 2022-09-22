@@ -2,11 +2,10 @@
 setbg & 
 picom & 
 dunst & 
-#tail -f /tmp/xobpipe | xob &
 sxhkdl &
 dbusfm &
 BCD &
-polkit-dumb-agent &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 pulsemeeter init &
 xhost SI:localuser:games & # allow games user to acces display
 

@@ -19,4 +19,4 @@ grep -w nogameuser "$game_dir/$game.desktop" 2>/dev/null && user=$USER
 #PULSE_SERVER=tcp:127.0.0.1:4713
 #export PULSE_SERVER
 
-sudo -u $user PULSE_SERVER=tcp:127.0.0.1:4713 $exec
+gamemoderun sudo -u $user PULSE_SERVER=tcp:127.0.0.1:4713 $exec

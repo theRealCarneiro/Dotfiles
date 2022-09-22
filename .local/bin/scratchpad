@@ -22,33 +22,35 @@ right_padding=0
 
 
 for i in $(seq 1 $#); do
-	eval "arg=\$$i"
+	next=$(( $i + 1 ))
+	eval "arg=\${$i}"
+	eval "param=\${$next}"
 	case $arg in
 		'--x' | '-x') 
-			eval "x=\$$(( $i + 1 ))"
+			x=$param
 		;;
 		'--y' | '-y') 
-			eval "y=\$$(( $i + 1 ))"
+			y=$param
 		;;
-		'--width' | '-w') 
-			eval "width=\$$(( $i + 1 ))"
+		'-w' | '--width') 
+			width=$param
 		;;
 		'--height' | '-h') 
-			eval "height=\$$(( $i + 1 ))"
+			height=$param
 		;;
 		'--border-width' | '-b') 
-			eval "border_width=\$$(( $i + 1 ))"
+			border_width=$param
 		;;
 		'--gapps' | '-g') 
-			eval "gapps=\$$(( $i + 1 ))"
+			gapps=$param
 		;;
 		--*-padding) 
 			tmp=${arg##--}
-			eval "${tmp%%-padding}_padding=\$$(( $i + 1 ))"
+			eval "${tmp%%-padding}_padding=$param"
 		;;
 
 		'--orientation' | '-o')
-			eval "orientation=\$$(( $i + 1 ))"
+			orientation=$param
 		;;
 
 		'--bspwm-config')
@@ -76,7 +78,7 @@ x=$(( $x + gapps + left_padding ))
 if [ "$orientation" = 'top' -o -z "$orientation" ]; then
 	y=$(( $y + gapps + top_padding ))
 else
-	y=$(( $mon_height - $height - gapps - 2 * $border_width ))
+	y=$(( $mon_height - $height - gapps - 2 * $border_width - $y ))
 fi
 
 hide (){
@@ -94,6 +96,7 @@ show (){
 	fi
 	xdotool windowmap "$id" windowmove "$id" "$x" "$y" 2> /dev/null
 	xdotool windowsize "$id" "$width" "$height" 2> /dev/null
+	xdotool set_desktop_for_window "$id" "$(xdotool get_desktop)"
 	exit
 }
 

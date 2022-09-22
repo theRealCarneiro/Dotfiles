@@ -5,6 +5,8 @@ files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xpr
 files="$(echo $files | sed 's/ /\n/g')"
 choice=$(printf "%b" "$files" | sort | dmenu -i -p  "Config:")
 
+[ -z "$choice" ] && exit
+
 bspwm="$XDG_CONFIG_HOME/bspwm/bspwmrc"
 dwm="$HOME/Bibliotecas/Projects/suckless/dwm/config.h"
 spectrwm="$XDG_CONFIG_HOME/spectrwm/spectrwm.conf"
@@ -36,6 +38,7 @@ pywal="$XDG_CONFIG_HOME/wal"
 jgmenu="$XDG_CONFIG_HOME/jgmenu/jgmenurc"
 legendary="$XDG_CONFIG_HOME/legendary/config.ini"
 minlau="/home/games/.config/minlau/config.ini"
+#minlau="$XDG_CONFIG_HOME/minlau/config.ini"
 winetkg="$XDG_CONFIG_HOME/frogminer/wine-tkg.cfg"
 paru="$XDG_CONFIG_HOME/paru/paru.conf"
 calcurse="$XDG_CONFIG_HOME/calcurse"

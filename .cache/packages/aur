@@ -9,7 +9,10 @@ droidcam
 endlessh-git
 f3
 getmail6
+hardcode-tray
 heroic-games-launcher-bin
+hyprland-bin
+hyprpaper-git
 i3lock-color-git
 kmonad-bin
 legendary
@@ -20,6 +23,7 @@ nerd-fonts-jetbrains-mono
 nodejs-nativefier
 noisetorch
 noisetorch-ladspa-plugin-git
+numix-cursor-theme
 otf-san-francisco
 otf-san-francisco-mono
 pam-gnupg-git
@@ -41,6 +45,7 @@ python-pulsectl-asyncio
 python-rtmidi
 rar
 ruby-mdless
+sndcpy-bin
 spicetify-cli
 spotify
 stremio
@@ -51,6 +56,7 @@ ttf-yosemite-san-francisco-font-git
 unityhub
 vscodium-bin
 whatsapp-nativefier
+whatsapp-nativefier-notray-hook
 wpgtk
 xgetres
 xob

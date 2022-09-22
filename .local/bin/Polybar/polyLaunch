@@ -5,11 +5,22 @@ export bg_alpha="#59${background###}"
 
 polybar-msg cmd quit >/dev/null 2>&1
 
-MONITOR=xrandr --query | grep " connected \(primary \)\?[0-9]" | cut -d" " -f1
-MONITOR=$MONITOR TRAY_POS=adaptive polybar --reload bar 2>&1 | tee -a /tmp/polybar.$m &
+# main monitor
+#MONITOR=$(xrandr --query | grep " connected \(primary \)\?[0-9]" | cut -d" " -f1)
+#MONITOR=$(xrandr --query | grep " connected primary [0-9]" | cut -d" " -f1)
+#MONITOR=$MONITOR polybar --reload bar 2>&1 | \
+	#tee -a /tmp/polybar.$MONITOR &
 
-for m in $(xrandr --query | grep " connected \?[0-9]" | cut -d" " -f1); do
-	MONITOR=$m TRAY_POS=unset polybar --reload bar 2>&1 | tee -a /tmp/polybar.$m &
+
+mons=$(xrandr --query | grep " connected \(primary \)\?[0-9]" | cut -d" " -f1)
+for m in $mons ; do
+
+	# start bar
+	MONITOR=$m polybar --reload bar 2>&1 | tee -a /tmp/polybar.$m &
+
+	# sleep so that main monitor can grab tray
+	sleep 0.1
 done
 
-#MONITOR='DVI-D-0' polybar --reload bar 2>&1 | tee -a /tmp/polybar.$m & disown
+#MONITOR='DVI-D-0' TRAY_POS=adaptive polybar --reload bar 2>&1 | \
+	#tee -a /tmp/polybar.$MONITOR

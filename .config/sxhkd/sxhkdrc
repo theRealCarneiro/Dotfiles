@@ -63,7 +63,8 @@ super + ctrl + c
 
 # toggle scratchpad {fullscreen, bottom}
 super + {ctrl, shift }+ Return
-	scratchpad -g 0 -b 0 -o bottom {_,  --height 400  }
+	scratchpad -g 0 -b 0 -o bottom -w 1920 {-h 1080,  -h 400  }
+	#scratchpad -x 1920 -g 0 -b 0 -o bottom -w 1920 {-h 1080,  -h 400  }
 
 # open calendar
 super + alt + c
