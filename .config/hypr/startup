@@ -1,0 +1,7 @@
+#!/bin/sh
+
+export XCURSOR_SIZE=32
+waygtk & 
+hyprpaper -c ~/.config/colorfig/generated/hyprpaper.conf &
+dunst &
+waybar &
