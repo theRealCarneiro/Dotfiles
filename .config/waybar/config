@@ -1,0 +1,126 @@
+{
+	"layer": "top",
+    "position": "top",
+    "height": 24,
+    "spacing": 10,
+
+    "modules-left": [
+		"wlr/workspaces"
+	],
+    "modules-center": [
+		"hyprland/window"
+	],
+    "modules-right": [
+		"custom/pacman",
+		"custom/email",
+		"custom/disk",
+		"custom/memory",
+		"cpu",
+		"clock",
+		"tray"
+	],
+
+	"wlr/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"sort-by-number": true,
+		"all-outputs": true
+	},
+
+	"hyprland/window": {
+		"format": "{}",
+        "max-length": 40,
+		"separate-outputs": true
+	},
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+		// "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+		"format": "{:%H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%d/%m/%Y}",
+		"interval": 1
+    },
+
+    "cpu": {
+        "format": " {usage}%",
+		"on-click": "cpu_eaters",
+        "tooltip": false
+    },
+
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+	"custom/memory": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "format-icons": {
+            "default": ""
+        },
+		"on-click": "pkill -USR1 memory_usage",
+        "exec": "memory_usage"
+	},
+
+	"custom/disk": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "format-icons": {
+            "default": ""
+        },
+		"on-click": "pkill -USR1 disk_usage",
+        "exec": "disk_usage"
+	},
+
+	"custom/email": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "format-icons": {
+            "empty": "",
+			"new": ""
+        },
+		"interval": 5,
+		"on-click": "nmlist",
+		"on-click-right": "$BROWSER gmail.com; hyprctl dispatch focuswindow Brave",
+        "exec": "mailcheck"
+	},
+
+	"custom/pacman": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "format-icons": {
+            "default": ""
+        },
+		"interval": 5,
+		"on-click": "arch_updates notify",
+        "exec": "waypac"
+	}
+}
+//"format": "<span font_desc=\"JetBrains Mono Nerd Font\">{icon}</span> {}",
+// vim: filetype=jsonc
