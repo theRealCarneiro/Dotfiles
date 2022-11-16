@@ -6,9 +6,9 @@
 	foreground:			@fg;
 	text-color:			@fg;
 	border:				none;
-	columns:			3;
-	lines:				5;
-	font:				"SF Pro Display Medium 30";
+	columns:			5;
+	lines:				1;
+	font:				"SF Pro Display Medium 70";
 }
 
 entry {
@@ -20,15 +20,23 @@ entry {
 }
 
 #window {
+    border-color: var(main);
+	border:			4px;
 	fullscreen:		false;
 	anchor:			center;
 	/*width:			100%;*/
 
-	width:				1200;
+	width:				550;
+	height:				150;
 	/*padding:			205;*/
-	background-color:	@bg;
+	border-radius:		15;
+	background-color:	@black;
 	orientation:		horizontal;
 	children:			[ teste,mainbox,teste2 ];
+}
+
+#inputbar {
+	enabled:			false;
 }
 
 #teste {
@@ -55,11 +63,6 @@ entry {
 listview {
     scrollbar:    false;
     border-color: var(transparent);
-}
-
-#inputbar {
-	enabled:			true;
-	color:				@fg;
 }
 
 #prompt {

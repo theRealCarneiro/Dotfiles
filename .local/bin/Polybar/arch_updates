@@ -33,3 +33,4 @@ updates=$(( $updates_arch_count + $updates_aur_count ))
 	dunstify -i Pacman -r "1" "Updates" "$updates_arch\n$updates_aur" 
 
 echo "$updates" > $tempfile
+echo "$updates_arch\n$updates_aur" > /tmp/update_list

@@ -1,12 +1,19 @@
 #!/bin/sh
 
-files='bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar rofi Xresources xprofile xmodmap profile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv neofetch colorfig pulsemeeter git qtile kmonad systemd'
+files='hyprland bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar waybar rofi tofi Xresources xprofile xmodmap profile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv neofetch colorfig pulsemeeter git qtile kmonad systemd swayidle swaylock'
+
+if pgrep Xorg; then
+	menu='dmenu -i -p'
+else
+	menu='tofi --prompt-text'
+fi
 
 files="$(echo $files | sed 's/ /\n/g')"
-choice=$(printf "%b" "$files" | sort | dmenu -i -p  "Config:")
+choice=$(printf "%b" "$files" | sort | $menu "Config: ")
 
 [ -z "$choice" ] && exit
 
+hyprland="$XDG_CONFIG_HOME/hypr"
 bspwm="$XDG_CONFIG_HOME/bspwm/bspwmrc"
 dwm="$HOME/Bibliotecas/Projects/suckless/dwm/config.h"
 spectrwm="$XDG_CONFIG_HOME/spectrwm/spectrwm.conf"
@@ -16,7 +23,9 @@ sxhkd="$XDG_CONFIG_HOME/sxhkd/"
 nvim="$XDG_CONFIG_HOME/nvim"
 lf="$XDG_CONFIG_HOME/lf/lfrc"
 polybar="$XDG_CONFIG_HOME/polybar/config.ini"
+waybar="$XDG_CONFIG_HOME/waybar/"
 rofi="$XDG_CONFIG_HOME/rofi/config.rasi"
+tofi="$XDG_CONFIG_HOME/tofi/config"
 Xresources="$XDG_CONFIG_HOME/x11/Xresources"
 xprofile="$XDG_CONFIG_HOME/x11/xprofile"
 xmodmap="$XDG_CONFIG_HOME/x11/xmodmap"
@@ -50,5 +59,7 @@ git="$XDG_CONFIG_HOME/git/config"
 qtile="$XDG_CONFIG_HOME/qtile/config.py"
 kmonad="$XDG_CONFIG_HOME/kmonad/config.kbd"
 systemd="$XDG_CONFIG_HOME/systemd/user"
+swaylock="$XDG_CONFIG_HOME/swaylock/config"
+swayidle="$XDG_CONFIG_HOME/swayidle/config"
 
 $TERMINAL -e $EDITOR "$(eval "echo \$$choice")"

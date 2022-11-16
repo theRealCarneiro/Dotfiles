@@ -1,6 +1,16 @@
 #!/bin/sh
+
+if pgrep Xorg; then
+	menu='dmenu -i -p'
+else
+	#menu='wofi -d -p'
+	menu='tofi --prompt-text'
+fi
+
 scripts=$(find $HOME/.local/bin -type f,l | sed 's/.*\///' | sort)
 
-choice=$(printf "$scripts" | dmenu -i -p "Editar script: ") &&
+choice=$(printf "$scripts" | $menu "Editar script: ")
+
+[ -z "$choice" ] && exit 1
 
 $TERMINAL -e $EDITOR "$(find $HOME/.local/bin -name "$choice")"

@@ -1,6 +1,9 @@
 #!/bin/sh
 
-export XCURSOR_SIZE=32
+xhost SI:localuser:games
+pulsemeeter init &
+swayidle -w &
+dbusfm &
 waygtk & 
 hyprpaper -c ~/.config/colorfig/generated/hyprpaper.conf &
 dunst &

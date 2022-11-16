@@ -14,42 +14,44 @@ configuration {
 * {
 	transparent:		rgba(0,0,0,0);
 	background-color:	@transparent;
-	text-color:		@fg;
-	border:			none;
-	columns:			2;
-	font:			"SF Pro Display 18";
-	lines:			10;
-	columns:			1;
+	text-color:			@fg;
+	border:				none;
+	font:				"SF Pro Display 30";
+	lines:				3;
+	columns:			3;
 }
 
 listview {
-    scrollbar:    false;
-    border-color: var(transparent);
+    scrollbar:			false;
+    border-color:		var(transparent);
 }
 
 message {
-    border:       0 ;
+    border:       0;
 }
 
 #window {
-	y-offset:			-510;
-	x-offset:			860;
-	anchor:			north;
-	width:			180;
-	border:			0;
+	width:			200;
+	height:			130;
+	border:			1;
+	border-color:	@black;
 	padding:			10;
 	background-color:	@bg;
 }
 
 #textbox {
-	font:			"SF Pro Display 20";
-	text-color:		@main;
-	border:			0px 0px 2px 0px;
+	font:				"SF Pro Display 20";
+	text-color:			@main;
+	border:				0px 0px 2px 0px;
 	border-color:		@main;
 }
 
 #inputbar {
 	enabled:			false;
+}
+
+element {
+    padding:                        2.5% 0% 2.5% 0%;
 }
 
 element selected.normal {

@@ -56,6 +56,17 @@ export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
 export SVDIR=/run/runit/service # Runit services
 export USER_SVDIR=$HOME/.config/runit/service # Runit services
 
-if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
-	exec startx $HOME/.config/x11/xinitrc -- vt1 &> /dev/null
-fi
+# Wayland
+export SDL_VIDEODRIVER=wayland
+export QT_QPA_PLATFORM=wayland
+export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_DESKTOP=sway
+export XCURSOR_SIZE=32
+
+#if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
+	#exec startx $HOME/.config/x11/xinitrc -- vt1 &> /dev/null
+#fi
+
+#if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
+	#exec hyprlaunch
+#fi

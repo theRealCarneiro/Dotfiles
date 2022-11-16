@@ -14,9 +14,9 @@ vim.keymap.set('i', '<C-q>', '<Esc>:q!<CR>')
 vim.keymap.set('v', '<C-q>', '<Esc>:q!<CR>')
 
 -- Save
-vim.keymap.set('n', '<C-s>', '<Esc>:w<CR>')
-vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>')
-vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>')
+vim.keymap.set('n', '<C-s>', '<Esc>:w!<CR>')
+vim.keymap.set('i', '<C-s>', '<Esc>:w!<CR>')
+vim.keymap.set('v', '<C-s>', '<Esc>:w!<CR>')
 
 -- Copy
 vim.keymap.set('n', '<C-c>', '"*y')

@@ -4,7 +4,7 @@ t=0
 
 toggle() {
 	t=$(((t + 1) % 2))
-	kill $spid
+	[ -z $spid ] || kill $spid
 }
 
 trap "toggle" USR1
@@ -12,8 +12,8 @@ trap "toggle" USR1
 print () {
 	if [ $t -eq 0 ]; then
 		df -m | awk '$6 == "/" {printf "%.f%\n", $3*100/$2}'
-	else 
-		df -H | awk '$6 == "/" {print $3"B/"$2"B\n"}'
+	else
+		df -H | awk '$6 == "/" {print $3"B/"$2"B"}'
 	fi
 }
 

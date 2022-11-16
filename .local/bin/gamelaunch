@@ -1,12 +1,15 @@
 #!/bin/sh
 
+menu='rofi -dmenu -i -p '
+
 game_dir="$XDG_DATA_HOME/applications/Games"
 
 game_list=$(
 	sed -n 's/^Icon=/\\0icon\\0037/p; s/^Name=//p; ' $game_dir/* | sed -e 'N;s/\n//'
 )
 
-game=$(printf "%b" "$game_list" | rofi -dmenu -p "" -i) || exit
+game=$(printf "%b" "$game_list" | $menu "") || exit
+echo $game
 
 exec=$(sed -n 's/^Exec=//p' "$game_dir/$game.desktop")
 
@@ -18,5 +21,7 @@ grep -w nogameuser "$game_dir/$game.desktop" 2>/dev/null && user=$USER
 
 #PULSE_SERVER=tcp:127.0.0.1:4713
 #export PULSE_SERVER
+#
+sudo -u $user mkdir -p /tmp/runtime-games
 
-gamemoderun sudo -u $user PULSE_SERVER=tcp:127.0.0.1:4713 $exec
+sudo -u $user XDG_RUNTIME_DIR=/tmp/runtime-games PULSE_SERVER=tcp:127.0.0.1:4713 gamescope -f -H 1080 $exec > $XDG_CACHE_HOME/gamelaunch 2>&1

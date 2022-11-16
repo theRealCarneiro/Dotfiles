@@ -8,30 +8,36 @@
 		"wlr/workspaces"
 	],
     "modules-center": [
-		"hyprland/window"
+		"custom/playerctl",
 	],
+		//"hyprland/window"
     "modules-right": [
 		"custom/pacman",
 		"custom/email",
 		"custom/disk",
 		"custom/memory",
 		"cpu",
+		"custom/gpu",
 		"clock",
 		"tray"
 	],
 
 	"wlr/workspaces": {
 		"format": "{icon}",
+		"format-icons": {
+			"99": "10"
+		},
 		"on-click": "activate",
+		"active-only": false,
 		"sort-by-number": true,
 		"all-outputs": true
 	},
 
-	"hyprland/window": {
-		"format": "{}",
-        "max-length": 40,
-		"separate-outputs": true
-	},
+	//"hyprland/window": {
+		//"format": "{}",
+        //"max-length": 40,
+		//"separate-outputs": true
+	//},
 
     "idle_inhibitor": {
         "format": "{icon}",
@@ -78,14 +84,27 @@
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 
+	"custom/playerctl": {
+		"format": "{icon} {}",
+        "return-type": "json",
+		"max-length": 40,
+        "format-icons": {
+            "spotify": "",
+			"chromium": "輸"
+        },
+		"on-click": "pkill -USR2 playerctl_title",
+		"on-click-right": "pkill -USR1 playerctl_title",
+		"exec": "playerctl_title"
+	},
+
 	"custom/memory": {
         "format": "{icon} {}",
         "return-type": "json",
         "format-icons": {
             "default": ""
         },
-		"on-click": "pkill -USR1 memory_usage",
-        "exec": "memory_usage"
+		"on-click": "pkill -USR1 waymemory",
+        "exec": "waymemory"
 	},
 
 	"custom/disk": {
@@ -94,8 +113,19 @@
         "format-icons": {
             "default": ""
         },
-		"on-click": "pkill -USR1 disk_usage",
-        "exec": "disk_usage"
+		"on-click": "pkill -USR1 waydisk",
+        "exec": "waydisk"
+	},
+
+	"custom/gpu": {
+        "format": "{icon} {}",
+        "return-type": "text",
+        "format-icons": {
+            "default": ""
+        },
+		"on-click": "pkill -USR1 waygpu",
+		"interval": 5,
+        "exec": "waygpu"
 	},
 
 	"custom/email": {
@@ -108,7 +138,7 @@
 		"interval": 5,
 		"on-click": "nmlist",
 		"on-click-right": "$BROWSER gmail.com; hyprctl dispatch focuswindow Brave",
-        "exec": "mailcheck"
+        "exec": "waymail"
 	},
 
 	"custom/pacman": {

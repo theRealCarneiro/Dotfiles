@@ -1,15 +1,15 @@
 #!/bin/sh
 
-options='Shutdown\nReboot\nEnd X Session'
+options='\n\n\n\n'
 escolha=$(
 	printf "%b" "$options" |
-	rofi -dmenu -mesg "Power Menu" -config $XDG_CONFIG_HOME/rofi/powermenu.rasi
+	rofi -dmenu -config $XDG_CONFIG_HOME/rofi/theme.rasi
 )
 
 case $escolha in
-	   "Shutdown") shutdown now;;
-	   "Reboot") reboot;;
-	   "End X Session") killall Xorg;;
-	   "Lock X Session") $HOME/.config/i3lock/lock.sh;;
-	   "Reload BSPWM") bspc wm -r;;
+	   "") shutdown now;;
+	   "") reboot;;
+	   "") wayland-logout;;
+	   "") systemctl suspend;;
+	   "") pkill -USR1 swayidle;;
 esac

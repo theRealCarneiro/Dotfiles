@@ -1,5 +1,12 @@
 #!/bin/sh
-name="$(dmenu -i -p  "Script name:")" || exit
+
+if pgrep Xorg; then
+	menu='dmenu -i -p'
+else
+	menu='echo | tofi --prompt-text'
+fi
+
+name="$($menu "Script name:")" || exit
 path="$HOME/.local/bin/$name"
 echo "#!/bin/sh" > "$path"
 chmod +x "$path"

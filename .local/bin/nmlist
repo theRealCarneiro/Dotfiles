@@ -2,15 +2,17 @@
 maildir=$HOME/.local/share/mail/gmail/INBOX/new
 #maildir=$HOME/.local/share/mail/gmail/INBOX/cur
 for i in $(ls $maildir); do
-	from=$(grep "From: " $maildir/$i | utf8-decode)
+	from=$(grep "From: " $maildir/$i | utf8-decode | sed 's/<//g; s/>//g; s/"/\\"/g')
 	subject=$(grep "Subject: " $maildir/$i | sed 's/.*;$//' | utf8-decode | sed '/^$/d')
 
-	mail_info=$mail_info"__________________\n"
-	mail_info=$mail_info$from"\n"
-	mail_info=$mail_info$subject"\n"
-	mail_info=$mail_info"------------------\n"
+	mail_info=$mail_info"__________________\\n"
+	mail_info=$mail_info$from"\\n"
+	mail_info=$mail_info$subject"\\n"
+	mail_info=$mail_info"------------------\\n"
 done
 
 #notify-send "Novos emails" "$mail_info" -i Mail
-[ $(ls $maildir | wc -c) != 0 ] && \
-	dunstify -a "Mail" -u high -i Mail -r "1" "Novos emails" "$mail_info"
+[ $(ls $maildir | wc -c) != 0 ] && [ -z $1 ] && \
+	dunstify -a "Mail" -i Mail -r "1" "Novos emails" "$mail_info"
+
+printf "%s" "$(echo $mail_info | sed '/^$/d' | sed ':a;N;$!ba;s/\n/\\n/g')"

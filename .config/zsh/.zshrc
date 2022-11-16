@@ -42,6 +42,7 @@ alias sv='SVDIR=$HOME/.config/runit/service sv'
 alias startx="startx $HOME/.config/x11/xinitrc"
 alias fm="vifmrun ."
 alias yeet='yay -Rns '
+alias killgames='sudo -u games killall -u games -SIGKILL'
 
 LFCD="$HOME/.local/bin/lfcd"
 [ -f "$LFCD" ] && source "$LFCD"

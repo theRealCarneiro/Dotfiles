@@ -1,11 +1,15 @@
 #!/bin/sh
-xrdb $XDG_CONFIG_HOME/x11/Xresources
-case $WM in
-	bspwm) bspc wm -r & ;;
-	dwm) dwm-msg run_command reload_xresources & ;;
-esac
+
+if pgrep Xorg; then
+	xrdb $XDG_CONFIG_HOME/x11/Xresources
+	case $WM in
+		bspwm) bspc wm -r & ;;
+		dwm) dwm-msg run_command reload_xresources & ;;
+	esac
+	polyLaunch &
+fi
 dunstLaunch &
-polyLaunch &
+pkill waybar && toggle waybar &
 
 for i in $(seq 0 9); do
 	ls /dev/pts | grep $i >/dev/null && \

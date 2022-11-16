@@ -13,12 +13,10 @@ rand(){
 theme(){
 	[ "$2" = "light" ] && light="-l"
 	theme=$1
-	#! [ -f "$wal_themes/$2/$theme.json" ] && exit 1
-	#wpp=$(grep wallpaper $wal_themes/$2/$theme.json | cut -c16- | sed 's/..$//')
 	! [ -f "$wal_themes/$2/$theme.sh" ] && exit 1
 	wpp=$(grep wallpaper $wal_themes/$2/$theme.sh | cut -c11-)
+	oldwpp=$(cat $wall)
 	echo $wpp > $wall
-	#wal -e --theme $theme $light
 	colorfig --theme-$2 $theme
 	reloenv &
 	#which spicetify &>/dev/null && spicetify apply -n &
@@ -42,5 +40,11 @@ generate(){
 	"--rand") rand ;;
 esac
 
-#xwallpaper --zoom "$(cat $wall)" 
-feh --bg-scale "$(cat $wall)" --no-fehbg
+if pgrep Xorg; then 
+	#xwallpaper --zoom "$(cat $wall)" 
+	feh --bg-scale "$(cat $wall)" --no-fehbg
+else
+	hyprctl hyprpaper unload "$oldwpp"
+	hyprctl hyprpaper preload "$(cat $wall)"
+	hyprctl hyprpaper wallpaper DVI-D-1,"$(cat $wall)"
+fi

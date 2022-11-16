@@ -19,4 +19,4 @@ if [ $(( $(date +%s) - ${temp_file#* } )) -gt 300 ]; then #delete file after 5mi
 fi
 
 echo $newEmailCount" "$(date +%s) > $temp_file_path
-polybar-msg action "#mail.send.$newEmailCount" 2>&1 >/dev/null
+#polybar-msg action "#mail.send.$newEmailCount" 2>&1 >/dev/null

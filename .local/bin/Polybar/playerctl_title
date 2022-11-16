@@ -1,47 +1,27 @@
 #!/bin/sh
+
 t=0
 
 toggle() {
-    t=$(((t + 1) % $(playerctl -l | wc -l)))
+	t=$(((t + 1) % $(playerctl -a metadata --format '{{playerName}}' | wc -l)))
 }
 
 play_pause(){
-	case $player in
-		spotify) playerctl -p spotify play-pause ;;
-		spotifyd) dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotifyd /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause;;
-		chromium*) playerctl -p $(playerctl -l | grep chromium) play-pause ;;
-	esac
+	playerctl -p $player play-pause
 }
 
 trap "play_pause" USR2
 trap "toggle" USR1
 
-get_title(){
-	player=$(playerctl -l | sed -n $1'p')
-	song=$(timeout 1 playerctl -p $player metadata --format "{{ title }}" 2>/dev/null)
-	if ! [ -z "$song" ]; then 
-		case $player in
-			spotify*)echo  "  " $song;;
-			chromium*)echo 輸"  " $song;;
-			qutebrowser*)echo 輸"  " $song;;
-		esac
-	else
-		toggle
-	fi
-}
-
 while true; do
-	if [ $(playerctl -l | wc -l) -eq  0 ]; then
-		echo ""
-	else
-		if [ "$(playerctl -a metadata 2> /dev/null)" != "" ]; then
-			get_title $(($t + 1))
-		else 
-			echo ""
-		fi
-	fi
-	sleep 1
+	song='{"text": "", "alt": ""}'
+	player_list=$(playerctl -a metadata --format '{{playerName}}' 2>/dev/null)
+	player=$(printf "%s" "$player_list" | sed -n $(($t + 1))'p')
+	[ -z "$player" ] ||
+		song=$(timeout 1 playerctl -p $player metadata --format \
+			'{"text": "{{title}} - {{artist}}", "alt": "{{playerName}}"}')
+	printf "%s\n" "$song"
+	sleep 5 &
+	spid=$!
+	wait
 done
-
-
-

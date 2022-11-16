@@ -3,7 +3,7 @@ import:
  #- ~/.config/alacritty/wal.yml
 
 window:
-  opacity: 0.85
+  opacity: 0.9
 
 cursor:
   style: Beam
@@ -24,20 +24,23 @@ key_bindings:
    - { key: Equals,      mods: Control|Alt,       action: ResetFontSize    }    
 
 font:
+     #normal:
+          #family: SF Mono
+          #style: Medium
      normal:
-          family: SF Mono
+          family: JetBrains Mono Nerd Font
           style: Medium
 
      bold:
-          family: SF Mono
+          family: JetBrains Mono Nerd Font
           style: Bold
 
      italic:
-          family: SF Mono
+          family: JetBrains Mono Nerd Font
           style: Italic
 
      bold_italic:
-          family: SF Mono
+          family: JetBrains Mono Nerd Font
           style: Bold Italic
 
      size: 12

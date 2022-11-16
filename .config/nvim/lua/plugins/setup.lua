@@ -2,7 +2,7 @@ vim.cmd [[packadd packer.nvim]]
 
 local packer = require('packer').startup(function(use)
 	use { 'wbthomason/packer.nvim' }
-	use { 'lambdalisue/fern.vim' }
+	use { 'lambdalisue/fern.vim', branch = 'main'  }
 	use { 'lambdalisue/fern-renderer-nerdfont.vim' }
 	use { 'lambdalisue/fern-hijack.vim' }
 	use { 'lambdalisue/fern-git-status.vim' }
@@ -11,7 +11,7 @@ local packer = require('packer').startup(function(use)
 	use { 'lambdalisue/glyph-palette.vim' }
 
 	use { 'dstein64/vim-startuptime' }
-	use { 'itchyny/vim-gitbranch' }
+	use { 'itchyny/vim-gitbranch'}
 	use { 'preservim/nerdcommenter' }
 	use { 'antoinemadec/FixCursorHold.nvim' }
 	use { 'kovetskiy/sxhkd-vim' }
