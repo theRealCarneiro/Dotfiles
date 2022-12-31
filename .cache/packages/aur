@@ -4,7 +4,9 @@ brave-bin
 dashbinsh
 dragon-drop
 droidcam
+edid-decode-git
 endlessh-git
+env-modules
 f3
 getmail6
 greetd
@@ -21,9 +23,9 @@ hyprland-git
 hyprpaper-git
 hyprpicker-git
 i3lock-color-git
+jack-rack
 kmonad-bin
 legendary
-lf-bin
 mangohud
 nerd-fonts-jetbrains-mono
 nodejs-nativefier
@@ -68,5 +70,8 @@ waybar-hyprland
 wayland-logout
 whatsapp-nativefier
 whatsapp-nativefier-notray-hook
+wlr-randr-git
 wpgtk
+xdg-desktop-portal-hyprland-git
 xgetres
+xinit-xsession

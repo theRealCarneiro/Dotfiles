@@ -24,4 +24,4 @@ grep -w nogameuser "$game_dir/$game.desktop" 2>/dev/null && user=$USER
 #
 sudo -u $user mkdir -p /tmp/runtime-games
 
-sudo -u $user XDG_RUNTIME_DIR=/tmp/runtime-games PULSE_SERVER=tcp:127.0.0.1:4713 gamescope -f -H 1080 $exec > $XDG_CACHE_HOME/gamelaunch 2>&1
+sudo -u $user XDG_RUNTIME_DIR=/tmp/runtime-games PULSE_SERVER=tcp:127.0.0.1:4713 gamescope --immediate-flips -f -H 1080 $exec > $XDG_CACHE_HOME/gamelaunch 2>&1

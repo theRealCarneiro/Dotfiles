@@ -27,6 +27,9 @@
 		"format-icons": {
 			"99": "10"
 		},
+		"persistant_workspaces": {
+			"7": []
+		},
 		"on-click": "activate",
 		"active-only": false,
 		"sort-by-number": true,

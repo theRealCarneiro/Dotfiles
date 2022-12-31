@@ -50,17 +50,15 @@ export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
 [ -f "/home/gabriel/.config/lf/icons" ] && \
 	. "/home/gabriel/.config/lf/icons"
 
-#. "/home/gabriel/.config/i3/workspaces"
-
 # Runit
 export SVDIR=/run/runit/service # Runit services
 export USER_SVDIR=$HOME/.config/runit/service # Runit services
 
 # Wayland
-export SDL_VIDEODRIVER=wayland
-export QT_QPA_PLATFORM=wayland
-export XDG_CURRENT_DESKTOP=sway
-export XDG_SESSION_DESKTOP=sway
+#export SDL_VIDEODRIVER=wayland
+#export QT_QPA_PLATFORM=wayland
+#export XDG_CURRENT_DESKTOP=sway
+#export XDG_SESSION_DESKTOP=sway
 export XCURSOR_SIZE=32
 
 #if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then

@@ -51,6 +51,7 @@ feh
 figlet
 file
 findutils
+firefox
 flameshot
 flex
 fzf
@@ -137,6 +138,7 @@ noto-fonts-emoji
 npm
 ntp
 obs-studio
+openmp
 openrct2
 openshot
 os-prober
@@ -150,21 +152,26 @@ pavucontrol
 pcmanfm
 pcsx2
 pd
+perf
 php-imagick
 pinta
 pipewire-jack
 pipewire-pulse
+pipewire-v4l2
 pkgconf
 playerctl
 polkit-gnome
 procinfo-ng
 pulseaudio-alsa
 pulsemixer
+pv
+python-certifi
 python-flask
 python-flask-restful
 python-matplotlib
 python-pip
 python-pydantic
+python-pylint
 python-pynvim
 python-pytest
 python-pywal
@@ -207,6 +214,8 @@ udiskie
 ueberzug
 ufw
 upower
+v4l2loopback-dkms
+vaultwarden
 vifm
 virtualbox
 virtualbox-guest-utils
@@ -227,7 +236,6 @@ xcb-imdkit
 xcb-util-errors
 xclip
 xdg-desktop-portal
-xdg-desktop-portal-wlr
 xdo
 xdotool
 xf86-input-wacom
@@ -279,6 +287,7 @@ yajl
 yarn
 youtube-dl
 zathura-pdf-mupdf
+zerotier-one
 zip
 zsh-completions
 zsh-syntax-highlighting

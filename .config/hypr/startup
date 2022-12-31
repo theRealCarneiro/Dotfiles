@@ -1,10 +1,12 @@
 #!/bin/sh
 
+hyprlock
+waygtk & 
+hyprctl setcursor Vimix 16 &
+swayidle -w &
 xhost SI:localuser:games
 pulsemeeter init &
-swayidle -w &
 dbusfm &
-waygtk & 
 hyprpaper -c ~/.config/colorfig/generated/hyprpaper.conf &
 dunst &
 waybar &
