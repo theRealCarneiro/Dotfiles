@@ -1,0 +1,23 @@
+wallpaper=/home/gabriel/Bibliotecas/Imagens/Wallpapers/Sunset_Beach.png
+alpha=100
+background=#000038
+foreground=#fdfcf7
+cursor=#fdfcf7
+
+main=#ff4a5f	# main
+color0=#000038	# black
+color1=#ff4a5f	# red
+color2=#6a8538	# green
+color3=#fffd50	# yellow
+color4=#8557c6	# blue
+color5=#b95ac5	# magenta
+color6=#5a59c8	# cyan
+color7=#d5c4a1	# white
+color8=#665c54	# grey
+color9=#ff4a5f	# red
+color10=#6a8538	# green
+color11=#fffd50	# yellow
+color12=#8557c6	# blue
+color13=#b95ac5	# magenta
+color14=#5a59c8	# cyan
+color15=#fbf1c7	# white

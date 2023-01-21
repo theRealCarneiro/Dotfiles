@@ -1,0 +1,7 @@
+dmenu.font:				JetBrains Mono Nerd Font:pixelsize=18:antialias=true:autohint=true:style:Medium
+dmenu.lineheight:		25
+
+dmenu.background:		{background}
+dmenu.foreground:		{foreground}
+dmenu.selbackground:	{main}
+dmenu.selforeground:	{background}

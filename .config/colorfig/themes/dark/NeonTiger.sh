@@ -1,0 +1,23 @@
+wallpaper=/home/gabriel/Bibliotecas/Imagens/Wallpapers/NeonTiger.jpg
+alpha=100
+background=#2b3941
+foreground=#f1faf7
+cursor=#f1faf7
+
+main=#f106f6	# main
+color0=#2b3941	# black
+color1=#bf616a	# red
+color2=#0d9103	# green
+color3=#fabd2f	# yellow
+color4=#5e81ac	# blue
+color5=#f106f6	# magenta
+color6=#4cfadd	# cyan
+color7=#f1faf7	# white
+color8=#665c54	# grey
+color9=#bf616a	# red
+color10=#0d9103	# green
+color11=#fabd2f	# yellow
+color12=#5e81ac	# blue
+color13=#f106f6	# magenta
+color14=#4cfadd	# cyan
+color15=#fbf1c7	# white

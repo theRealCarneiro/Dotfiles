@@ -1,0 +1,23 @@
+wallpaper=/home/gabriel/Bibliotecas/Imagens/Wallpapers/Montain_XP.jpg
+alpha=100
+background=#32302f
+foreground=#d5c4a1
+cursor=#d5c4a1
+
+main=#b8bb26 
+color0=#32302f  # black
+color1=#fb4934  # red
+color2=#b8bb26  # green
+color3=#fabd2f  # yellow
+color4=#83a598  # blue
+color5=#d3869b  # magenta
+color6=#8ec07c  # cyan
+color7=#d5c4a1  # white
+color8=#665c54  # grey
+color9=#fb4934  # red
+color10=#b8bb26 # green
+color11=#fabd2f # yellow
+color12=#83a598 # blue
+color13=#d3869b # magenta
+color14=#8ec07c # cyan
+color15=#fbf1c7 # white

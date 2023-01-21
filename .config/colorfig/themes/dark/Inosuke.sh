@@ -1,0 +1,23 @@
+wallpaper=/home/gabriel/Bibliotecas/Imagens/Wallpapers/Animes/Inosuke.png
+alpha=100
+background=#292929
+foreground=#a4a6a5
+cursor=#a4a6a5
+
+main=#643b3a 
+color0=#32302f  # black
+color1=#7f4040  # red
+color2=#9ba356  # green
+color3=#fabd2f  # yellow
+color4=#445f68  # blue
+color5=#ae3e60  # magenta
+color6=#778b8c  # cyan
+color7=#a4a6a5  # white
+color8=#665c54  # grey
+color9=#7f4040  # red
+color10=#9ba356 # green
+color11=#fabd2f # yellow
+color12=#445f68 # blue
+color13=#ae3e60 # magenta
+color14=#778b8c	# cyan
+color15=#fbf1c7 # white

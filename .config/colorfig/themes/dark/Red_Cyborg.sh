@@ -1,0 +1,23 @@
+wallpaper=/home/gabriel/Bibliotecas/Imagens/Wallpapers/xPunk/Red_Cyborg.jpg
+alpha=100
+background=#252523
+foreground=#e5e5e5
+cursor=#e5e5e5
+
+main=#d81419	# main
+color0=#252523	# black
+color1=#d81419	# red
+color2=#b8bb26	# green
+color3=#fabd2f	# yellow
+color4=#5e81ac	# blue
+color5=#d3869b	# magenta
+color6=#6E87AA	# cyan
+color7=#e5e5e5	# white
+color8=#858585	# grey
+color9=#d81419	# red
+color10=#b8bb26	# green
+color11=#fabd2f	# yellow
+color12=#5e81ac	# blue
+color13=#d3869b	# magenta
+color14=#6E87AA	# cyan
+color15=#e5e5e5	# white

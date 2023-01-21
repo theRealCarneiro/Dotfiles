@@ -1,0 +1,23 @@
+wallpaper=/home/gabriel/Bibliotecas/Imagens/Wallpapers/Minimalist/Orange_Sakura.jpg
+alpha=100
+background=#1e1f29 
+foreground=#cabcac 
+cursor=#a2bfc0
+
+main=#DE5519    # main
+color0=#1e1f29  # black
+color1=#DE5519  # red
+color2=#2c8d0a  # green
+color3=#FED32F  # yellow
+color4=#2f5691  # blue
+color5=#ba449c  # magent
+color6=#1793d1  # cyan
+color7=#cabcac  # white
+color8=#718586  # grey
+color9=#DE5519  # red
+color10=#2c8d0a # green
+color11=#FED32F # yellow
+color12=#2f5691 # blue
+color13=#ba449c # magent
+color14=#1793d1 # cyan
+color15=#cabcac # white

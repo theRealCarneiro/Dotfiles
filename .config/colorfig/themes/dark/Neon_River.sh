@@ -1,0 +1,23 @@
+wallpaper=/home/gabriel/Bibliotecas/Imagens/Wallpapers/xPunk/Neon_River.png
+alpha=100
+background=#19202a
+foreground=#e6e1d8
+cursor=#e6e1d8
+
+main=#f71a2a
+color0=#19202a  # black
+color1=#f71a2a  # red
+color2=#13fe68  # green
+color3=#e8fc29  # yellow
+color4=#2da0fe  # blue
+color5=#f9186b  # magenta
+color6=#22fdc6  # cyan
+color7=#f0f0f0  # white
+color8=#665c54  # grey
+color9=#f71a2a  # red
+color10=#13fe68 # green
+color11=#e8fc29 # yellow
+color12=#2da0fe # blue
+color13=#f9186b # magenta
+color14=#22fdc6 # cyan
+color15=#e6e1d8 # white
