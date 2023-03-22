@@ -1,6 +1,5 @@
-local theme = 'auto'
-
 local status, colors = pcall(require, 'plugins.colors')
+local theme
 
 if (status) then
 
@@ -42,6 +41,8 @@ if (status) then
 		c = { bg = colors.color0, fg = colors.color7 },
 	  },
 	}
+else
+	theme = 'auto'
 end
 
 require('lualine').setup ({

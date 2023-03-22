@@ -1,0 +1,1 @@
+/home/gabriel/Bibliotecas/Projects/hyprland-vim-syntax/ftplugin/hypr.vim

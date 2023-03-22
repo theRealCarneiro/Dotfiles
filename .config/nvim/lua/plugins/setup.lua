@@ -8,6 +8,7 @@ local packer = require('packer').startup(function(use)
 	use { 'lambdalisue/fern-git-status.vim' }
 	use { 'lambdalisue/nerdfont.vim' }
 	use { 'ryanoasis/vim-devicons' }
+	use { 'nvim-tree/nvim-web-devicons' }
 	use { 'lambdalisue/glyph-palette.vim' }
 
 	use { 'dstein64/vim-startuptime' }
@@ -17,13 +18,15 @@ local packer = require('packer').startup(function(use)
 	use { 'kovetskiy/sxhkd-vim' }
 	use { 'kmonad/kmonad-vim' }
 
+	use { 'nvim-neotest/neotest', requires = { 'nvim-lua/plenary.nvim' } }
+	use { 'nvim-neotest/neotest-python' }
+	use { 'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'} } }
 	use { 'lewis6991/gitsigns.nvim' }
 	use { 'theRealCarneiro/nvim-tabline' }
 	use { 'nvim-lualine/lualine.nvim' }
 	use { 'norcalli/nvim-colorizer.lua' }
 	use { 'windwp/nvim-autopairs' }
 	use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-	use { 'neovim/nvim-lspconfig' }
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-path' }
@@ -32,12 +35,14 @@ local packer = require('packer').startup(function(use)
 	use { 'L3MON4D3/LuaSnip' }
 	use { 'onsails/lspkind-nvim' }
 	use { 'saadparwaiz1/cmp_luasnip' }
-	use { 'folke/lua-dev.nvim' }
-	use { 'williamboman/nvim-lsp-installer' }
-
+	use { 'folke/neodev.nvim' }
+	use { 'neovim/nvim-lspconfig' }
+	use { 'williamboman/mason.nvim' }
+	use { 'williamboman/mason-lspconfig.nvim' }
 end)
 
-require ('plugins.lspinstall')
+require ('plugins.lspconfig')
+require ('plugins.neotest')
 require ('plugins.cmp')
 require ('plugins.treesitter')
 require ('plugins.autopairs')
@@ -46,6 +51,8 @@ require ('plugins.tabline')
 require ('plugins.lualine')
 require ('plugins.fern')
 require ('plugins.gitsigns')
-require ('plugins.colorfig')
+require ('plugins.telescope')
+--require ('plugins.colorfig')
+require ('colorfig').setup()
 
 return packer

@@ -1,0 +1,1 @@
+/home/gabriel/.config/colorfig/generated/colors.vim

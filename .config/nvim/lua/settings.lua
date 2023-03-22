@@ -1,5 +1,3 @@
---vim.cmd('colorscheme wal')
-
 vim.g.mapleader = ";"
 vim.g.cursorhold_updatetime = 100
 

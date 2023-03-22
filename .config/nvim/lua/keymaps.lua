@@ -9,24 +9,17 @@ vim.keymap.set('n', '<C-k>', '<C-w>k')
 vim.keymap.set('n', '<C-l>', '<C-w>l')
 
 -- Quit
-vim.keymap.set('n', '<C-q>', ':q!<CR>')
-vim.keymap.set('i', '<C-q>', '<Esc>:q!<CR>')
-vim.keymap.set('v', '<C-q>', '<Esc>:q!<CR>')
+vim.keymap.set({'n', 'i', 'v'}, '<C-q>', '<Cmd>q!<CR>')
 
 -- Save
-vim.keymap.set('n', '<C-s>', '<Esc>:w!<CR>')
-vim.keymap.set('i', '<C-s>', '<Esc>:w!<CR>')
-vim.keymap.set('v', '<C-s>', '<Esc>:w!<CR>')
+vim.keymap.set({'n', 'i', 'v'}, '<C-s>', '<Cmd>w!<CR><Esc>')
 
 -- Copy
-vim.keymap.set('n', '<C-c>', '"*y')
-vim.keymap.set('i', '<C-c>', '<Esc>"*y')
 vim.keymap.set('v', '<C-c>', '"*y')
 
 -- Paste
-vim.keymap.set('n', '<C-p>', '"*p')
-vim.keymap.set('i', '<C-p>', '<Esc>"*p')
-vim.keymap.set('v', '<C-p>', '"*p')
+vim.keymap.set({'n', 'v'}, '<C-p>', '"*p')
+vim.keymap.set('i', '<C-v>', '<Esc>"*p')
 
 -- Fern
 vim.keymap.set('n','<C-f>', ':Fern %:h -drawer -toggle <CR>', {silent = true})
