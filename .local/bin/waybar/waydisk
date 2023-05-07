@@ -1,0 +1,28 @@
+#!/bin/sh
+
+t=0
+
+toggle() {
+	t=$(((t + 1) % 2))
+	[ -z $spid ] || kill $spid
+}
+
+trap "toggle" USR1
+
+print () {
+	if [ $t -eq 0 ]; then
+		text=$(df -m | awk '$6 == "/" {printf "%.f%\n", $3*100/$2}')
+	else 
+		text=$(df -H | awk '$6 == "/" {print $3"B/"$2"B"}')
+	fi
+
+	tooltip="$(df -h --type=ext4 --type=btrfs -P | tail -n +2 | awk '{print $6, $3"B/"$2"B", $5}' | column -tc2 | sed ':a;N;$!ba;s/\n/\\n/g')"
+	printf '{"text": "%s", "tooltip": "%s", "class": "%s"}\n' "$text" "$tooltip" "default"
+}
+
+while true; do
+	print
+	sleep 5 &
+	spid=$!
+	wait
+done

@@ -1,0 +1,27 @@
+#!/bin/sh 
+
+t=0
+
+toggle() {
+	t=$(((t + 1) % 2))
+	[ -z $spid ] || kill $spid
+}
+
+trap "toggle" USR1
+
+print () {
+	if [ $t -eq 0 ]; then
+		text=$(free -m | awk '/^Mem.:/ {printf "%.f%\n", ($2-$7)*100/$2}')
+	else 
+		text=$(free -m | awk '/^Mem.:/ {printf "%.1fGB/%.1fGB\n", ($2-$7)/1024, $2/1024}')
+	fi
+	tooltip="$(ps axch -o cmd:15,%mem --sort=-%mem | head -n 30 | sed ':a;N;$!ba;s/\n/\\n/g')"
+	printf "%s\n" "{\"text\": \"$text\", \"tooltip\": \"$tooltip\", \"class\": \"default\"}"
+}
+
+while true; do
+	print
+	sleep 1 &
+	spid=$!
+	wait
+done
