@@ -3,7 +3,7 @@ import:
  #- ~/.config/alacritty/wal.yml
 
 window:
-  opacity: 0.9
+  opacity: 0.95
 
 cursor:
   style: Beam

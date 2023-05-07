@@ -112,7 +112,7 @@ endif
 
 " Set custom status line look
 
-set statusline="  %A %10u:%-7g %15s %= %20d  "
+set statusline="  %A %10u:%-7g %15s %= %T %20d  "
 
 " ------------------------------------------------------------------------------
 
@@ -420,7 +420,8 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 
 " Filter-out build and temporary files
 "
-" filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
+ "filter! /^.*\.(lo|o|d|class|py[co])$|.*~$/
+ filter /(__pycache__|\.py*test|\.pki|.android|\.lmmsrc\.xml|.steampath|.steampid)/
 
 " ------------------------------------------------------------------------------
 
@@ -477,6 +478,9 @@ nnoremap ,t :!xterm &<cr>
 
 " Open editor
 nnoremap e :e<cr>
+
+" Open editor
+nnoremap E :!$TERMINAL -e nvim %f &<cr>
 
 " Open editor to edit vifmrc and apply settings after returning to vifm
 nnoremap ,c :write | edit $MYVIFMRC | restart<cr>

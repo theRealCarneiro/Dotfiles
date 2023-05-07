@@ -2,6 +2,7 @@
 Description=Check Mail every fifteen minutes
 RefuseManualStart=no
 RefuseManualStop=no
+After=graphical.target
 
 [Timer]
 Persistent=false

@@ -11,8 +11,8 @@ rand(){
 }
 
 theme(){
-	[ "$2" = "light" ] && light="-l"
 	theme=$1
+	[ "$2" = "light" ] && light="-l"
 	! [ -f "$wal_themes/$2/$theme.sh" ] && exit 1
 	wpp=$(grep wallpaper $wal_themes/$2/$theme.sh | cut -c11-)
 	oldwpp=$(cat $wall)
@@ -41,10 +41,7 @@ generate(){
 esac
 
 if pgrep Xorg; then 
-	#xwallpaper --zoom "$(cat $wall)" 
 	feh --bg-scale "$(cat $wall)" --no-fehbg
 else
-	hyprctl hyprpaper unload "$oldwpp"
-	hyprctl hyprpaper preload "$(cat $wall)"
-	hyprctl hyprpaper wallpaper DVI-D-1,"$(cat $wall)"
+	swaybg -i "$(cat $wall)" &
 fi

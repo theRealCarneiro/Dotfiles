@@ -2,26 +2,42 @@
 
 menu='rofi -dmenu -i -p '
 
-game_dir="$XDG_DATA_HOME/applications/Games"
+# directory containing the .desktop files
+game_dir="$XDG_DATA_HOME/applications/games"
 
+
+# hack to include icons in rofi dmenu
 game_list=$(
 	sed -n 's/^Icon=/\\0icon\\0037/p; s/^Name=//p; ' $game_dir/* | sed -e 'N;s/\n//'
 )
 
-game=$(printf "%b" "$game_list" | $menu "") || exit
-echo $game
+# start reading gamepad inputs
+gamepadkey &
 
-exec=$(sed -n 's/^Exec=//p' "$game_dir/$game.desktop")
+# get game name
+game=$(printf "%b" "$game_list" | $menu "")
 
-eval $(grep Comment "$game_dir/$game.desktop")
+# stop reading gamepad inputs
+killall gamepadkey
+
+[ -z "$game" ] && exit
+
+# get exec command
+exe=$(sed -n 's/^Exec=//p' "$game_dir/$game.desktop")
 
 user=games
 
+# check if it will run as games user
 grep -w nogameuser "$game_dir/$game.desktop" 2>/dev/null && user=$USER
 
-#PULSE_SERVER=tcp:127.0.0.1:4713
-#export PULSE_SERVER
-#
+# check if it will run with gamescope
+if ! pgrep Xorg >/dev/null && echo $game | grep -wqv Steam; then
+	GAMESCOPE='gamescope --immediate-flips -f -H 1080'
+fi
+
 sudo -u $user mkdir -p /tmp/runtime-games
 
-sudo -u $user XDG_RUNTIME_DIR=/tmp/runtime-games PULSE_SERVER=tcp:127.0.0.1:4713 gamescope --immediate-flips -f -H 1080 $exec > $XDG_CACHE_HOME/gamelaunch 2>&1
+sudo -u $user \
+	XDG_RUNTIME_DIR=/tmp/runtime-games \
+	$GAMESCOPE \
+	$exe > $XDG_CACHE_HOME/gamelaunch 2>&1

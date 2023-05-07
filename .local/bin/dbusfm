@@ -40,23 +40,19 @@ def open_file_manager(uri):
 
 class FmObject(dbus.service.Object):
 
-    @dbus.service.method("org.freedesktop.FileManager1",
-                         in_signature='ass', out_signature='')
+    @dbus.service.method("org.freedesktop.FileManager1", in_signature='ass', out_signature='')
     def ShowFolders(self, uris, startupId):
         open_file_manager(uris[0])
 
-    @dbus.service.method("org.freedesktop.FileManager1",
-                         in_signature='ass', out_signature='')
+    @dbus.service.method("org.freedesktop.FileManager1", in_signature='ass', out_signature='')
     def ShowItems(self, uris, startupId):
         open_file_manager(uris[0])
 
-    @dbus.service.method("org.freedesktop.FileManager1",
-                         in_signature='ass', out_signature='')
+    @dbus.service.method("org.freedesktop.FileManager1", in_signature='ass', out_signature='')
     def ShowItemProperties(self, uris, startupId):
         open_file_manager(uris[0])
 
-    @dbus.service.method("org.freedesktop.FileManager1",
-                         in_signature='', out_signature='')
+    @dbus.service.method("org.freedesktop.FileManager1", in_signature='', out_signature='')
     def Exit(self):
         mainloop.quit()
 
