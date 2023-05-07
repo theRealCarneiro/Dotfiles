@@ -1,0 +1,13 @@
+#!/bin/sh
+
+handle () {
+	key=$(printf "%s" "$1" | sed 's/>.*//g')
+	val=$(printf "%s" "$1" | sed 's/.*>//g')
+	case $key in 
+		"workspace")
+			hyprctl workspaces -j | jq ".[] | select(.id==$val) | .windows"
+		;;
+	esac
+}
+
+socat - UNIX-CONNECT:/tmp/hypr/$(echo $HYPRLAND_INSTANCE_SIGNATURE)/.socket2.sock | while read line; do handle $line; done

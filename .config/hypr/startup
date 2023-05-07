@@ -1,12 +1,15 @@
 #!/bin/sh
 
-hyprlock
+#hyprlock
 waygtk & 
-hyprctl setcursor Vimix 16 &
+hyprctl setcursor Vimix-cursors 16 &
 swayidle -w &
 xhost SI:localuser:games
 pulsemeeter init &
 dbusfm &
-hyprpaper -c ~/.config/colorfig/generated/hyprpaper.conf &
+setbg &
+#hyprpaper -c ~/.config/colorfig/generated/hyprpaper.conf &
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+wl-paste --type text --watch cliphist store &
 dunst &
 waybar &

@@ -1,159 +1,100 @@
-{
-	"layer": "top",
-    "position": "top",
-    "height": 24,
-    "spacing": 10,
+[
+	// DVI
+	{
+		"name": "Main",
+		"layer": "top",
+		"position": "top",
+		"output": ["DVI-D-1"],
+		"height": 24,
+		"spacing": 10,
+		"include": [
+			"~/.config/waybar/custom-modules.jsonc",
+			"~/.config/waybar/default-modules.jsonc",
+		],
 
-    "modules-left": [
-		"wlr/workspaces"
-	],
-    "modules-center": [
-		"custom/playerctl",
-	],
-		//"hyprland/window"
-    "modules-right": [
-		"custom/pacman",
-		"custom/email",
-		"custom/disk",
-		"custom/memory",
-		"cpu",
-		"custom/gpu",
-		"clock",
-		"tray"
-	],
+		"modules-left": [
+			"custom/playerctl",
+		],
 
-	"wlr/workspaces": {
-		"format": "{icon}",
-		"format-icons": {
-			"99": "10"
-		},
-		"persistant_workspaces": {
-			"7": []
-		},
-		"on-click": "activate",
-		"active-only": false,
-		"sort-by-number": true,
-		"all-outputs": true
-	},
+		"modules-center": [
+			"wlr/workspaces"
+		],
 
-	//"hyprland/window": {
-		//"format": "{}",
-        //"max-length": 40,
-		//"separate-outputs": true
-	//},
+		"modules-right": [
+			"idle_inhibitor",
+			"custom/pacman",
+			"custom/email",
+			"custom/disk",
+			"custom/memory",
+			"cpu",
+			"custom/gpu",
+			"clock",
+			"tray"
+		],
+	
+	// HDMI
+	}, {
+		"name": "TV",
+		"layer": "top",
+		"position": "bottom",
+		"height": 24,
+		"spacing": 10,
+		"output": ["HDMI-A-1"],
+		"include": [
+			"~/.config/waybar/custom-modules.jsonc",
+			"~/.config/waybar/default-modules.jsonc",
+		],
 
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
-    },
+		"modules-left": [
+			"custom/playerctl",
+		],
 
-    "tray": {
-		// "icon-size": 21,
-        "spacing": 10
-    },
+		"modules-center": [
+			"wlr/workspaces"
+		],
 
-    "clock": {
-		"format": "{:%H:%M:%S}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%d/%m/%Y}",
-		"interval": 1
-    },
+		"modules-right": [
+			"custom/pacman",
+			"custom/email",
+			"custom/disk",
+			"custom/memory",
+			"cpu",
+			"custom/gpu",
+			"clock",
+			"tray"
+		],
 
-    "cpu": {
-        "format": " {usage}%",
-		"on-click": "cpu_eaters",
-        "tooltip": false
-    },
+	// DP
+	}, {
+		"name": "Secondary",
+		"layer": "top",
+		"position": "top",
+		"height": 24,
+		"spacing": 10,
+		"output": ["DP-1"],
+		"include": [
+			"~/.config/waybar/custom-modules.jsonc",
+			"~/.config/waybar/default-modules.jsonc",
+		],
 
-    "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
-        "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
-    },
+		"modules-left": [
+			"custom/playerctl",
+		],
 
-    "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
-    },
+		"modules-center": [
+			"wlr/workspaces"
+		],
 
-	"custom/playerctl": {
-		"format": "{icon} {}",
-        "return-type": "json",
-		"max-length": 40,
-        "format-icons": {
-            "spotify": "",
-			"chromium": "輸"
-        },
-		"on-click": "pkill -USR2 playerctl_title",
-		"on-click-right": "pkill -USR1 playerctl_title",
-		"exec": "playerctl_title"
-	},
-
-	"custom/memory": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "format-icons": {
-            "default": ""
-        },
-		"on-click": "pkill -USR1 waymemory",
-        "exec": "waymemory"
-	},
-
-	"custom/disk": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "format-icons": {
-            "default": ""
-        },
-		"on-click": "pkill -USR1 waydisk",
-        "exec": "waydisk"
-	},
-
-	"custom/gpu": {
-        "format": "{icon} {}",
-        "return-type": "text",
-        "format-icons": {
-            "default": ""
-        },
-		"on-click": "pkill -USR1 waygpu",
-		"interval": 5,
-        "exec": "waygpu"
-	},
-
-	"custom/email": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "format-icons": {
-            "empty": "",
-			"new": ""
-        },
-		"interval": 5,
-		"on-click": "nmlist",
-		"on-click-right": "$BROWSER gmail.com; hyprctl dispatch focuswindow Brave",
-        "exec": "waymail"
-	},
-
-	"custom/pacman": {
-        "format": "{icon} {}",
-        "return-type": "json",
-        "format-icons": {
-            "default": ""
-        },
-		"interval": 5,
-		"on-click": "arch_updates notify",
-        "exec": "waypac"
+		"modules-right": [
+			"custom/pacman",
+			"custom/email",
+			"custom/disk",
+			"custom/memory",
+			"cpu",
+			"custom/gpu",
+			"clock",
+			"tray"
+		],
 	}
-}
-//"format": "<span font_desc=\"JetBrains Mono Nerd Font\">{icon}</span> {}",
+]
 // vim: filetype=jsonc

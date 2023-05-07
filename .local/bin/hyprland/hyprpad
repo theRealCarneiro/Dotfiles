@@ -1,0 +1,41 @@
+#!/bin/sh
+
+create (){
+	$TERMINAL --class hyprpad,hyprpad -t Hyprpad &
+	sleep 0.2
+}
+
+toggle (){
+
+	padws=$1
+	selws=$2
+
+	# hide it if on same ws
+	[ "$padws" = "$selws" ] && selws=special:hyprpad
+
+	# move to selected workspace
+	hyprctl dispatch movetoworkspacesilent $selws,hyprpad
+}
+
+# get active and hyprpad workspaces and monitor
+selws=$(hyprctl activeworkspace -j | jq '.id')
+padws=$(hyprctl clients -j | jq '.[] | select(.class=="hyprpad") | .workspace.id')
+selmon=$(hyprctl monitors -j | jq '.[] | select(.focused==true)')
+
+# get monitor position and size
+monx=$(echo "$selmon" | jq '.x')
+mony=$(echo "$selmon" | jq '.y')
+height=$(echo "$selmon" | jq '.height')
+width=$(echo "$selmon" | jq '.width')
+
+# calculate pad size and position
+pad_height=$(( $height * 4 / 10 ))
+pady=$(( $mony + $height - $pad_height ))
+
+# check if hyprpad is running
+hyprctl clients | grep -q Hyprpad && toggle $padws $selws || create
+
+# resize and position
+hyprctl dispatch resizewindowpixel exact $width $pad_height,hyprpad
+hyprctl dispatch movewindowpixel exact $monx $pady,hyprpad
+hyprctl dispatch focuswindow hyprpad

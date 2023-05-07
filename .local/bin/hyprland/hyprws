@@ -1,0 +1,13 @@
+#!/bin/sh
+
+mon=$(hyprctl monitors | grep 'Monitor\|focused: yes' | grep -B 1 focused | cut -d ' ' -f2 | head -1)
+ws=$2
+
+[ "$mon" = "HDMI-A-1" ] && ws=$(( $ws + 10 ))
+[ "$mon" = "DP-1" ] && ws=$(( $ws + 20 ))
+
+if [ "$1" = "focus" ]; then
+	hyprctl dispatch workspace $ws
+elif [ "$1" = "move" ]; then
+	hyprctl dispatch movetoworkspacesilent $ws
+fi

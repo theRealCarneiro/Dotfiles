@@ -1,0 +1,26 @@
+#!/bin/sh
+
+direction=$1
+
+mon=$(hyprctl monitors -j | jq '.[] | select(.focused==true) | .name')
+
+case $mon in
+	'"DVI-D-1"')
+		case $direction in
+			"u") hyprctl dispatch movewindow mon:-1;;
+			"r") hyprctl dispatch movewindow mon:+1;;
+		esac
+	;;
+	'"HDMI-A-1"')
+		case $direction in
+			"d") hyprctl dispatch movewindow mon:+1;;
+			"r") hyprctl dispatch movewindow mon:-1;;
+		esac
+	;;
+	'"DP-1"')
+		case $direction in
+			"u") hyprctl dispatch movewindow mon:+1;;
+			"l") hyprctl dispatch movewindow mon:-1;;
+		esac
+	;;
+esac

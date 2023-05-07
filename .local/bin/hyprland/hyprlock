@@ -1,0 +1,4 @@
+#!/bin/sh
+. $XDG_CONFIG_HOME/colorfig/generated/colors.sh
+#gpg-connect-agent reloadagent /bye 
+gtklock -m playerctl-module -m powerbar-module -b $(cat $XDG_CONFIG_HOME/wallpaper) $@

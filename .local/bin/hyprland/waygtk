@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# usage: import-gsettings
+config="$XDG_CONFIG_HOME/gtk-3.0/settings.ini"
+if [ ! -f "$config" ]; then exit 1; fi
+
+gnome_schema="org.gnome.desktop.interface"
+export GTK_THEME="$(grep 'gtk-theme-name' "$config" | sed 's/.*\s*=\s*//')"
+export ICON_THEME="$(grep 'gtk-icon-theme-name' "$config" | sed 's/.*\s*=\s*//')"
+export CURSOR_THEME="$(grep 'gtk-cursor-theme-name' "$config" | sed 's/.*\s*=\s*//')"
+export FONT_NAME="$(grep 'gtk-font-name' "$config" | sed 's/.*\s*=\s*//')"
+export GTK_KEY_THEME="$(grep 'gtk-key-theme' "$config" | sed 's/.*\s*=\s*//')"
+gsettings set "$gnome_schema" gtk-theme $GTK_THEME
+gsettings set "$gnome_schema" icon-theme $ICON_THEME
+gsettings set "$gnome_schema" cursor-theme $CURSOR_THEME
+gsettings set "$gnome_schema" font-name "$FONT_NAME"
+gsettings set "$gnome_schema" gtk-key-theme $GTK_KEY_THEME
