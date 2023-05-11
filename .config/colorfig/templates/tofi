@@ -1,2 +1,4 @@
 background-color = {background}
-selection-color = {main}
+text-color = {foreground}
+selection-color = {background}
+selection-background = {main}

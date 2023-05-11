@@ -40,16 +40,18 @@
 			"30": ["DP-1"],
 		},
 		"on-click": "activate",
+		"on-scroll-up": "hyprwswalk +1",
+		"on-scroll-down": "hyprwswalk -1",
 		"active-only": false,
 		"sort-by-number": true,
 		"all-outputs": false
 	},
 
-	//"hyprland/window": {
-		//"format": "{}",
-        //"max-length": 40,
-		//"separate-outputs": true
-	//},
+	"hyprland/window": {
+		"format": "{}",
+		"max-length": 40,
+		"separate-outputs": true
+	},
 
     "idle_inhibitor": {
         "format": "{icon}",

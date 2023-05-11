@@ -13,7 +13,8 @@
 		],
 
 		"modules-left": [
-			"custom/playerctl",
+			"custom/menu",
+			"hyprland/window",
 		],
 
 		"modules-center": [
@@ -46,7 +47,7 @@
 		],
 
 		"modules-left": [
-			"custom/playerctl",
+			"hyprland/window",
 		],
 
 		"modules-center": [
@@ -78,7 +79,7 @@
 		],
 
 		"modules-left": [
-			"custom/playerctl",
+			"hyprland/window",
 		],
 
 		"modules-center": [

@@ -49,6 +49,7 @@ dunst
 easyeffects
 ecasound
 efibootmgr
+espeak-ng
 ethtool
 extra-cmake-modules
 fakeroot
@@ -100,6 +101,7 @@ jgmenu
 joyutils
 jq
 jre8-openjdk
+kitty
 krita
 lib32-gamemode
 lib32-mesa
@@ -191,6 +193,7 @@ procinfo-ng
 pulseaudio-alsa
 pulsemixer
 pv
+pyenv
 python-build
 python-certifi
 python-dotenv

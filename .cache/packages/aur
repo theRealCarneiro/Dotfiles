@@ -4,6 +4,7 @@ brave-bin
 cdecrypt-git
 cemu-bin
 dashbinsh
+deepspeech-bin
 dragon-drop
 droidcam
 edid-decode-git
@@ -28,7 +29,6 @@ kmonad-bin
 legendary
 libretro-database-git
 mangohud
-masterpdfeditor
 mips-linux-gnu-binutils
 nodejs-nativefier
 noisetorch

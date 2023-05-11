@@ -94,6 +94,10 @@ window#waybar.chromium {
     box-shadow: inset 0 0 @main;
 }
 
+#custom-menu:hover {
+    background-color: #64727D;
+}
+
 #clock,
 #cpu,
 #custom-disk,

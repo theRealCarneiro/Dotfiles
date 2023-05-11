@@ -4,7 +4,7 @@
         "return-type": "json",
 		"max-length": 40,
         "format-icons": {
-			"default": "",
+			"brave": "",
             "spotify": "",
             //"spotify": "<span color=\"#0f0\"></span>",
             //"chromium": "<span color=\"#f00\">輸</span>"

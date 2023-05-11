@@ -32,6 +32,7 @@ export PM2_HOME="$XDG_CONFIG_HOME/pm2"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npm/npmrc"
 export PYLINTRC="$XDG_CONFIG_HOME/pylint/pylintrc"
 export PYTHONSTARTUP="$HOME/.local/bin/pynit.py"
+export APP_PATH="$HOME/.config/stremio"
 
 # Cache
 export XDG_CACHE_HOME="$HOME/.cache"
@@ -41,12 +42,14 @@ export MYSQL_HISTFILE="$XDG_CACHE_HOME/mysql_history"
 export PYHISTFILE="$XDG_CACHE_HOME/python/python_history"
 
 # Data
+export BIB="$HOME/Bibliotecas"
 export XDG_DATA_HOME="$HOME/.local/share"
+export DOTBARE_DIR="$BIB/Projects/Dotfiles"
 export WINEPREFIX="$XDG_DATA_HOME/wine"
 export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/.password-store"
 export GOPATH="$XDG_DATA_HOME/go"
-export DOTBARE_DIR="$HOME/Bibliotecas/Projects/Dotfiles"
+export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 
 # Other configs
 [ -f "/home/gabriel/.config/lf/icons" ] && \
