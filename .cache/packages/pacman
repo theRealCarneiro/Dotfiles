@@ -276,6 +276,7 @@ wl-clipboard
 wlroots
 wmctrl
 wofi
+wol
 wtype
 xarchiver
 xcb-imdkit

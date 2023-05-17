@@ -10,9 +10,10 @@ droidcam
 edid-decode-git
 endlessh-git
 env-modules
+etherwake
 f3
 getmail6
-greetd-gtkgreet
+greetd-gtkgreet-git
 greetd-qtgreet
 greetd-wlgreet-git
 gtklock
@@ -52,7 +53,6 @@ protontricks
 protonup-qt
 pulse-vumeter-git
 python-pulsectl
-python-pulsectl-asyncio
 rar
 rofi-lbonn-wayland-git
 ruby-mdless

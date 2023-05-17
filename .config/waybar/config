@@ -8,13 +8,12 @@
 		"height": 24,
 		"spacing": 10,
 		"include": [
-			"~/.config/waybar/custom-modules.jsonc",
-			"~/.config/waybar/default-modules.jsonc",
+			"~/.config/waybar/modules/custom-modules.jsonc",
+			"~/.config/waybar/modules/default-modules.jsonc",
 		],
 
 		"modules-left": [
-			"custom/menu",
-			"hyprland/window",
+			"wlr/taskbar",
 		],
 
 		"modules-center": [
@@ -42,12 +41,12 @@
 		"spacing": 10,
 		"output": ["HDMI-A-1"],
 		"include": [
-			"~/.config/waybar/custom-modules.jsonc",
-			"~/.config/waybar/default-modules.jsonc",
+			"~/.config/waybar/modules/custom-modules.jsonc",
+			"~/.config/waybar/modules/default-modules.jsonc",
 		],
 
 		"modules-left": [
-			"hyprland/window",
+			"wlr/taskbar",
 		],
 
 		"modules-center": [
@@ -74,12 +73,12 @@
 		"spacing": 10,
 		"output": ["DP-1"],
 		"include": [
-			"~/.config/waybar/custom-modules.jsonc",
-			"~/.config/waybar/default-modules.jsonc",
+			"~/.config/waybar/modules/custom-modules.jsonc",
+			"~/.config/waybar/modules/default-modules.jsonc",
 		],
 
 		"modules-left": [
-			"hyprland/window",
+			"wlr/taskbar",
 		],
 
 		"modules-center": [

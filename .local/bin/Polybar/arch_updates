@@ -32,5 +32,7 @@ updates=$(( $updates_arch_count + $updates_aur_count ))
 [ "$updates" -gt "$old_count" -o "$updates" -gt 0 -a "$1" = 'notify' ] && \
 	dunstify -i Pacman -r "1" "Updates" "$updates_arch\n$updates_aur" 
 
-echo "$updates" > $tempfile
-echo "$updates_arch\n$updates_aur" > /tmp/update_list
+#echo "$updates" > $tempfile
+#echo "$updates_arch\n$updates_aur" > /tmp/update_list
+echo "$updates"
+echo "$updates_arch\n$updates_aur"
