@@ -1,0 +1,106 @@
+@import "colors.scss"
+* {
+	all: unset; //Unsets everything so you can style everything from scratch
+	font-family: "SF Pro Mono";
+	font-weight: bold;
+	font-size: 20px;
+	color: $foreground;
+}
+
+.module {
+	padding-right: 5px;
+}
+
+.clock_date_class label {
+	padding-left: 5px;
+	font-size: 18px;
+	color: $color7;
+}
+
+//.clock_module button {
+	//font-size: 18px;
+	//color: $color7;
+//}
+
+//.modules_right {
+	//margin: 10px 100px;
+//}
+.sys_mem {
+	color: $main;
+	background-color: #000000;
+	border-radius: 10px;
+}
+
+//Global Styles
+//.bar {
+	//font-family: "SF Mono";
+	//font-size: 18px;
+	//font-weight: bold;
+  //background-color: #3a3a3a;
+	//color: $foreground;
+  //padding: 10px;
+//}
+
+// Styles on classes (see eww.yuck for more information)
+
+//.sidestuff slider {
+  //all: unset;
+  //color: #ffd5cd;
+//}
+
+//.metric scale trough highlight {
+  //all: unset;
+  //background-color: #D35D6E;
+  //color: #000000;
+  //border-radius: 10px;
+//}
+//.metric scale trough {
+  //all: unset;
+  //background-color: #4e4e4e;
+  //border-radius: 50px;
+  //min-height: 3px;
+  //min-width: 50px;
+  //margin-left: 10px;
+  //margin-right: 20px;
+//}
+//.metric scale trough highlight {
+  //all: unset;
+  //background-color: #D35D6E;
+  //color: #000000;
+  //border-radius: 10px;
+//}
+//.metric scale trough {
+  //all: unset;
+  //background-color: #4e4e4e;
+  //border-radius: 50px;
+  //min-height: 3px;
+  //min-width: 50px;
+  //margin-left: 10px;
+  //margin-right: 20px;
+//}
+//.label-ram {
+  //font-size: large;
+//}
+
+.workspaces label {
+	all: unset;
+	padding: 0px 6px;
+	font-size: 18px;
+}
+
+.workspaces button:hover {
+	color: $main;
+}
+
+.empty {
+  font-family: "Font Awesome 6 Free Regular";
+}
+
+.occupied {
+  font-family: "Font Awesome 6 Free Solid";
+}
+
+.active {
+	color: $main;
+	font-family: "Font Awesome 6 Free Solid";
+}

@@ -1,0 +1,19 @@
+(defvar time_rev false)
+(defpoll time :interval "1s" "date +%H:%M:%S")
+(defpoll date :interval "30s" "date '+%D'")
+
+(defwidget clock_module []
+  (eventbox :onhover "eww update time_rev=true"
+            :onhoverlost "eww update time_rev=false"
+    (box :class "module" :space-evenly "false" :orientation "h" :spacing "3" 
+      (label :text time :class "clock_time_class")
+	  (revealer :transition "slideleft"
+                :reveal time_rev
+                :duration "350ms"
+        (button :class "clock_date_class"
+               :onclick "" date
+        )
+      )
+    )
+  )
+)

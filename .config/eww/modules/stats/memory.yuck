@@ -1,0 +1,9 @@
+(defwidget memory []
+  (circular-progress
+    :value {round(EWW_RAM["used_mem_perc"], 2)}
+    :class "sys_mem"
+    :thickness 9)
+  ;(box
+    ;" ${round(EWW_RAM["used_mem_perc"], 2)}%"
+  ;)
+)

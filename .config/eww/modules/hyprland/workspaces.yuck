@@ -1,0 +1,20 @@
+(defvar wsicon '')
+(deflisten workspaces :initial "[]" "sh scripts/hyprland/get-workspaces.sh")
+(deflisten visible_workspaces :initial "{}" "sh scripts/hyprland/visible-workspaces.sh")
+(defwidget workspaces [monitor]
+  (eventbox :class "workspaces"
+    (box :space-evenly false
+      (label :text "${visible_workspaces["monitor"]}" :visible false)
+      (for workspace in workspaces
+        (button
+          :onclick "hyprctl dispatch workspace ${workspace.id}"
+          :visible "${workspace.monitor == monitor}"
+          (box
+            :class "workspace-entry ${visible_workspaces["${monitor}"] == workspace.id ? "active" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+            (label :text wsicon)
+          )
+        )
+      )
+    )
+  )
+)

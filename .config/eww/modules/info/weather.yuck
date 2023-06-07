@@ -1,0 +1,16 @@
+(defpoll weater_temp :interval "1h" "inxi -w | awk '/temperature/ {print $3}'")
+
+(defwidget weather_module []
+  (eventbox
+    (box :class "module" :space-evenly "false" :orientation "h" :spacing "3" 
+      (label :text "${round(weater_temp, 1)}°C" :class "clock_time_class")
+	  (revealer :transition "slideleft"
+                :reveal time_rev
+                :duration "350ms"
+        (button :class "clock_date_class"
+               :onclick "" date
+        )
+      )
+    )
+  )
+)
