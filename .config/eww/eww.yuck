@@ -2,6 +2,7 @@
 (include "modules/stats/memory.yuck")
 (include "modules/info/clock.yuck")
 (include "modules/info/weather.yuck")
+(defvar monitors ["0", "1", "2"])
 
 (defwidget bar [monitor]
   (centerbox :orientation "h"
