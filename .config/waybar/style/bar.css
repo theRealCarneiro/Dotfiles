@@ -1,0 +1,41 @@
+* {
+	border-radius: 0px;
+    font-family: "SF Mono", "Font Awesome 6 Free Solid", "JetBrains Mono Nerd Font";
+	font-weight: bold;
+}
+
+window.DVI-D-1 * {
+    font-size: 17px;
+}
+
+window.HDMI-A-1 * {
+    font-size: 22px;
+}
+
+window.DP-1 * {
+    font-size: 15px;
+}
+
+window#waybar {
+	background-color: alpha(@background, 0.6);
+    border-bottom: 0px solid @background;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+tooltip {
+	background-color: @background;
+	color: @foreground;
+    font-family: "SF Mono", "Font Awesome 6 Free Solid", "JetBrains Mono Nerd Font";
+    font-size: 15px;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid @foreground;
+}
