@@ -1,11 +1,11 @@
 #!/bin/sh
 
-export SDL_VIDEODRIVER=wayland
-export QT_QPA_PLATFORM=wayland
-export XDG_CURRENT_DESKTOP=sway
-export XDG_SESSION_DESKTOP=sway
+#export SDL_VIDEODRIVER=wayland
+#export QT_QPA_PLATFORM=wayland
+#export XDG_CURRENT_DESKTOP=sway
+#export XDG_SESSION_DESKTOP=sway
 #export MOZ_ENABLE_WAYLAND=1
-export XCURSOR_SIZE=32
+#export XCURSOR_SIZE=32
 #export GDK_BACKEND="wayland,x11"
 #Hyprland > /dev/null 2>&1
 

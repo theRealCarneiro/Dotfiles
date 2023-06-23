@@ -15,11 +15,11 @@ _setbg(){
 
   (( CURRENT > 3 )) || case $words[2] in
     "--theme-dark") 
-      _alternative "($(ls $XDG_CONFIG_HOME/wal/colorschemes/dark | sed 's/.json//; s/$/ /'))"
+      _alternative "($(ls $XDG_CONFIG_HOME/colorfig/themes/dark | sed 's/.sh//; s/$/ /'))"
 	 return
       ;;
     "--theme-light") 
-      _alternative "($(ls $XDG_CONFIG_HOME/wal/colorschemes/light | sed 's/.json//; s/$/ /'))"
+      _alternative "($(ls $XDG_CONFIG_HOME/colorfig/themes/light | sed 's/.sh//; s/$/ /'))"
 	 return
       ;;
     "--generate")

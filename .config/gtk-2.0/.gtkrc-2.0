@@ -2,8 +2,8 @@
 # Any customization should be done in ~/.gtkrc-2.0.mine instead.
 
 include "/home/gabriel/.gtkrc-2.0.mine"
-gtk-theme-name="Skeuos-Red-Dark"
-gtk-icon-theme-name="Papirus-Dark"
+gtk-theme-name="gruvbox-dark-gtk"
+gtk-icon-theme-name="gruvbox-dark-icons-gtk"
 gtk-font-name="SF Pro Text Medium 11"
 gtk-cursor-theme-name="Vimix-cursors"
 gtk-cursor-theme-size=0

@@ -1,6 +1,8 @@
 # ZSH Theme
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
+local user_host='%{$terminfo[bold]$fg[blue]%}%n@%m %{$reset_color%}'
+
 if [[ $UID -eq 0 ]]; then
     local user_symbol='# '
 else
@@ -18,5 +20,3 @@ ZSH_THEME_RVM_PROMPT_OPTIONS="i v g"
 
 PROMPT=" ${current_dir}${git_branch}${user_symbol}%b"
 RPROMPT="%B${return_code}%b"
-
-

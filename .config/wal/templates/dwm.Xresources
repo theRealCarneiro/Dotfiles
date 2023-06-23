@@ -1,9 +1,0 @@
-dwm.mfact: 0.50
-
-dwm.normfgcolor:		{foreground}
-dwm.normbgcolor:		{background}
-dwm.normbordercolor:	{background}
-dwm.selfgcolor:		{color1}
-dwm.selbgcolor:		{background}
-dwm.selbordercolor:		{color1}
-

@@ -17,6 +17,7 @@ local packer = require('packer').startup(function(use)
 	use { 'antoinemadec/FixCursorHold.nvim' }
 	use { 'kovetskiy/sxhkd-vim' }
 	use { 'kmonad/kmonad-vim' }
+	use { 'elkowar/yuck.vim' }
 
 	use { 'nvim-neotest/neotest', requires = { 'nvim-lua/plenary.nvim' } }
 	use { 'nvim-neotest/neotest-python' }

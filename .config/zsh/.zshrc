@@ -43,6 +43,7 @@ alias startx="startx $HOME/.config/x11/xinitrc"
 alias fm="vifm ."
 alias yeet='yay -Rns '
 alias killgames='sudo -u games killall -u games -SIGKILL'
+alias v="nvim "
 
 LFCD="$HOME/.local/bin/lfcd"
 [ -f "$LFCD" ] && source "$LFCD"

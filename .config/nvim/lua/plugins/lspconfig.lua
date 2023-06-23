@@ -31,7 +31,7 @@ lspconfig.pylsp.setup {
 	},
 }
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
 	capabilities = capabilities
 }
 

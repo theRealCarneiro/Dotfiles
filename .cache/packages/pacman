@@ -6,11 +6,14 @@ android-tools
 apache
 arandr
 arch-install-scripts
+arduino
+arduino-avr-core
 atool
 audacity
 autoconf
 automake
 base
+base-devel
 bash-completion
 bat
 bind
@@ -37,6 +40,7 @@ cups
 dbus-broker
 devtools
 dhcpcd
+dhcping
 dialog
 discord
 dmidecode
@@ -51,19 +55,18 @@ ecasound
 efibootmgr
 espeak-ng
 ethtool
+expac
 extra-cmake-modules
 fakeroot
 feh
 figlet
 file
 findutils
-firefox
 flake8
 flameshot
 flex
 fzf
 gamemode
-gamescope
 gawk
 gcc
 gettext
@@ -74,9 +77,10 @@ github-cli
 glade
 glfw-x11
 gnome-keyring
-godot
+gnu-netcat
 gpart
 gparted
+gradle
 greetd
 greetd-tuigreet
 grep
@@ -92,8 +96,10 @@ hwdetect
 icecast
 imv
 inetutils
+inotify-tools
 intel-ucode
 intltool
+inxi
 isync
 jack-example-tools
 jack_utils
@@ -128,9 +134,6 @@ libretro-yabause
 libtool
 light
 linux-firmware
-linux-lqx
-linux-lqx-docs
-linux-lqx-headers
 linux-zen
 linux-zen-headers
 lmms
@@ -144,6 +147,7 @@ m4
 maim
 make
 man-pages
+mangohud
 mariadb
 micro
 mixxx
@@ -165,6 +169,7 @@ noto-fonts-emoji
 npm
 ntp
 obs-studio
+openldap
 openmp
 openrct2
 openshot
@@ -205,9 +210,11 @@ python-lsp-server
 python-matplotlib
 python-mysqlclient
 python-pip
+python-pipx
 python-pydantic
 python-pylint
 python-pynvim
+python-pyserial
 python-pytest
 python-pywal
 python-rtmidi
@@ -221,6 +228,7 @@ radeontop
 raylib
 rbw
 read-edid
+realtime-privileges
 refind
 reflector
 retroarch
@@ -233,6 +241,7 @@ sed
 slurp
 socat
 speedtest-cli
+sshfs
 steam
 steam-native-runtime
 sudo
@@ -249,6 +258,7 @@ tk
 tmux
 traceroute
 transmission-gtk
+ttf-dejavu
 ttf-font-awesome
 ttf-hack
 ttf-jetbrains-mono-nerd
@@ -284,6 +294,7 @@ xcb-util-errors
 xclip
 xdg-desktop-portal
 xdg-desktop-portal-gtk
+xdg-user-dirs
 xdo
 xdotool
 xf86-input-wacom

@@ -1,6 +1,6 @@
 #!/bin/sh
 
-files='hyprland bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar waybar rofi tofi Xresources xprofile xmodmap profile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv neofetch colorfig pulsemeeter git qtile kmonad systemd swayidle swaylock pylint pycodestyle flake8'
+files='hyprland bspwm dwm spectrwm i3wm openbox sxhkd nvim lf polybar waybar rofi tofi Xresources xprofile xmodmap profile xinitrc dunst zsh bash spotifyd picom alacritty qutebrowser bcd Pulse vifm neomutt mbsync pywal jgmenu legendary minlau winetkg paru calcurse sxiv neofetch colorfig pulsemeeter git qtile kmonad systemd swayidle swaylock pylint pycodestyle flake8 eww'
 
 if pgrep Xorg; then
 	menu='dmenu -i -p'
@@ -64,5 +64,6 @@ pylint="$XDG_CONFIG_HOME/pylint/pylintrc"
 flake8="$XDG_CONFIG_HOME/flake8"
 pycodestyle="$XDG_CONFIG_HOME/pycodestyle"
 swayidle="$XDG_CONFIG_HOME/swayidle/config"
+eww="$XDG_CONFIG_HOME/eww/eww.yuck"
 
 $TERMINAL -e $EDITOR "$(eval "echo \$$choice")"

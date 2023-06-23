@@ -23,6 +23,7 @@ export INPUTRC="$XDG_CONFIG_HOME/readline/inputrc"
 export XAUTHORITY=${XAUTHORITY:-"$XDG_CONFIG_HOME/x11/.Xauthority"}
 export X11="$XDG_CONFIG_HOME/x11"
 export GNUPGHOME="$XDG_CONFIG_HOME/gnupg"
+export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch"
 export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export NEXTCLOUD_PHP_CONFIG=/etc/webapps/nextcloud/php.ini
 export TDESKTOP_FORCE_PANEL_ICON=1
@@ -46,7 +47,6 @@ export BIB="$HOME/Bibliotecas"
 export XDG_DATA_HOME="$HOME/.local/share"
 export DOTBARE_DIR="$BIB/Projects/Dotfiles"
 export WINEPREFIX="$XDG_DATA_HOME/wine"
-export NOTMUCH_CONFIG="$XDG_CONFIG_HOME/notmuch"
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/.password-store"
 export GOPATH="$XDG_DATA_HOME/go"
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
@@ -58,13 +58,6 @@ export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 # Runit
 export SVDIR=/run/runit/service # Runit services
 export USER_SVDIR=$HOME/.config/runit/service # Runit services
-
-# Wayland
-#export SDL_VIDEODRIVER=wayland
-#export QT_QPA_PLATFORM=wayland
-#export XDG_CURRENT_DESKTOP=sway
-#export XDG_SESSION_DESKTOP=sway
-export XCURSOR_SIZE=32
 
 #if [[ -z $DISPLAY ]] && [[ "$(tty)" = "/dev/tty1" ]]; then
 	#exec startx $HOME/.config/x11/xinitrc -- vt1 &> /dev/null

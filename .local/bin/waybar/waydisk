@@ -11,9 +11,9 @@ trap "toggle" USR1
 
 print () {
 	if [ $t -eq 0 ]; then
-		text=$(df -m | awk '$6 == "/" {printf "%.f%\n", $3*100/$2}')
+		text=$(df -h | awk '$6 == "/" {printf "%.f%\n", $5}')
 	else 
-		text=$(df -H | awk '$6 == "/" {print $3"B/"$2"B"}')
+		text=$(df -h | awk '$6 == "/" {print $3"B/"$2"B"}')
 	fi
 
 	tooltip="$(df -h --type=ext4 --type=btrfs -P | tail -n +2 | awk '{print $6, $3"B/"$2"B", $5}' | column -tc2 | sed ':a;N;$!ba;s/\n/\\n/g')"
